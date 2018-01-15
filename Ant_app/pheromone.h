@@ -17,7 +17,7 @@ private:
 public slots:
     void onAntstepped();
 
-    void advance();
+    void advance(int phase);
 
 };
 

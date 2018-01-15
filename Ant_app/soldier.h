@@ -8,7 +8,7 @@ class Soldier:Ant
 public:
     Soldier();
 
-    void advance();
+    void advance(int phase);
 };
 
 #endif // SOLDIER_H

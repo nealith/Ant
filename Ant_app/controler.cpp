@@ -1,6 +1,6 @@
 #include "controler.h"
 
-Controler::Controler(QObject *parent) : QObject(parent):
+Controler::Controler(QObject *parent) : QObject(parent),
   m_scene(),
   m_timer(),
   m_simulation(),

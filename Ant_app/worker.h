@@ -11,7 +11,9 @@ private:
 public:
     Worker();
 
-    void advance();
+    void advance(int phase);
+    bool hasFood() const;
+    void setHasFood(bool hasFood);
 };
 
 #endif // WORKER_H

@@ -5,7 +5,7 @@ Soldier::Soldier()
 
 }
 
-void Soldier::advance(){
+void Soldier::advance(int phase){
     //2CAS
 
     if(false){

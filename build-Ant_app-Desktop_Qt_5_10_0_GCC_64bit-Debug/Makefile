@@ -56,7 +56,10 @@ SOURCES       = ../Ant_app/main.cpp \
 		../Ant_app/anthill.cpp \
 		../Ant_app/pheromone.cpp \
 		../Ant_app/soldier.cpp \
-		../Ant_app/worker.cpp moc_mainwindow.cpp
+		../Ant_app/worker.cpp \
+		../Ant_app/controler.cpp \
+		../Ant_app/queen.cpp moc_mainwindow.cpp \
+		moc_controler.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		ant.o \
@@ -64,7 +67,10 @@ OBJECTS       = main.o \
 		pheromone.o \
 		soldier.o \
 		worker.o \
-		moc_mainwindow.o
+		controler.o \
+		queen.o \
+		moc_mainwindow.o \
+		moc_controler.o
 DIST          = /home/random/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/random/Qt/5.10.0/gcc_64/mkspecs/common/unix.conf \
 		/home/random/Qt/5.10.0/gcc_64/mkspecs/common/linux.conf \
@@ -253,13 +259,17 @@ DIST          = /home/random/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../Ant_app/anthill.h \
 		../Ant_app/pheromone.h \
 		../Ant_app/soldier.h \
-		../Ant_app/worker.h ../Ant_app/main.cpp \
+		../Ant_app/worker.h \
+		../Ant_app/controler.h \
+		../Ant_app/queen.h ../Ant_app/main.cpp \
 		../Ant_app/mainwindow.cpp \
 		../Ant_app/ant.cpp \
 		../Ant_app/anthill.cpp \
 		../Ant_app/pheromone.cpp \
 		../Ant_app/soldier.cpp \
-		../Ant_app/worker.cpp
+		../Ant_app/worker.cpp \
+		../Ant_app/controler.cpp \
+		../Ant_app/queen.cpp
 QMAKE_TARGET  = Ant_app
 DESTDIR       = 
 TARGET        = Ant_app
@@ -661,8 +671,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/random/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Ant_app/mainwindow.h ../Ant_app/ant.h ../Ant_app/anthill.h ../Ant_app/pheromone.h ../Ant_app/soldier.h ../Ant_app/worker.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Ant_app/main.cpp ../Ant_app/mainwindow.cpp ../Ant_app/ant.cpp ../Ant_app/anthill.cpp ../Ant_app/pheromone.cpp ../Ant_app/soldier.cpp ../Ant_app/worker.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Ant_app/mainwindow.h ../Ant_app/ant.h ../Ant_app/anthill.h ../Ant_app/pheromone.h ../Ant_app/soldier.h ../Ant_app/worker.h ../Ant_app/controler.h ../Ant_app/queen.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Ant_app/main.cpp ../Ant_app/mainwindow.cpp ../Ant_app/ant.cpp ../Ant_app/anthill.cpp ../Ant_app/pheromone.cpp ../Ant_app/soldier.cpp ../Ant_app/worker.cpp ../Ant_app/controler.cpp ../Ant_app/queen.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Ant_app/mainwindow.ui $(DISTDIR)/
 
 
@@ -695,9 +705,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/random/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /home/random/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_controler.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_controler.cpp
 moc_mainwindow.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -808,6 +818,99 @@ moc_mainwindow.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow 
 		moc_predefs.h \
 		/home/random/Qt/5.10.0/gcc_64/bin/moc
 	/home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant_app -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant_app/mainwindow.h -o moc_mainwindow.cpp
+
+moc_controler.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtCore/QObject \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsScene \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QTimer \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtimer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasictimer.h \
+		../Ant_app/controler.h \
+		moc_predefs.h \
+		/home/random/Qt/5.10.0/gcc_64/bin/moc
+	/home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant_app -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant_app/controler.h -o moc_controler.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1561,8 +1664,197 @@ worker.o: ../Ant_app/worker.cpp ../Ant_app/worker.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QHash
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o worker.o ../Ant_app/worker.cpp
 
+controler.o: ../Ant_app/controler.cpp ../Ant_app/controler.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QObject \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsScene \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpen.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QTimer \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtimer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasictimer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controler.o ../Ant_app/controler.cpp
+
+queen.o: ../Ant_app/queen.cpp ../Ant_app/queen.h \
+		../Ant_app/ant.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QObject \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGraphicsPixmapItem \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgraphicsitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		../Ant_app/anthill.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QHash
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o queen.o ../Ant_app/queen.cpp
+
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_controler.o: moc_controler.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_controler.o moc_controler.cpp
 
 ####### Install
 

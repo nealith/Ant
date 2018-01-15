@@ -30,7 +30,9 @@ SOURCES += \
     anthill.cpp \
     pheromone.cpp \
     soldier.cpp \
-    worker.cpp
+    worker.cpp \
+    controler.cpp \
+    queen.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +40,9 @@ HEADERS += \
     anthill.h \
     pheromone.h \
     soldier.h \
-    worker.h
+    worker.h \
+    controler.h \
+    queen.h
 
 FORMS += \
         mainwindow.ui

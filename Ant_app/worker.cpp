@@ -1,16 +1,30 @@
 #include "worker.h"
 
+bool Worker::hasFood() const
+{
+    return m_hasFood;
+}
+
+void Worker::setHasFood(bool hasFood)
+{
+    m_hasFood = hasFood;
+}
+
 Worker::Worker():m_hasFood(false)
 {
 
 }
 
-void Worker::advance(){
+void Worker::advance(int phase){
     //3 cas
     if(m_hasFood){
         //Revient
-        QPointF anthill = this->anthill()->pos();
-        this->setPos(this->pos()+(this->pos()+anthill)/4);
+        QLineF line(this->pos(),this->anthill()->pos()); // Line from Ant to AntHill
+        if(line.length()<3){
+            this->setPos(this->anthill()->pos());
+        }else{
+            this->setPos(line.pointAt(3));
+        }
     }else if(false){
         //Suivre
 
