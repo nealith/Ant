@@ -10,6 +10,7 @@ void Soldier::advance(int phase){
 
     if(false){
         //suivre
+
     }else{
         // Cherche
         QPointF step(this->pos());

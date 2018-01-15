@@ -32,7 +32,11 @@ SOURCES += \
     soldier.cpp \
     worker.cpp \
     controler.cpp \
+<<<<<<< HEAD
     queen.cpp
+=======
+    simulation.cpp
+>>>>>>> 20d0141264a254ec6f025130656bb4397ae0cf35
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +46,11 @@ HEADERS += \
     soldier.h \
     worker.h \
     controler.h \
+<<<<<<< HEAD
     queen.h
+=======
+    simulation.h
+>>>>>>> 20d0141264a254ec6f025130656bb4397ae0cf35
 
 FORMS += \
         mainwindow.ui

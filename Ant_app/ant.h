@@ -8,20 +8,25 @@
 class Ant : public QGraphicsPixmapItem
 {
 public:
-    explicit Ant(QGraphicsPixmapItem *parent = nullptr);
+    explicit Ant(AntHill * antHill,QGraphicsPixmapItem *parent = nullptr);
 
 
 
-    Anthill *anthill() const;
-    void setAnthill(Anthill *anthill);
+    AntHill *antHill() const;
+    void setAntHill(AntHill *antHill);
+
+    void advance(int phase);
+
+    qint64 lifeCycles() const;
+    void setLifeCycles(const qint64 &lifeCycles);
 
 signals:
 
 public slots:
 
 private:
-    Anthill *m_anthill;
-
+    AntHill *m_antHill;
+    qint64 m_lifeCycles;
 
 };
 

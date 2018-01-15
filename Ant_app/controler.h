@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QTimer>
-#include <Simulation>
+#include <Simulation.h>
 
 class Controler : public QObject
 {
@@ -13,10 +13,11 @@ class Controler : public QObject
     Q_OBJECT
 
 private:
-    QGraphicsScene m_scene;
     QTimer m_timer;
     Simulation m_simulation;
     qint64 m_cycles;
+    qreal m_speed_factor;
+    const qint32 m_speed_one =1000 ;
 
 
 public:
