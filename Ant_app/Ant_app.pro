@@ -25,10 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    ant.cpp \
+    anthill.cpp \
+    pheromone.cpp \
+    soldier.cpp \
+    worker.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    ant.h \
+    anthill.h \
+    pheromone.h \
+    soldier.h \
+    worker.h
 
 FORMS += \
         mainwindow.ui
