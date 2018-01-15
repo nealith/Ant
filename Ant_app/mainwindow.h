@@ -14,9 +14,20 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void setupSignals();
 
 private:
     Ui::MainWindow *ui;
+
+private slots:
+    void onOpenFileClicked();
+    void onParameterOpenClicked();
+    void onNewSimuClicked();
+
+signals:
+    void newSimuClicked();
+    void parameterOpenClicked();
+    void openFileClicked();
 };
 
 #endif // MAINWINDOW_H
