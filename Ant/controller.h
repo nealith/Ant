@@ -20,6 +20,7 @@ public:
     Controller(MainWindow * window,Settings * s, QObject *parent  = nullptr);
     void setupSignals();
     void initialize();
+    ~Controller();
 
 private:
     MainWindow *m_window;

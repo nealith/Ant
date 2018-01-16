@@ -21,6 +21,11 @@ void MainWindow::setupSignals(){
     connect(ui->nouvelleSimuBtn,SIGNAL(triggered()),this,SLOT(onNewSimuClicked()));
 }
 
+void MainWindow::setupScene(QGraphicsScene *scene)
+{
+    ui->graphicsView->setScene(scene);
+}
+
 void MainWindow::onOpenFileClicked(){
     qDebug() << "Clicked on open File";
     emit openFileClicked();

@@ -25,9 +25,6 @@ void Worker::advance(int phase){
         }else{
             this->setPos(line.pointAt(3));
         }
-    }else if(false){
-        //Suivre
-
     }else{
         // Cherche
         QPointF step(this->pos());

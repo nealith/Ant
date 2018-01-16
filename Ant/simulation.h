@@ -29,11 +29,12 @@ private:
             qint64 foodAnt = 4,
             qreal ratioWorkerSoldier = 0.5,
             qint64 antLifeTime = 5000,
-            qint64 antLimit = -1
+            qint64 antLimit = 1000
             );
 public:
     static Simulation * getInstance();
     void init();
+    void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);

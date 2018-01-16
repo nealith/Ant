@@ -66,19 +66,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QFrame" name="frame">
-        <property name="styleSheet">
-         <string notr="true">QFrame, QLabel, QToolTip {
-    background-color: rgb(78, 154, 6);
-}</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-       </widget>
+       <widget class="QGraphicsView" name="graphicsView"/>
       </item>
      </layout>
     </item>
@@ -90,12 +78,12 @@
      <x>0</x>
      <y>0</y>
      <width>1066</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="title">
-     <string>Fichier</string>
+     <string>Fic&amp;hier</string>
     </property>
     <addaction name="nouvelleSimuBtn"/>
     <addaction name="ouvrirFichierBtn"/>
@@ -104,11 +92,11 @@
    </widget>
    <widget class="QMenu" name="menuAffichage">
     <property name="title">
-     <string>Affichage</string>
+     <string>Afficha&amp;ge</string>
     </property>
     <widget class="QMenu" name="menuZoom">
      <property name="title">
-      <string>Zoom</string>
+      <string>&amp;Zoom</string>
      </property>
      <addaction name="action0_25"/>
      <addaction name="action0_5"/>
@@ -124,11 +112,11 @@
    </widget>
    <widget class="QMenu" name="menuSimulation">
     <property name="title">
-     <string>Simulation</string>
+     <string>Si&amp;mulation</string>
     </property>
     <widget class="QMenu" name="menuVitesse">
      <property name="title">
-      <string>Vitesse</string>
+      <string>&amp;Vitesse</string>
      </property>
      <addaction name="action0_26"/>
      <addaction name="action0_6"/>
@@ -159,7 +147,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="nouvelleSimuBtn">
    <property name="text">
-    <string>Nouveau</string>
+    <string>&amp;Nouveau</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Créer une nouvelle simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -170,7 +158,7 @@
   </action>
   <action name="ouvrirFichierBtn">
    <property name="text">
-    <string>Ouvrir</string>
+    <string>&amp;Ouvrir</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ouvrir une simulation existante&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -181,7 +169,7 @@
   </action>
   <action name="sauvegardeFichierBtn">
    <property name="text">
-    <string>Sauvegarder</string>
+    <string>&amp;Sauvegarder</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sauvegarde votre simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -192,7 +180,7 @@
   </action>
   <action name="quitterSimuBtn">
    <property name="text">
-    <string>Quitter</string>
+    <string>&amp;Quitter</string>
    </property>
    <property name="toolTip">
     <string>Quitter le programme</string>
@@ -203,7 +191,7 @@
   </action>
   <action name="actionInfos_en_temps_r_el">
    <property name="text">
-    <string>Infos en temps réel</string>
+    <string>&amp;Infos en temps réel</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Affiche les chiffres de la simulation en temps réel: nombre de colonies, de nourriture...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -214,22 +202,22 @@
   </action>
   <action name="action0_25">
    <property name="text">
-    <string>0.25</string>
+    <string>&amp;0.25</string>
    </property>
   </action>
   <action name="action0_5">
    <property name="text">
-    <string>0.5</string>
+    <string>0.&amp;5</string>
    </property>
   </action>
   <action name="action0_75">
    <property name="text">
-    <string>0.75</string>
+    <string>0.&amp;75</string>
    </property>
   </action>
   <action name="action1">
    <property name="text">
-    <string>1</string>
+    <string>&amp;1</string>
    </property>
   </action>
   <action name="action1_25">
@@ -249,37 +237,37 @@
   </action>
   <action name="action2">
    <property name="text">
-    <string>2</string>
+    <string>&amp;2</string>
    </property>
   </action>
   <action name="actionNouvelle_colonie">
    <property name="text">
-    <string>Nouvelle colonie</string>
+    <string>&amp;Nouvelle colonie</string>
    </property>
   </action>
   <action name="actionD_poser_nourriture">
    <property name="text">
-    <string>Déposer nourriture</string>
+    <string>&amp;Déposer nourriture</string>
    </property>
   </action>
   <action name="action0_26">
    <property name="text">
-    <string>0.25</string>
+    <string>&amp;0.25</string>
    </property>
   </action>
   <action name="action0_6">
    <property name="text">
-    <string>0.5</string>
+    <string>0.&amp;5</string>
    </property>
   </action>
   <action name="action0_76">
    <property name="text">
-    <string>0.75</string>
+    <string>0.&amp;75</string>
    </property>
   </action>
   <action name="action1_2">
    <property name="text">
-    <string>1</string>
+    <string>&amp;1</string>
    </property>
   </action>
   <action name="action1_26">
@@ -299,12 +287,12 @@
   </action>
   <action name="action2_2">
    <property name="text">
-    <string>2</string>
+    <string>&amp;2</string>
    </property>
   </action>
   <action name="ouvrirParamBtn">
    <property name="text">
-    <string>Paramètres</string>
+    <string>&amp;Paramètres</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -312,7 +300,7 @@
   </action>
   <action name="actionManuel">
    <property name="text">
-    <string>Manuel</string>
+    <string>&amp;Manuel</string>
    </property>
    <property name="toolTip">
     <string>Ouvre le manuel utilisateur</string>
@@ -323,7 +311,7 @@
   </action>
   <action name="action_propos">
    <property name="text">
-    <string>À propos</string>
+    <string>&amp;À propos</string>
    </property>
   </action>
  </widget>

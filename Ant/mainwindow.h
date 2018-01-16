@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
 
 namespace Ui {
 class MainWindow;
@@ -15,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void setupSignals();
+    void setupScene(QGraphicsScene * scene);
 
 private:
     Ui::MainWindow *ui;
