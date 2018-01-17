@@ -34,6 +34,7 @@ private:
 public:
     static Simulation * getInstance();
     void init();
+    void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);

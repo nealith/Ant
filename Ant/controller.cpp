@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "ui_settings.h"
 
 Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
   QObject(parent),

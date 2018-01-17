@@ -26,6 +26,11 @@ void Simulation::init()
 
 }
 
+void Simulation::advance(int phase)
+{
+    QGraphicsScene::advance();
+}
+
 void Simulation::createAnt(AntHill *antHill)
 {
     qint64 food = antHill->food();

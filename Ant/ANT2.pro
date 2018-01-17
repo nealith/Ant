@@ -55,4 +55,3 @@ SUBDIRS += \
     ANT2.pro
 
 DISTFILES += \
-    ANT2.pro.user
