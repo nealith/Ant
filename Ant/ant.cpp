@@ -22,9 +22,12 @@ void Ant::basicMove()
                      (int)qRadiansToDegrees(2*M_PI)
                      )
                  );
-    qreal move = randomAngle/M_PI;
-
-
+    qreal move = qAbs(M_PI/2 - randomAngle) /(M_PI/2);
+    QPointF pos = this->pos();
+    qreal x = pos.rx() + qCos(m_orientation)*move;
+    qreal y = pos.ry() + qSin(m_orientation)*move;
+    this->setPos(x,y);
+    this->setRotation(m_orientation);
 
 
 }

@@ -44,12 +44,13 @@ void Simulation::createAnt(AntHill *antHill)
         ant = new Queen(antHill);
         antHill->setFood(food-m_foodQueen);
     } else if(antHill->size() < m_antLimit && food >= m_foodAnt) {
-        qreal r = rand();
-        if (r < m_ratioWorkerSoldier){
+        //qreal r = rand();
+        /*if (r < m_ratioWorkerSoldier){
             ant = new Worker(antHill);
         } else {
             ant = new Soldier(antHill);
-        }
+        }*/
+        ant = new Worker(antHill);
         antHill->setFood(food-m_foodAnt);
     }
 
