@@ -30,7 +30,7 @@ void Simulation::init()
 
 }
 
-void Simulation::createAnt(AntHill antHill)
+void Simulation::createAnt(AntHill *antHill)
 {
     qint64 food = antHill->food();
     Ant * ant = nullptr;
@@ -48,7 +48,7 @@ void Simulation::createAnt(AntHill antHill)
     }
 
     if (nullptr != ant){
-        addItem(ant);
+        //addItem(ant);
         antHill->setSize(antHill->size()+1);
     }
 
@@ -56,10 +56,10 @@ void Simulation::createAnt(AntHill antHill)
 
 void Simulation::createAntHill(Queen *queen)
 {
-    QPointF pos = queen.pos();
-    removeItem(queen);
-    AntHill antHill = new AntHill();
-    antHill.setPos(pos);
+    QPointF pos = queen->pos();
+    //removeItem(queen);
+    AntHill * antHill = new AntHill();
+    antHill->setPos(pos);
 
 }
 
@@ -70,9 +70,9 @@ void Simulation::createPheromon(Worker *worker)
 
 void Simulation::deleteAnt(Ant *ant)
 {
-    if(lifeCycles >= ant->lifeCycles()){
+/*    if(lifeCycles >= ant->lifeCycles()){
         removeItem(ant);
-    }
+    }*/
 }
 
 

@@ -10,7 +10,7 @@ void Worker::setHasFood(bool hasFood)
     m_hasFood = hasFood;
 }
 
-Worker::Worker():m_hasFood(false)
+Worker::Worker(AntHill * antHill):Ant(antHill),m_hasFood(false)
 {
 
 }
@@ -19,9 +19,9 @@ void Worker::advance(int phase){
     //3 cas
     if(m_hasFood){
         //Revient
-        QLineF line(this->pos(),this->anthill()->pos()); // Line from Ant to AntHill
+        QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
         if(line.length()<3){
-            this->setPos(this->anthill()->pos());
+            this->setPos(this->antHill()->pos());
         }else{
             this->setPos(line.pointAt(3));
         }

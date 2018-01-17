@@ -1099,7 +1099,7 @@ moc_mainwindow.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow 
 		../Ant_app/mainwindow.h \
 		moc_predefs.h \
 		/home/random/Qt/5.10.0/gcc_64/bin/moc
-        /home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant_app -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant_app/mainwindow.h -o moc_mainwindow.cpp
+	/home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant_app -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant_app/mainwindow.h -o moc_mainwindow.cpp
 
 moc_controler.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtCore/QObject \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
@@ -1606,6 +1606,55 @@ mainwindow.o: ../Ant_app/mainwindow.cpp ../Ant_app/mainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QFrame \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenu \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QSlider \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QToolButton \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Ant_app/mainwindow.cpp
 
@@ -2305,6 +2354,55 @@ mainwindow.o: ../Ant_app/mainwindow.cpp ../Ant_app/mainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QFrame \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenu \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QSlider \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QToolButton \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Ant_app/mainwindow.cpp
 
@@ -3485,6 +3583,55 @@ mainwindow.o: ../Ant_app/mainwindow.cpp ../Ant_app/mainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QFrame \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QGridLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenu \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QSlider \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QStatusBar \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QToolButton \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtoolbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QVBoxLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Ant_app/mainwindow.cpp
 

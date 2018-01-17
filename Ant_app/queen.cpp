@@ -1,9 +1,10 @@
 #include "queen.h"
 
-Queen::Queen(QPointF &pos):m_spawn(pos)
+Queen::Queen(AntHill * antHill):Ant(antHill)
 {
 
 }
+
 
 void Queen::advance(int phase){
 

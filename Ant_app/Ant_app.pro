@@ -28,29 +28,65 @@ SOURCES += \
         mainwindow.cpp \
     ant.cpp \
     anthill.cpp \
+    controler.cpp \
+    controller.cpp \
+    main.cpp \
+    mainwindow.cpp \
     pheromone.cpp \
+    queen.cpp \
+    simulation.cpp \
     soldier.cpp \
     worker.cpp \
+    ant.cpp \
+    anthill.cpp \
     controler.cpp \
-<<<<<<< HEAD
+    controller.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    pheromone.cpp \
+    queen.cpp \
+    simulation.cpp \
+    soldier.cpp \
+    worker.cpp
     queen.cpp
-=======
     simulation.cpp
->>>>>>> 20d0141264a254ec6f025130656bb4397ae0cf35
 
 HEADERS += \
         mainwindow.h \
     ant.h \
     anthill.h \
+    controler.h \
+    controller.h \
+    mainwindow.h \
     pheromone.h \
+    queen.h \
+    simulation.h \
     soldier.h \
     worker.h \
+    ant.h \
+    anthill.h \
     controler.h \
-<<<<<<< HEAD
+    controller.h \
+    mainwindow.h \
+    pheromone.h \
+    queen.h \
+    simulation.h \
+    soldier.h \
+    worker.h
     queen.h
-=======
     simulation.h
->>>>>>> 20d0141264a254ec6f025130656bb4397ae0cf35
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    mainwindow.ui \
+    settings.ui \
+    mainwindow.ui \
+    settings.ui
+
+SUBDIRS += \
+    Ant_app.pro \
+    Ant_app.pro
+
+DISTFILES += \
+    Ant_app.pro.user \
+    Ant_app.pro.user

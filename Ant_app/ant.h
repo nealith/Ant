@@ -12,7 +12,7 @@ public:
 
 
 
-    AntHill *antHill() const;
+    AntHill *antHill();
     void setAntHill(AntHill *antHill);
 
     void advance(int phase);

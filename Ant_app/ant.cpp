@@ -1,4 +1,5 @@
 #include "ant.h"
+#include "simulation.h"
 
 Ant::Ant(AntHill * antHill, QGraphicsPixmapItem *parent) :
     QGraphicsPixmapItem(parent),
@@ -24,14 +25,14 @@ void Ant::setLifeCycles(const qint64 &lifeCycles)
     m_lifeCycles = lifeCycles;
 }
 
-Anthill *Ant::anthill() const
+AntHill *Ant::antHill()
 {
-    return m_anthill;
+    return m_antHill;
 }
 
-void Ant::setAnthill(Anthill *anthill)
+void Ant::setAntHill(AntHill *anthill)
 {
-    m_anthill = anthill;
+    m_antHill = anthill;
 }
 
 

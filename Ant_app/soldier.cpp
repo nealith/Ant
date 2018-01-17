@@ -1,6 +1,6 @@
 #include "soldier.h"
 
-Soldier::Soldier()
+Soldier::Soldier(AntHill * antHill):Ant(antHill)
 {
 
 }

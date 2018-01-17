@@ -3,10 +3,10 @@
 
 #include "ant.h"
 
-class Soldier:Ant
+class Soldier:public Ant
 {
 public:
-    Soldier();
+    Soldier(AntHill * antHill);
 
     void advance(int phase);
 };

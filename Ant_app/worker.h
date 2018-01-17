@@ -3,13 +3,13 @@
 
 #include "ant.h"
 
-class Worker:Ant
+class Worker:public Ant
 {
 private:
     bool m_hasFood;
 
 public:
-    Worker();
+    Worker(AntHill * antHill);
 
     void advance(int phase);
     bool hasFood() const;

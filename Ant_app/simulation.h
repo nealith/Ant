@@ -8,6 +8,7 @@
 #include <pheromone.h>
 #include <worker.h>
 #include <soldier.h>
+#include <queen.h>
 
 class Simulation: public QGraphicsPixmapItem
 {
@@ -21,6 +22,8 @@ private:
     qint64 m_antLifeTime;
     qint64 m_antLimit;
 
+
+
     Simulation(
             qint64 foodQueen = 1000,
             qint64 foodAnt = 4,
@@ -32,10 +35,10 @@ public:
     ~Simulation();
     static Simulation * getInstance();
     void init();
-    void createAnt(AntHill antHill, qint64 food);
+    void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);
-    void deleteAnt(Ant * ant, qint64 lifeCycles);
+    void deleteAnt(Ant * ant);
 };
 
 #endif // SIMULATION_H

@@ -2,13 +2,13 @@
 #define QUEEN_H
 
 #include "ant.h"
+#include "anthill.h"
 
-class Queen:Ant
+class Queen:public Ant
 {
-private:
-    QPointF m_spawn;
+
 public:
-    Queen(QPointF &pos);
+    Queen(AntHill * antHill);
 
     void advance(int phase);
 };

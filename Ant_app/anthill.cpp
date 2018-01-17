@@ -1,6 +1,7 @@
 #include "anthill.h"
+#include "simulation.h"
 
-Anthill::AntHill():
+AntHill::AntHill():
     m_food(4),
     m_size(0)
 {
