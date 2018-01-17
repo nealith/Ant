@@ -10,7 +10,7 @@ class Ant : public QGraphicsPixmapItem
 public:
     explicit Ant(AntHill * antHill);
 
-
+    void basicMove();
 
     AntHill *antHill();
     void setAntHill(AntHill *antHill);
@@ -28,6 +28,7 @@ public slots:
 private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
+    qreal m_orientation;
 
 };
 

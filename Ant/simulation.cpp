@@ -1,4 +1,5 @@
 #include "simulation.h"
+#include "QDebug"
 
 Simulation * Simulation::instance;
 
@@ -9,7 +10,7 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_antLifeTime(antLifeTime),
     m_antLimit(antLimit)
 {
-
+    QGraphicsScene::setBackgroundBrush(Qt::red);
 }
 
 Simulation * Simulation::getInstance()
@@ -22,8 +23,16 @@ Simulation * Simulation::getInstance()
 
 void Simulation::init()
 {
+    QGraphicsScene::setSceneRect(0,0,this->width(),this->height());
+    AntHill * at = new AntHill();
+    this->addItem(at);
+    at->setPos(this->width()/2,this->height()/2);
 
+}
 
+void Simulation::advance(int phase)
+{
+    QGraphicsScene::advance();
 }
 
 void Simulation::advance(int phase)
@@ -33,23 +42,25 @@ void Simulation::advance(int phase)
 
 void Simulation::createAnt(AntHill *antHill)
 {
+
     qint64 food = antHill->food();
     Ant * ant = nullptr;
-    if (food > m_foodQueen){
+    if (food >= m_foodQueen){
         ant = new Queen(antHill);
         antHill->setFood(food-m_foodQueen);
-    } else if(antHill->size() < m_antLimit) {
-        qreal r = rand();
-        if (r < m_ratioWorkerSoldier){
+    } else if(antHill->size() < m_antLimit && food >= m_foodAnt) {
+        //qreal r = rand();
+        /*if (r < m_ratioWorkerSoldier){
             ant = new Worker(antHill);
         } else {
             ant = new Soldier(antHill);
-        }
+        }*/
+        ant = new Worker(antHill);
         antHill->setFood(food-m_foodAnt);
     }
 
     if (nullptr != ant){
-        //addItem(ant);
+        QGraphicsScene::addItem(ant);
         antHill->setSize(antHill->size()+1);
     }
 
@@ -58,7 +69,7 @@ void Simulation::createAnt(AntHill *antHill)
 void Simulation::createAntHill(Queen *queen)
 {
     QPointF pos = queen->pos();
-    //removeItem(queen);
+    QGraphicsScene::removeItem(queen);
     AntHill * antHill = new AntHill();
     antHill->setPos(pos);
 
@@ -68,6 +79,7 @@ void Simulation::createPheromon(Worker *worker)
 {
 
 }
+
 
 void Simulation::deleteAnt(Ant *ant)
 {

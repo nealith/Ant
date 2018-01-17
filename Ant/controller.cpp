@@ -1,5 +1,6 @@
 #include "controller.h"
 #include "ui_settings.h"
+#include <QDebug>
 
 Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
   QObject(parent),
@@ -7,7 +8,8 @@ Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
   m_settings(s),
   m_timer(),
   m_simulation(Simulation::getInstance()),
-  m_cycles(0)
+  m_cycles(0),
+  m_speed_factor(1)
 {
     Q_ASSERT(nullptr != window);
 }
@@ -25,9 +27,16 @@ void Controller::initialize(){
     m_window->setupSignals();
     this->setupSignals();
 
+    m_window->setupScene(m_simulation);
+    m_simulation->init();
     m_timer.start(m_speed_factor*m_speed_one);
     m_window->show();
 
+}
+
+Controller::~Controller()
+{
+   delete m_simulation;
 }
 
 void Controller::createNewSimu(){

@@ -34,7 +34,8 @@ SOURCES += \
     pheromone.cpp \
     simulation.cpp \
     settings.cpp \
-    controller.cpp
+    controller.cpp \
+    food.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS += \
     queen.h \
     ant.h \
     settings.h \
-    controller.h
+    controller.h \
+    food.h
 
 FORMS += \
         mainwindow.ui \
@@ -54,4 +56,5 @@ FORMS += \
 SUBDIRS += \
     ANT2.pro
 
-DISTFILES += \
+RESOURCES += \
+    res.qrc
