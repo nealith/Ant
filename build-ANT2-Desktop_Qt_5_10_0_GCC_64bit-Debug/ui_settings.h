@@ -24,7 +24,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Dialog
+class Ui_Settings
 {
 public:
     QDialogButtonBox *buttonBox;
@@ -43,17 +43,17 @@ public:
     QSpinBox *foodPerQueenSpinBox;
     QCheckBox *englishEasterEggChkBox;
 
-    void setupUi(QDialog *Dialog)
+    void setupUi(QDialog *Settings)
     {
-        if (Dialog->objectName().isEmpty())
-            Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(460, 278);
-        buttonBox = new QDialogButtonBox(Dialog);
+        if (Settings->objectName().isEmpty())
+            Settings->setObjectName(QStringLiteral("Settings"));
+        Settings->resize(460, 278);
+        buttonBox = new QDialogButtonBox(Settings);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setGeometry(QRect(10, 240, 441, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        formLayoutWidget = new QWidget(Dialog);
+        formLayoutWidget = new QWidget(Settings);
         formLayoutWidget->setObjectName(QStringLiteral("formLayoutWidget"));
         formLayoutWidget->setGeometry(QRect(9, 9, 444, 221));
         formLayout = new QFormLayout(formLayoutWidget);
@@ -120,29 +120,29 @@ public:
         formLayout->setWidget(6, QFormLayout::SpanningRole, englishEasterEggChkBox);
 
 
-        retranslateUi(Dialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), Dialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), Dialog, SLOT(reject()));
+        retranslateUi(Settings);
+        QObject::connect(buttonBox, SIGNAL(accepted()), Settings, SLOT(accept()));
+        QObject::connect(buttonBox, SIGNAL(rejected()), Settings, SLOT(reject()));
 
-        QMetaObject::connectSlotsByName(Dialog);
+        QMetaObject::connectSlotsByName(Settings);
     } // setupUi
 
-    void retranslateUi(QDialog *Dialog)
+    void retranslateUi(QDialog *Settings)
     {
-        Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
-        label->setText(QApplication::translate("Dialog", "Nombre de colonies au d\303\251part:", nullptr));
-        britainEasterEggChkBox->setText(QApplication::translate("Dialog", "Mode Demi-sel/Anti-Margarine/Bl\303\251-noire/Bigoud\303\250ne", nullptr));
-        label_2->setText(QApplication::translate("Dialog", "Nombre max de fourmis/colonies", nullptr));
-        label_3->setText(QApplication::translate("Dialog", "Nourriture pour une fourmi", nullptr));
-        label_4->setText(QApplication::translate("Dialog", "Dur\303\251e de vie des fourmis (cycles)", nullptr));
-        label_5->setText(QApplication::translate("Dialog", "Nourriture pour cr\303\251er une reine", nullptr));
-        englishEasterEggChkBox->setText(QApplication::translate("Dialog", "Sa majest\303\251 Elisabeth II", nullptr));
+        Settings->setWindowTitle(QApplication::translate("Settings", "Dialog", nullptr));
+        label->setText(QApplication::translate("Settings", "Nombre de colonies au d\303\251part:", nullptr));
+        britainEasterEggChkBox->setText(QApplication::translate("Settings", "Mode Demi-sel/Anti-Margarine/Bl\303\251-noire/Bigoud\303\250ne", nullptr));
+        label_2->setText(QApplication::translate("Settings", "Nombre max de fourmis/colonies", nullptr));
+        label_3->setText(QApplication::translate("Settings", "Nourriture pour une fourmi", nullptr));
+        label_4->setText(QApplication::translate("Settings", "Dur\303\251e de vie des fourmis (cycles)", nullptr));
+        label_5->setText(QApplication::translate("Settings", "Nourriture pour cr\303\251er une reine", nullptr));
+        englishEasterEggChkBox->setText(QApplication::translate("Settings", "Sa majest\303\251 Elisabeth II", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Dialog: public Ui_Dialog {};
+    class Settings: public Ui_Settings {};
 } // namespace Ui
 
 QT_END_NAMESPACE

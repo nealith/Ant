@@ -31,7 +31,7 @@ void Worker::advance(int phase){
         step.setX(step.x()-5 + (rand() % static_cast<int>(11)));
         step.setY(step.y()-5 + (rand() % static_cast<int>(11)));
         this->setPos(step);*/
-        this->basicMove();
+        Ant::basicMove();
     }
 
 }

@@ -9,6 +9,8 @@
 #include <worker.h>
 #include <soldier.h>
 #include <queen.h>
+#include <food.h>
+#include <QList>
 
 class Simulation: public QGraphicsScene
 {
@@ -21,6 +23,8 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
+    QList<Food*> m_food;
+
 
 
 

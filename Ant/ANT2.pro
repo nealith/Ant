@@ -56,14 +56,5 @@ FORMS += \
 SUBDIRS += \
     ANT2.pro
 
-DISTFILES += \
-    ANT2.pro.user \
-    resources/ant.png \
-    resources/anthill.png \
-    resources/food.png \
-    resources/ant.svg \
-    resources/anthill.svg \
-    resources/bouff.svg
-
 RESOURCES += \
     res.qrc

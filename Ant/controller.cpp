@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "ui_settings.h"
 #include <QDebug>
 
 Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
@@ -52,5 +53,5 @@ void Controller::openFileManager(){
 void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
-    m_timer.start(m_speed_factor*m_speed_one);
+    //m_timer.start(m_speed_factor*m_speed_one);
 }

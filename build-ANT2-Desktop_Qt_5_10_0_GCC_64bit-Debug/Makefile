@@ -63,6 +63,7 @@ SOURCES       = ../Ant/main.cpp \
 		../Ant/controller.cpp \
 		../Ant/food.cpp qrc_res.cpp \
 		moc_mainwindow.cpp \
+		moc_settings.cpp \
 		moc_controller.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
@@ -78,15 +79,9 @@ OBJECTS       = main.o \
 		food.o \
 		qrc_res.o \
 		moc_mainwindow.o \
+		moc_settings.o \
 		moc_controller.o
-DIST          = ../Ant/ANT2.pro.user \
-		../Ant/resources/ant.png \
-		../Ant/resources/anthill.png \
-		../Ant/resources/food.png \
-		../Ant/resources/ant.svg \
-		../Ant/resources/anthill.svg \
-		../Ant/resources/bouff.svg \
-		/home/random/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
+DIST          = /home/random/Qt/5.10.0/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/random/Qt/5.10.0/gcc_64/mkspecs/common/unix.conf \
 		/home/random/Qt/5.10.0/gcc_64/mkspecs/common/linux.conf \
 		/home/random/Qt/5.10.0/gcc_64/mkspecs/common/sanitize.conf \
@@ -737,9 +732,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/random/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /home/random/Qt/5.10.0/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_controller.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_settings.cpp moc_controller.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_controller.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_settings.cpp moc_controller.cpp
 moc_mainwindow.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -853,6 +848,116 @@ moc_mainwindow.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow 
 		moc_predefs.h \
 		/home/random/Qt/5.10.0/gcc_64/bin/moc
 	/home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant/mainwindow.h -o moc_mainwindow.cpp
+
+moc_settings.cpp: /home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QDialog \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdialog.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobal.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qconfig.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtcore-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsysinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlogging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qflags.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmutex.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnumeric.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qversiontagging.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtgui-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qnamespace.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstring.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qchar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrefcount.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qarraydata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringliteral.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qalgorithms.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiterator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpair.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringlist.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregexp.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreevent.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmetatype.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qobject_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmargins.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qrect.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsize.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qpoint.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpalette.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qcolor.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgb.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qrgba64.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qbrush.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvector.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qmatrix.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpolygon.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qregion.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdatastream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qiodevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qline.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtransform.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpainterpath.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qimage.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixelformat.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qpixmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qshareddata.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qhash.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qfont.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qfontinfo.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qcursor.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qkeysequence.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qevent.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qvariant.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmap.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qdebug.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtextstream.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qlocale.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qset.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qurl.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qurlquery.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qfile.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
+		../Ant/settings.h \
+		moc_predefs.h \
+		/home/random/Qt/5.10.0/gcc_64/bin/moc
+	/home/random/Qt/5.10.0/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/random/Qt/5.10.0/gcc_64/mkspecs/linux-g++ -I/home/random/Documents/ESIR/IHM/Ant/Ant -I/home/random/Qt/5.10.0/gcc_64/include -I/home/random/Qt/5.10.0/gcc_64/include/QtWidgets -I/home/random/Qt/5.10.0/gcc_64/include/QtGui -I/home/random/Qt/5.10.0/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Ant/settings.h -o moc_settings.cpp
 
 moc_controller.cpp: ../Ant/mainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMainWindow \
@@ -1342,6 +1447,8 @@ mainwindow.o: ../Ant/mainwindow.cpp ../Ant/mainwindow.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenu \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qmenu.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QMenuBar \
@@ -1745,8 +1852,8 @@ ant.o: ../Ant/ant.cpp ../Ant/ant.h \
 		../Ant/worker.h \
 		../Ant/soldier.h \
 		../Ant/queen.h \
-		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QtMath \
-		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmath.h
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qmath.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ant.o ../Ant/ant.cpp
 
 anthill.o: ../Ant/anthill.cpp ../Ant/anthill.h \
@@ -2156,7 +2263,57 @@ settings.o: ../Ant/settings.cpp ../Ant/settings.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qfiledevice.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvector2d.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qtouchdevice.h \
-		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QWidget \
+		ui_settings.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qicon.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QFormLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qformlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qframe.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyleoption.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qvalidator.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qregularexpression.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qstyle.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabbar.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qtabwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qrubberband.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o settings.o ../Ant/settings.cpp
 
 controller.o: ../Ant/controller.cpp ../Ant/controller.h \
@@ -2307,7 +2464,39 @@ controller.o: ../Ant/controller.cpp ../Ant/controller.h \
 		../Ant/queen.h \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QTimer \
 		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qtimer.h \
-		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasictimer.h
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qbasictimer.h \
+		ui_settings.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/QVariant \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QAction \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qaction.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QApplication \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtCore/qeventloop.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qguiapplication.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtGui/qinputmethod.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QButtonGroup \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qbuttongroup.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QCheckBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qcheckbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QFormLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qformlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QLayout \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QHeaderView \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qheaderview.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QLabel \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qlabel.h \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/QSpinBox \
+		/home/random/Qt/5.10.0/gcc_64/include/QtWidgets/qspinbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../Ant/controller.cpp
 
 food.o: ../Ant/food.cpp ../Ant/food.h \
@@ -2406,6 +2595,9 @@ qrc_res.o: qrc_res.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_settings.o: moc_settings.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_settings.o moc_settings.cpp
 
 moc_controller.o: moc_controller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_controller.o moc_controller.cpp
