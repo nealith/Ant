@@ -35,6 +35,11 @@ void Simulation::advance(int phase)
     QGraphicsScene::advance();
 }
 
+void Simulation::advance(int phase)
+{
+    QGraphicsScene::advance();
+}
+
 void Simulation::createAnt(AntHill *antHill)
 {
 

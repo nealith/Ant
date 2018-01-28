@@ -1,4 +1,5 @@
 #include "controller.h"
+#include "ui_settings.h"
 #include <QDebug>
 
 Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
