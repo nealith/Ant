@@ -29,6 +29,10 @@ private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
     qreal m_orientation;
+    bool m_turn;
+    qreal m_turn_rotation;
+    bool m_beeline;
+    qreal m_beeline_distance;
 
 };
 
