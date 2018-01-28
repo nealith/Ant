@@ -1,6 +1,10 @@
 #include "ant.h"
 #include "simulation.h"
-#include <QtMath>
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
 
 Ant::Ant(AntHill * antHill) :
     QGraphicsPixmapItem(),
