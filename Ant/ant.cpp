@@ -43,8 +43,8 @@ void Ant::basicMove()
     } else if(m_beeline){
         QPointF pos = this->pos();
         this->setTransformOriginPoint(pos);
-        qreal x = pos.x() + qCos(qDegreesToRadians(m_orientation))*0.5;
-        qreal y = pos.y() + qSin(qDegreesToRadians(m_orientation))*0.5;
+        qreal x = pos.x() + qCos(m_orientation*(180.0/M_PI))*0.5;
+        qreal y = pos.y() + qSin(m_orientation*(180.0/M_PI))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
 
