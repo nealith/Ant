@@ -52,5 +52,5 @@ void Controller::openFileManager(){
 void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
-    m_timer.start(m_speed_factor*m_speed_one);
+    //m_timer.start(m_speed_factor*m_speed_one);
 }

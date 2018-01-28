@@ -1,6 +1,7 @@
 #include "ant.h"
 #include "simulation.h"
 #include <QtMath>
+#include <QDebug>
 
 Ant::Ant(AntHill * antHill) :
     QGraphicsPixmapItem(),
@@ -14,21 +15,17 @@ Ant::Ant(AntHill * antHill) :
 
 void Ant::basicMove()
 {
-    qreal randomAngle = qrand() * M_PI;
-    m_orientation = qDegreesToRadians(
-                (qreal)(
-                     (int)qRadiansToDegrees(randomAngle + m_orientation)
-                     %
-                     (int)qRadiansToDegrees(2*M_PI)
-                     )
-                 );
-    qreal move = qAbs(M_PI/2 - randomAngle) /(M_PI/2);
+    qreal randomAngle = (((float)((int)qrand() % 1000)/ (float)500) - 1) * M_PI/2;
+    m_orientation += randomAngle;
+    qreal move = 1;//(qAbs(randomAngle) /(M_PI/4));
     QPointF pos = this->pos();
     qreal x = pos.rx() + qCos(m_orientation)*move;
-    qreal y = pos.ry() + qSin(m_orientation)*move;
+    qreal y = pos.ry() - qSin(m_orientation)*move;
+    if(m_orientation > 2*M_PI){
+        m_orientation -= 2*M_PI;
+    }
     this->setPos(x,y);
     this->setRotation(m_orientation);
-
 
 }
 

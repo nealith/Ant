@@ -26,7 +26,7 @@ void Worker::advance(int phase){
             this->setPos(line.pointAt(3));
         }
     }else{
-        this->basicMove();
+        Ant::basicMove();
     }
 
 }
