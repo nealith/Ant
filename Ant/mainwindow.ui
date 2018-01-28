@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1066</width>
+    <height>582</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QWidget" name="horizontalWidget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Vitesse d'execution</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="horizontalSlider">
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton">
+           <property name="text">
+            <string>Add Food</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="toolButton_2">
+           <property name="text">
+            <string>Add anthill</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="graphicsView"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1066</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFichier">
+    <property name="title">
+     <string>Fic&amp;hier</string>
+    </property>
+    <addaction name="nouvelleSimuBtn"/>
+    <addaction name="ouvrirFichierBtn"/>
+    <addaction name="sauvegardeFichierBtn"/>
+    <addaction name="quitterSimuBtn"/>
+   </widget>
+   <widget class="QMenu" name="menuAffichage">
+    <property name="title">
+     <string>Afficha&amp;ge</string>
+    </property>
+    <widget class="QMenu" name="menuZoom">
+     <property name="title">
+      <string>&amp;Zoom</string>
+     </property>
+     <addaction name="action0_25"/>
+     <addaction name="action0_5"/>
+     <addaction name="action0_75"/>
+     <addaction name="action1"/>
+     <addaction name="action1_25"/>
+     <addaction name="action1_5"/>
+     <addaction name="action1_75"/>
+     <addaction name="action2"/>
+    </widget>
+    <addaction name="actionInfos_en_temps_r_el"/>
+    <addaction name="menuZoom"/>
+   </widget>
+   <widget class="QMenu" name="menuSimulation">
+    <property name="title">
+     <string>Si&amp;mulation</string>
+    </property>
+    <widget class="QMenu" name="menuVitesse">
+     <property name="title">
+      <string>&amp;Vitesse</string>
+     </property>
+     <addaction name="action0_26"/>
+     <addaction name="action0_6"/>
+     <addaction name="action0_76"/>
+     <addaction name="action1_2"/>
+     <addaction name="action1_26"/>
+     <addaction name="action1_6"/>
+     <addaction name="action1_76"/>
+     <addaction name="action2_2"/>
+    </widget>
+    <addaction name="actionNouvelle_colonie"/>
+    <addaction name="actionD_poser_nourriture"/>
+    <addaction name="menuVitesse"/>
+    <addaction name="ouvrirParamBtn"/>
+   </widget>
+   <widget class="QMenu" name="menuAide">
+    <property name="title">
+     <string>Aide</string>
+    </property>
+    <addaction name="actionManuel"/>
+    <addaction name="action_propos"/>
+   </widget>
+   <addaction name="menuFichier"/>
+   <addaction name="menuAffichage"/>
+   <addaction name="menuSimulation"/>
+   <addaction name="menuAide"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="nouvelleSimuBtn">
+   <property name="text">
+    <string>&amp;Nouveau</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Créer une nouvelle simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="ouvrirFichierBtn">
+   <property name="text">
+    <string>&amp;Ouvrir</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ouvrir une simulation existante&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="sauvegardeFichierBtn">
+   <property name="text">
+    <string>&amp;Sauvegarder</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sauvegarde votre simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="quitterSimuBtn">
+   <property name="text">
+    <string>&amp;Quitter</string>
+   </property>
+   <property name="toolTip">
+    <string>Quitter le programme</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionInfos_en_temps_r_el">
+   <property name="text">
+    <string>&amp;Infos en temps réel</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Affiche les chiffres de la simulation en temps réel: nombre de colonies, de nourriture...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="action0_25">
+   <property name="text">
+    <string>&amp;0.25</string>
+   </property>
+  </action>
+  <action name="action0_5">
+   <property name="text">
+    <string>0.&amp;5</string>
+   </property>
+  </action>
+  <action name="action0_75">
+   <property name="text">
+    <string>0.&amp;75</string>
+   </property>
+  </action>
+  <action name="action1">
+   <property name="text">
+    <string>&amp;1</string>
+   </property>
+  </action>
+  <action name="action1_25">
+   <property name="text">
+    <string>1.25</string>
+   </property>
+  </action>
+  <action name="action1_5">
+   <property name="text">
+    <string>1.5</string>
+   </property>
+  </action>
+  <action name="action1_75">
+   <property name="text">
+    <string>1.75</string>
+   </property>
+  </action>
+  <action name="action2">
+   <property name="text">
+    <string>&amp;2</string>
+   </property>
+  </action>
+  <action name="actionNouvelle_colonie">
+   <property name="text">
+    <string>&amp;Nouvelle colonie</string>
+   </property>
+  </action>
+  <action name="actionD_poser_nourriture">
+   <property name="text">
+    <string>&amp;Déposer nourriture</string>
+   </property>
+  </action>
+  <action name="action0_26">
+   <property name="text">
+    <string>&amp;0.25</string>
+   </property>
+  </action>
+  <action name="action0_6">
+   <property name="text">
+    <string>0.&amp;5</string>
+   </property>
+  </action>
+  <action name="action0_76">
+   <property name="text">
+    <string>0.&amp;75</string>
+   </property>
+  </action>
+  <action name="action1_2">
+   <property name="text">
+    <string>&amp;1</string>
+   </property>
+  </action>
+  <action name="action1_26">
+   <property name="text">
+    <string>1.25</string>
+   </property>
+  </action>
+  <action name="action1_6">
+   <property name="text">
+    <string>1.5</string>
+   </property>
+  </action>
+  <action name="action1_76">
+   <property name="text">
+    <string>1.75</string>
+   </property>
+  </action>
+  <action name="action2_2">
+   <property name="text">
+    <string>&amp;2</string>
+   </property>
+  </action>
+  <action name="ouvrirParamBtn">
+   <property name="text">
+    <string>&amp;Paramètres</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionManuel">
+   <property name="text">
+    <string>&amp;Manuel</string>
+   </property>
+   <property name="toolTip">
+    <string>Ouvre le manuel utilisateur</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
+  <action name="action_propos">
+   <property name="text">
+    <string>&amp;À propos</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
