@@ -29,7 +29,7 @@ private:
     Simulation * m_simulation;
     qint64 m_cycles;
     qreal m_speed_factor;
-    const qint32 m_speed_one =1000 ;
+    const qint32 m_speed_one =40 ;
 
 private slots:
     void createNewSimu();
