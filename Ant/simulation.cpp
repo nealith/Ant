@@ -1,5 +1,5 @@
 #include "simulation.h"
-#include "QDebug"
+#include <QDebug>
 
 Simulation * Simulation::instance;
 
@@ -11,7 +11,7 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_antLimit(antLimit),
     m_food()
 {
-    QGraphicsScene::setBackgroundBrush(Qt::red);
+    QGraphicsScene::setBackgroundBrush(Qt::black);
 }
 
 Simulation * Simulation::getInstance()
@@ -30,6 +30,7 @@ void Simulation::init()
     at->setPos(this->width()/2,this->height()/2);
     for(qint64 i(0); i<15;i++ ){
         Food * fd = new Food();
+        fd->setFood(qrand()%15);
         m_food.append(fd);
         this->addItem(fd);
 
@@ -90,4 +91,11 @@ void Simulation::deleteAnt(Ant *ant)
     }
 }
 
-
+void Simulation::addFood()
+{
+    Food * fd = new Food();
+    fd->setFood(qrand()%15);
+    m_food.append(fd);
+    this->addItem(fd);
+    qDebug() << "J'ajoute de la bouffe";
+}

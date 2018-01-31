@@ -56,14 +56,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton">
+          <widget class="QToolButton" name="addFoodBtn">
            <property name="text">
             <string>Add Food</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="toolButton_2">
+          <widget class="QToolButton" name="addAnthillBtn">
            <property name="text">
             <string>Add anthill</string>
            </property>

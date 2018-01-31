@@ -36,6 +36,7 @@ private slots:
     void openParamWindow();
     void openFileManager();
     void onTimeout();
+    void onAddFood();
 };
 
 #endif // CONTROLLER_H

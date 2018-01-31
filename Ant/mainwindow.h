@@ -25,11 +25,13 @@ private slots:
     void onOpenFileClicked();
     void onParameterOpenClicked();
     void onNewSimuClicked();
+    void onAddFoodClicked();
 
 signals:
     void newSimuClicked();
     void parameterOpenClicked();
     void openFileClicked();
+    void addFoodClicked();
 };
 
 #endif // MAINWINDOW_H

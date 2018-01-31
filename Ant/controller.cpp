@@ -21,6 +21,7 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(parameterOpenClicked()), this, SLOT(openParamWindow()));
     connect(m_window, SIGNAL(openFileClicked()), this, SLOT(openFileManager()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
 }
 
 void Controller::initialize(){
@@ -48,6 +49,10 @@ void Controller::openParamWindow(){
 
 void Controller::openFileManager(){
 
+}
+
+void Controller::onAddFood(){
+    m_simulation->addFood();
 }
 
 void Controller::onTimeout(){
