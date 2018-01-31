@@ -36,7 +36,6 @@ void Ant::basicMove()
         m_orientation += rotation;
 
         this->rotate(rotation);
-        qDebug() << m_orientation;
 
         if((rotation>0.0 && m_turn_rotation <=0.0) || (rotation <0.0 && m_turn_rotation >=0.0)){
             m_turn = false;
@@ -47,8 +46,8 @@ void Ant::basicMove()
         }
     } else if(m_beeline){
         QPointF pos = this->pos();
-        qreal x = pos.x() + qCos(m_orientation*(180.0/M_PI))*0.5;
-        qreal y = pos.y() + qSin(m_orientation*(180.0/M_PI))*0.5;
+        qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
+        qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
 
