@@ -6,6 +6,8 @@
     #include <QtCore/qmath.h>
 #endif
 #include <QDebug>
+#include <QTransform>
+#include <QRectF>
 
 Ant::Ant(AntHill * antHill) :
     QGraphicsPixmapItem(),
@@ -18,12 +20,13 @@ Ant::Ant(AntHill * antHill) :
     m_beeline_distance(0)
 {
     this->setPos(antHill->pos());
-    this->setPixmap(QPixmap(":/img/resources/ant.png"));
+    QPixmap p(":/img/resources/ant.png");
+    this->setPixmap(p);
+    this->rotate(90);
 }
 
 void Ant::basicMove()
 {
-    m_orientation = this->rotation()-90.0;
     if(m_turn){
         qreal rotation = 0.5;
         if(m_turn_rotation < 0.0){
@@ -31,18 +34,19 @@ void Ant::basicMove()
         }
         m_turn_rotation -= rotation;
         m_orientation += rotation;
-        this->setTransformOriginPoint(this->pos());
-        this->setRotation(m_orientation+90.0);
+
+        this->rotate(rotation);
+        qDebug() << m_orientation;
 
         if((rotation>0.0 && m_turn_rotation <=0.0) || (rotation <0.0 && m_turn_rotation >=0.0)){
             m_turn = false;
             m_turn_rotation = 0.0;
+
             m_beeline = true;
             m_beeline_distance = (((float)((int)rand() % 1000)/ (float)1000)) * 30.0 + 20.0;
         }
     } else if(m_beeline){
         QPointF pos = this->pos();
-        this->setTransformOriginPoint(pos);
         qreal x = pos.x() + qCos(m_orientation*(180.0/M_PI))*0.5;
         qreal y = pos.y() + qSin(m_orientation*(180.0/M_PI))*0.5;
         this->setPos(x,y);
@@ -51,6 +55,7 @@ void Ant::basicMove()
         if(m_beeline_distance <= 0.0){
             m_beeline = false;
             m_beeline_distance = 0.0;
+
             m_turn = true;
             m_turn_rotation = (((float)((int)qrand() % 1000)/ (float)500) - (float)1) * 45.0;
         }
@@ -104,4 +109,20 @@ AntHill *Ant::antHill()
 void Ant::setAntHill(AntHill *anthill)
 {
     m_antHill = anthill;
+}
+
+void Ant::rotate(qreal angle){
+    QRectF r = this->sceneBoundingRect();
+    qreal w = r.width()/2.0;
+    qreal h = r.height()/2.0;
+
+
+    QTransform * t = new QTransform();
+    t->translate(w,h);
+    t->rotate(angle);
+    t->translate(-w,-h);
+
+    this->setTransform(*t,true);
+
+    delete t;
 }

@@ -11,7 +11,7 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_antLimit(antLimit),
     m_food()
 {
-    QGraphicsScene::setBackgroundBrush(Qt::black);
+    QGraphicsScene::setBackgroundBrush(Qt::red);
 }
 
 Simulation * Simulation::getInstance()

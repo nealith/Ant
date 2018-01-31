@@ -41,31 +41,43 @@
          <item>
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Vitesse d'execution</string>
+            <string>Vitesse d'exécution</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="horizontalSlider">
+          <widget class="QSlider" name="exeSpeedSlider">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
+           <property name="minimum">
+            <number>-5</number>
+           </property>
+           <property name="maximum">
+            <number>5</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="invertedAppearance">
+            <bool>false</bool>
+           </property>
+           <property name="invertedControls">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QToolButton" name="addFoodBtn">
            <property name="text">
-            <string>Add Food</string>
+            <string>Ajouter Nourriture</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="addAnthillBtn">
+          <widget class="QToolButton" name="addAntHillBtn">
            <property name="text">
-            <string>Add anthill</string>
+            <string>Ajouter fourmilière</string>
            </property>
           </widget>
          </item>
@@ -85,7 +97,7 @@
      <x>0</x>
      <y>0</y>
      <width>1066</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -94,7 +106,10 @@
     </property>
     <addaction name="nouvelleSimuBtn"/>
     <addaction name="ouvrirFichierBtn"/>
+    <addaction name="separator"/>
     <addaction name="sauvegardeFichierBtn"/>
+    <addaction name="sauvegardeSousFichierBtn"/>
+    <addaction name="separator"/>
     <addaction name="quitterSimuBtn"/>
    </widget>
    <widget class="QMenu" name="menuAffichage">
@@ -137,6 +152,7 @@
     <addaction name="actionNouvelle_colonie"/>
     <addaction name="actionD_poser_nourriture"/>
     <addaction name="menuVitesse"/>
+    <addaction name="separator"/>
     <addaction name="ouvrirParamBtn"/>
    </widget>
    <widget class="QMenu" name="menuAide">
@@ -176,7 +192,7 @@
   </action>
   <action name="sauvegardeFichierBtn">
    <property name="text">
-    <string>&amp;Sauvegarder</string>
+    <string>Enregister</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sauvegarde votre simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -319,6 +335,11 @@
   <action name="action_propos">
    <property name="text">
     <string>&amp;À propos</string>
+   </property>
+  </action>
+  <action name="sauvegardeSousFichierBtn">
+   <property name="text">
+    <string>Enregister sous</string>
    </property>
   </action>
  </widget>

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include "anthill.h"
+#include <QPointF>
 
 class Ant : public QGraphicsPixmapItem
 {
@@ -25,6 +26,9 @@ signals:
 
 public slots:
 
+protected:
+    void rotate(qreal angle);
+
 private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
@@ -33,6 +37,7 @@ private:
     qreal m_turn_rotation;
     bool m_beeline;
     qreal m_beeline_distance;
+    QPointF m_pos;
 
 };
 
