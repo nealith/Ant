@@ -8,7 +8,8 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_foodAnt(foodAnt),
     m_ratioWorkerSoldier(ratioWorkerSoldier),
     m_antLifeTime(antLifeTime),
-    m_antLimit(antLimit)
+    m_antLimit(antLimit),
+    m_food()
 {
     QGraphicsScene::setBackgroundBrush(Qt::red);
 }
@@ -27,6 +28,12 @@ void Simulation::init()
     AntHill * at = new AntHill();
     this->addItem(at);
     at->setPos(this->width()/2,this->height()/2);
+    for(qint64 i(0); i<15;i++ ){
+        Food * fd = new Food();
+        m_food.append(fd);
+        this->addItem(fd);
+
+    }
 
 }
 

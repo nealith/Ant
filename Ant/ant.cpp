@@ -1,6 +1,10 @@
 #include "ant.h"
 #include "simulation.h"
-#include <QtMath>
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
 #include <QDebug>
 #include <QTransform>
 #include <QRectF>
@@ -43,8 +47,8 @@ void Ant::basicMove()
         }
     } else if(m_beeline){
         QPointF pos = this->pos();
-        qreal x = pos.x() + qCos(qDegreesToRadians(m_orientation))*0.5;
-        qreal y = pos.y() + qSin(qDegreesToRadians(m_orientation))*0.5;
+        qreal x = pos.x() + qCos(m_orientation*(180.0/M_PI))*0.5;
+        qreal y = pos.y() + qSin(m_orientation*(180.0/M_PI))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
 
@@ -106,6 +110,7 @@ void Ant::setAntHill(AntHill *anthill)
 {
     m_antHill = anthill;
 }
+<<<<<<< HEAD
 
 void Ant::rotate(qreal angle){
     QRectF r = this->sceneBoundingRect();
@@ -124,3 +129,5 @@ void Ant::rotate(qreal angle){
 }
 
 
+=======
+>>>>>>> e9f02ad4677ff3ff94acfc2fe6bec5945dc8dd58

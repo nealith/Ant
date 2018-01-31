@@ -7,11 +7,12 @@ AntHill::AntHill():
     m_size(0)
 {
     this->setPixmap(QPixmap(":/img/resources/anthill.png"));
+    Simulation::getInstance()->createAnt(this);
 }
 
 void AntHill::advance(int phase)
 {
-    Simulation::getInstance()->createAnt(this);
+    //Simulation::getInstance()->createAnt(this);
 }
 
 void AntHill::setSize(const qint64 &size)

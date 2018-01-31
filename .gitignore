@@ -1,4 +1,4 @@
 *.pro
-build-ANT2-Desktop-Debug
+build-*
 ./Ant/*.pro
 ./Ant/*.pro.*

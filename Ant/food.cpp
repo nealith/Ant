@@ -1,8 +1,10 @@
 #include "food.h"
 
-Food::Food()
+Food::Food():
+    QGraphicsPixmapItem()
 {
-
+    this->setPos(qrand()%1000,qrand()%500);
+    this->setPixmap(QPixmap(":/img/resources/food.png"));
 }
 
 qint64 Food::getFood() const

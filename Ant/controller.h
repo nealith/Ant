@@ -12,6 +12,7 @@
 #include <QDialog>
 #include <simulation.h>
 #include <QTimer>
+#include <QFileDialog>
 
 class Controller : public QObject
 {
@@ -23,6 +24,8 @@ public:
     ~Controller();
 
 private:
+    bool knowFilePath;
+    QString filePath;
     MainWindow *m_window;
     Settings *m_settings;
     QTimer m_timer;
@@ -36,6 +39,8 @@ private slots:
     void openParamWindow();
     void openFileManager();
     void onTimeout();
+    void openSaveWindow();
+    void saveFile();
 };
 
 #endif // CONTROLLER_H
