@@ -27,10 +27,6 @@ void MainWindow::setupSignals(){
 void MainWindow::setupScene(QGraphicsScene *scene)
 {
     ui->graphicsView->setScene(scene);
-    /*ui->graphicsView->setFixedHeight(500);
-    ui->graphicsView->setFixedWidth(900);
-    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);*/
 }
 
 void MainWindow::onOpenFileClicked(){
