@@ -110,7 +110,6 @@ void Ant::setAntHill(AntHill *anthill)
 {
     m_antHill = anthill;
 }
-<<<<<<< HEAD
 
 void Ant::rotate(qreal angle){
     QRectF r = this->sceneBoundingRect();
@@ -127,7 +126,3 @@ void Ant::rotate(qreal angle){
 
     delete t;
 }
-
-
-=======
->>>>>>> e9f02ad4677ff3ff94acfc2fe6bec5945dc8dd58
