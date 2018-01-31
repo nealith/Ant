@@ -57,4 +57,4 @@ SUBDIRS += \
     ANT2.pro
 
 RESOURCES += \
-    res.qrc
+res.qrc

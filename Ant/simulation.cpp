@@ -1,5 +1,5 @@
 #include "simulation.h"
-#include "QDebug"
+#include <QDebug>
 
 Simulation * Simulation::instance;
 
@@ -24,17 +24,17 @@ Simulation * Simulation::getInstance()
 
 void Simulation::init()
 {
-    QGraphicsScene::setSceneRect(0,0,this->width(),this->height());
+    QGraphicsScene::setSceneRect(0,0,850,450);
     AntHill * at = new AntHill();
+    at->setPos(qrand()%850,qrand()%450);
     this->addItem(at);
-    at->setPos(this->width()/2,this->height()/2);
     for(qint64 i(0); i<15;i++ ){
         Food * fd = new Food();
+        fd->setFood(qrand()%15);
         m_food.append(fd);
         this->addItem(fd);
 
     }
-
 }
 
 void Simulation::advance(int phase)
@@ -90,4 +90,22 @@ void Simulation::deleteAnt(Ant *ant)
     }
 }
 
+void Simulation::addFood()
+{
+    Food * fd = new Food();
+    fd->setFood(qrand()%15);
+    m_food.append(fd);
+    this->addItem(fd);
+}
 
+Food * Simulation::chocFood(Ant * ant){
+    //Parcours food
+    foreach(Food * fd , m_food){
+        if(ant->collidesWithItem(fd)){
+            fd->setFood(fd->getFood()-1);
+            return fd;
+        }
+
+    }
+    return NULL;
+}

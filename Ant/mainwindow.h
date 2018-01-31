@@ -25,12 +25,15 @@ private slots:
     void onOpenFileClicked();
     void onParameterOpenClicked();
     void onNewSimuClicked();
+    void onAddFoodClicked();
+
     void onSaveFileClicked();
     void onSaveAsClicked();
 signals:
     void newSimuClicked();
     void parameterOpenClicked();
     void openFileClicked();
+    void addFoodClicked();
     void saveFileClicked();
     void saveAsClicked();
 };

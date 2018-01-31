@@ -43,6 +43,8 @@ public:
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);
     void deleteAnt(Ant * ant);
+    void addFood();
+    Food * chocFood(Ant * ant);
 };
 
 #endif // SIMULATION_H

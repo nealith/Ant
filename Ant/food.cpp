@@ -15,4 +15,5 @@ qint64 Food::getFood() const
 void Food::setFood(const qint64 &value)
 {
     food = value;
+    this->setScale(food*0.1);
 }

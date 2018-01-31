@@ -12,7 +12,7 @@ AntHill::AntHill():
 
 void AntHill::advance(int phase)
 {
-    //Simulation::getInstance()->createAnt(this);
+    Simulation::getInstance()->createAnt(this);
 }
 
 void AntHill::setSize(const qint64 &size)
