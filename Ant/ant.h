@@ -2,11 +2,12 @@
 #define ANT_H
 
 #include <QObject>
-#include <QGraphicsPixmapItem>
 #include "anthill.h"
 #include <QPointF>
+#include "simulationpixmapitem.h"
 
-class Ant : public QGraphicsPixmapItem
+
+class Ant : public SimulationPixmapItem
 {
 public:
     explicit Ant(AntHill * antHill);
@@ -25,9 +26,6 @@ public:
 signals:
 
 public slots:
-
-protected:
-    void rotate(qreal angle);
 
 private:
     AntHill *m_antHill;

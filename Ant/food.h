@@ -1,9 +1,9 @@
 #ifndef FOOD_H
 #define FOOD_H
 
-#include <QGraphicsPixmapItem>
+#include "simulationpixmapitem.h"
 
-class Food : public QGraphicsPixmapItem
+class Food : public SimulationPixmapItem
 {
 public:
     Food();

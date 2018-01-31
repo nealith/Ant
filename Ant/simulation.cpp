@@ -24,9 +24,9 @@ Simulation * Simulation::getInstance()
 
 void Simulation::init()
 {
-    QGraphicsScene::setSceneRect(0,0,850,450);
+    QGraphicsScene::setSceneRect(0,0,this->width(),this->height());
     AntHill * at = new AntHill();
-    at->setPos(qrand()%850,qrand()%450);
+    at->setPos(this->width()/2.0,this->height()/2.0);
     this->addItem(at);
     for(qint64 i(0); i<15;i++ ){
         Food * fd = new Food();

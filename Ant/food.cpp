@@ -1,7 +1,7 @@
 #include "food.h"
 
 Food::Food():
-    QGraphicsPixmapItem()
+    SimulationPixmapItem()
 {
     this->setPos(qrand()%1000,qrand()%500);
     this->setPixmap(QPixmap(":/img/resources/food.png"));

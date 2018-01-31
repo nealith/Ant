@@ -1,10 +1,10 @@
 #ifndef ANTHILL_H
 #define ANTHILL_H
 
-#include <QGraphicsPixmapItem>
+#include "simulationpixmapitem.h"
 #include <QHash>
 
-class AntHill : public QGraphicsPixmapItem
+class AntHill : public SimulationPixmapItem
 {
 public:
 

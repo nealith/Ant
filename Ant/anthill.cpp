@@ -2,12 +2,11 @@
 #include "simulation.h"
 
 AntHill::AntHill():
-    QGraphicsPixmapItem(),
+    SimulationPixmapItem(),
     m_food(4),
     m_size(0)
 {
     this->setPixmap(QPixmap(":/img/resources/anthill.png"));
-    Simulation::getInstance()->createAnt(this);
 }
 
 void AntHill::advance(int phase)

@@ -1,7 +1,7 @@
 #include "pheromone.h"
 
 Pheromone::Pheromone():
-    QGraphicsPixmapItem(),
+    SimulationPixmapItem(),
     m_value(10)
 {
 

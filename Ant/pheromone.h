@@ -1,10 +1,9 @@
 #ifndef PHEROMONE_H
 #define PHEROMONE_H
 
-#include <QGraphicsItem>
+#include "simulationpixmapitem.h"
 
-
-class Pheromone:QGraphicsPixmapItem
+class Pheromone: public SimulationPixmapItem
 {
 public:
     Pheromone();

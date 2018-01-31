@@ -10,7 +10,7 @@
 #include <QRectF>
 
 Ant::Ant(AntHill * antHill) :
-    QGraphicsPixmapItem(),
+    SimulationPixmapItem(),
     m_antHill(antHill),
     m_lifeCycles(0),
     m_orientation(0.0), // -90°,
@@ -108,20 +108,4 @@ AntHill *Ant::antHill()
 void Ant::setAntHill(AntHill *anthill)
 {
     m_antHill = anthill;
-}
-
-void Ant::rotate(qreal angle){
-    QRectF r = this->sceneBoundingRect();
-    qreal w = r.width()/2.0;
-    qreal h = r.height()/2.0;
-
-
-    QTransform * t = new QTransform();
-    t->translate(w,h);
-    t->rotate(angle);
-    t->translate(-w,-h);
-
-    this->setTransform(*t,true);
-
-    delete t;
 }
