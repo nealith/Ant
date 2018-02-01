@@ -2,10 +2,11 @@
 #include "simulation.h"
 
 Food::Food(qreal x,qreal y,qint64 value):
-    SimulationPixmapItem(),m_food(value)
+    SimulationPixmapItem(),m_food(value),m_foodAtInit(value)
 {
     this->setPos(x,y);
     this->setPixmap(QPixmap(":/img/resources/food.png"));
+    qDebug() << "createFood:" << this << "value:" << m_food;
 }
 
 bool Food::isFood(QGraphicsItem *e)
@@ -16,13 +17,18 @@ bool Food::isFood(QGraphicsItem *e)
 
 void Food::advance(int phase)
 {
-    this->setScale(m_food*0.05+0.5);
-    if(m_food <= 0.0){
+    this->setScale((qreal)m_food/15.0);
+    if(m_food <= 0){
         Simulation::getInstance()->noMoreFood(this);
     }
 }
 
-void Food::chocFood()
+bool Food::chocFood()
 {
-    m_food--;
+    if (m_food > 0){
+        m_food--;
+        return true;
+    } else {
+        return false;
+    }
 }

@@ -2,6 +2,12 @@
 #define SIMULATIONPIXMAPITEM_H
 
 #include <QGraphicsPixmapItem>
+#include <QDebug>
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
 
 class SimulationPixmapItem : public QGraphicsPixmapItem
 {

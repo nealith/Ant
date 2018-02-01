@@ -5,11 +5,6 @@
 #include "anthill.h"
 #include <QPointF>
 #include "simulationpixmapitem.h"
-#if QT_VERSION >= 0x50000
-    #include <qmath.h>
-#else
-    #include <QtCore/qmath.h>
-#endif
 
 
 class Ant : public SimulationPixmapItem

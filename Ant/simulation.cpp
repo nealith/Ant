@@ -13,6 +13,12 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_antLimit(antLimit)
 {
     QGraphicsScene::setBackgroundBrush(QBrush(QPixmap(":/img/resources/background.png"))); //Qt::red
+    qDebug() << "Create simulation :";
+    qDebug() << "m_foodQueen:" << foodQueen;
+    qDebug() << "m_foodAnt:" << foodAnt;
+    qDebug() << "m_ratioWorkerSoldier:" << ratioWorkerSoldier;
+    qDebug() << "m_antLifeTime:" << antLifeTime;
+    qDebug() << "m_antLimit:" << antLimit;
 }
 
 Simulation * Simulation::getInstance()
@@ -37,15 +43,19 @@ Simulation::~Simulation()
 
 }
 
-void Simulation::init(qreal width, qreal height)
+void Simulation::init()
 {
+    qreal height(10000);
+    qreal width(20000);
+
     AntHill * at = new AntHill();
-    at->setPos(width/2.0,height/2.0);
+
     this->addItem(at);
-    for(qint64 i(0); i<20;i++ ){
+    for(qint64 i(0); i<100;i++ ){
         this->addFood();
 
     }
+    at->setPos(this->w()/2.0,this->h()/2.0);
 }
 
 void Simulation::advance(int phase)
@@ -60,7 +70,7 @@ void Simulation::createAnt(AntHill *antHill)
     Ant * ant = nullptr;
     if (food >= m_foodQueen){
         ant = new Queen(antHill);
-        antHill->setFood(food-m_foodQueen);
+        antHill->consume(m_foodQueen);
     } else if(antHill->size() < m_antLimit && food >= m_foodAnt) {
         //qreal r = rand();
         /*if (r < m_ratioWorkerSoldier){
@@ -69,13 +79,15 @@ void Simulation::createAnt(AntHill *antHill)
             ant = new Soldier(antHill);
         }*/
         ant = new Worker(antHill);
-        antHill->setFood(food-m_foodAnt);
+        antHill->consume(m_foodAnt);
     }
 
     if (nullptr != ant){
         QGraphicsScene::addItem(ant);
-        antHill->setSize(antHill->size()+1);
+        antHill->growUp();
     }
+    //qDebug() << "createAnt::sizeIsNow:" << antHill->size();
+    qDebug() << "food:" << food;
 
 }
 
@@ -103,16 +115,34 @@ void Simulation::deleteAnt(Ant *ant)
 
 void Simulation::addFood()
 {
-    Food * f = new Food(Simulation::rand(this->w()),Simulation::rand(this->h()),Simulation::rand(15));
-    bool noCollide = false;
-    while(!f->collidingItems().empty()){
-        f->setPos(Simulation::rand(this->w()),Simulation::rand(this->h()));
+    Food * f = new Food(Simulation::rand(this->w()),Simulation::rand(this->h()),Simulation::rand(15.0));
+    QList<QGraphicsItem *> l(this->items());
+
+    QRectF r = f->sceneBoundingRect();
+    qreal dr = qSqrt(qPow(r.width(),2)+qPow(r.height(),2));
+    bool toClose = true;
+    while(toClose){
+        toClose = false;
+        foreach (QGraphicsItem * i, l) {
+            QRectF r2 = i->sceneBoundingRect();
+            qreal dr2 = qSqrt(qPow(r2.width(),2)+qPow(r2.height(),2));
+            if(QLineF(f->pos(),i->pos()).length() < dr+dr2){
+                toClose = true;
+                f->setPos(Simulation::rand(this->w()+400)-200,Simulation::rand(this->h()+400)-200);
+                break;
+            }
+
+        }
     }
+
+
+
     this->addItem(f);
 }
 
 void Simulation::noMoreFood(Food *f)
 {
+    qDebug() << "removeFood:" << f;
     this->removeItem(f);
 }
 
@@ -137,7 +167,7 @@ qreal Simulation::rand(qint64 min, qint64 max)
 {
     QRandomGenerator64 rg(QDateTime::currentDateTime().toMSecsSinceEpoch());
     qreal randomReal(qreal(rg.bounded(0,10000000))/10000000.0);
-    randomReal *= (qreal)(qrand()%1000000)/1000000.0;
+    randomReal *= ((qreal)(qrand()%1000000)/1000000.0) ;
     if(max > min){
         randomReal *= (max - min);
         randomReal += min;

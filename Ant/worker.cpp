@@ -32,7 +32,7 @@ void Worker::advance(int phase){
 
         if(this->collidesWithItem(this->antHill())){
             m_hasFood = false;
-            antHill()->setFood(antHill()->food()+1);
+            antHill()->addFood();
         }else{
             if(m_turn){
                 this->basicRotation();
@@ -57,21 +57,22 @@ void Worker::advance(int phase){
 
         if(this->m_antenna->contactWithFood() ){
             Food * f = this->m_antenna->foodList().first();
+            if(f->chocFood()){
+                qDebug() << "food:" << f << "; ant:" << this ;
 
-            m_hasFood = true;
-            QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
+                m_hasFood = true;
+                QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
 
-            qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
-            qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
-            QPointF p(x,y);
-            QLineF lineB(this->pos(),p);
-            qreal a(line.angle(lineB));
-            m_turn = true;
-            m_turn_rotation = a-90.0;
-            m_beeline = false;
-            m_beeline_distance = line.length();
-
-            f->chocFood();
+                qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
+                qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+                QPointF p(x,y);
+                QLineF lineB(this->pos(),p);
+                qreal a(line.angle(lineB));
+                m_turn = true;
+                m_turn_rotation = a;
+                m_beeline = false;
+                m_beeline_distance = line.length();
+            }
         }
     }
 

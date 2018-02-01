@@ -14,24 +14,29 @@ void AntHill::advance(int phase)
     Simulation::getInstance()->createAnt(this);
 }
 
-void AntHill::setSize(const qint64 &size)
-{
-    m_size = size;
-}
-
 qint64 AntHill::food() const
 {
     return m_food;
 }
 
-void AntHill::setFood(const qint64 &food)
+void AntHill::addFood()
 {
-    m_food = food;
+    m_food++;
+}
+
+void AntHill::consume(qint64 amount)
+{
+    m_food -= amount;
 }
 
 qint64 AntHill::size() const
 {
     return m_size;
+}
+
+void AntHill::growUp()
+{
+    m_size++;
 }
 
 bool AntHill::isAntHill(QGraphicsItem *e)

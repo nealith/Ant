@@ -29,13 +29,13 @@ Ant::Ant(AntHill * antHill) :
 
 void Ant::basicMove()
 {
-    if(!m_antenna->isBlocked()){
+    //if(!m_antenna->isBlocked()){
         QPointF pos = this->pos();
         qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
         qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
-    }
+    //}
 }
 
 void Ant::basicRotation()

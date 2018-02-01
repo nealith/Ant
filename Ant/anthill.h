@@ -13,14 +13,12 @@ public:
 
     void advance(int phase);
 
-
-
-    void setSize(const qint64 &size);
-
     qint64 food() const;
-    void setFood(const qint64 &food);
+    void addFood();
+    void consume(qint64 amount);
 
     qint64 size() const;
+    void growUp();
 
     static bool isAntHill(QGraphicsItem * e);
 

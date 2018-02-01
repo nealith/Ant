@@ -12,6 +12,12 @@
 #include <food.h>
 #include <QList>
 
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
+
 class Simulation: public QGraphicsScene
 {
 private:
@@ -34,7 +40,7 @@ private:
 public:
     static Simulation * getInstance();
     ~Simulation();
-    void init(qreal width, qreal height);
+    void init();
     void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);

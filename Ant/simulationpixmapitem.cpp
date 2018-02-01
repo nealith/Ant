@@ -3,7 +3,7 @@
 
 SimulationPixmapItem::SimulationPixmapItem():QGraphicsPixmapItem()
 {
-
+    this->setShapeMode(QGraphicsPixmapItem::BoundingRectShape);
 }
 
 void SimulationPixmapItem::rotate(qreal angle){

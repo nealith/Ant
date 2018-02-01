@@ -17,6 +17,16 @@ Ant::AntAntenna::AntAntenna():
 
 void Ant::AntAntenna::update()
 {
+
+    m_antFront.clear();
+    m_foreignAnt.clear();
+    m_otherAnt.clear();
+    m_foreignSoldier.clear();
+    m_food.clear();
+    m_pheromone.clear();
+    m_foreignPheromone.clear();
+    m_foreignAntHill.clear();
+
     QList<QGraphicsItem*> c(m_ref->collidingItems());
 
     m_atAntHill = false;
