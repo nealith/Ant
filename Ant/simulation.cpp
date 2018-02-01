@@ -10,10 +10,7 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_foodAnt(foodAnt),
     m_ratioWorkerSoldier(ratioWorkerSoldier),
     m_antLifeTime(antLifeTime),
-    m_antLimit(antLimit),
-    m_foodList(),
-    m_antHillList(),
-    m_antList()
+    m_antLimit(antLimit)
 {
     QGraphicsScene::setBackgroundBrush(QBrush(QPixmap(":/img/resources/background.png"))); //Qt::red
 }
@@ -43,7 +40,6 @@ Simulation::~Simulation()
 void Simulation::init(qreal width, qreal height)
 {
     AntHill * at = new AntHill();
-    m_antHillList.append(at);
     at->setPos(width/2.0,height/2.0);
     this->addItem(at);
     for(qint64 i(0); i<20;i++ ){
@@ -78,7 +74,6 @@ void Simulation::createAnt(AntHill *antHill)
 
     if (nullptr != ant){
         QGraphicsScene::addItem(ant);
-        m_antList.append(ant);
         antHill->setSize(antHill->size()+1);
     }
 
@@ -89,7 +84,6 @@ void Simulation::createAntHill(Queen *queen)
     QPointF pos = queen->pos();
     QGraphicsScene::removeItem(queen);
     AntHill * antHill = new AntHill();
-    m_antHillList.append(antHill);
     antHill->setPos(pos);
 
 }
@@ -109,33 +103,20 @@ void Simulation::deleteAnt(Ant *ant)
 
 void Simulation::addFood()
 {
-    Food * f = new Food(Simulation::rand(this->w()),Simulation::rand(this->h()));
+    Food * f = new Food(Simulation::rand(this->w()),Simulation::rand(this->h()),Simulation::rand(15));
     bool noCollide = false;
-    while (!noCollide){
-        noCollide = true;
-        foreach(Food * fd , m_foodList){
-            if(f->collidesWithItem(fd)){
-                noCollide = false;
-                f->setPos(Simulation::rand(this->w()),Simulation::rand(this->h()));
-                break;
-            }
-        }
-        if(noCollide){
-            foreach(AntHill * antHill , m_antHillList){
-                if(f->collidesWithItem(antHill)){
-                    noCollide = false;
-                    f->setPos(Simulation::rand(this->w()),Simulation::rand(this->h()));
-                    break;
-                }
-            }
-        }
+    while(!f->collidingItems().empty()){
+        f->setPos(Simulation::rand(this->w()),Simulation::rand(this->h()));
     }
-    f->setFood(Simulation::rand(15));
-    m_foodList.append(f);
     this->addItem(f);
 }
 
-Food * Simulation::chocFood(Ant * ant){
+void Simulation::noMoreFood(Food *f)
+{
+    this->removeItem(f);
+}
+
+/*Food * Simulation::chocFood(Ant * ant){
     //Parcours food
     foreach(Food * fd , m_foodList){
         if(ant->collidesWithItem(fd)){
@@ -150,7 +131,7 @@ Food * Simulation::chocFood(Ant * ant){
 
     }
     return NULL;
-}
+}*/
 
 qreal Simulation::rand(qint64 min, qint64 max)
 {

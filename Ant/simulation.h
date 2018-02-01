@@ -23,12 +23,6 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
-    QList<Food*> m_foodList;
-    QList<AntHill*> m_antHillList;
-    QList<Ant*> m_antList;
-
-
-
 
     Simulation(
             qint64 foodQueen = 1000,
@@ -47,7 +41,8 @@ public:
     void createPheromon(Worker * worker);
     void deleteAnt(Ant * ant);
     void addFood();
-    Food * chocFood(Ant * ant);
+    /*Food * chocFood(Ant * ant);*/
+    void noMoreFood(Food * f);
     static qreal rand(qint64 min = 0, qint64 max = 0);
     qreal w();
     qreal h();

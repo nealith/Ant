@@ -1,6 +1,7 @@
 #include "worker.h"
 #include "simulation.h"
 #include <QDebug>
+#include "antantenna.h"
 
 bool Worker::hasFood() const
 {
@@ -54,8 +55,9 @@ void Worker::advance(int phase){
         this->setPos(step);*/
         Ant::moveRandomly();
 
-        Food * fd = Simulation::getInstance()->chocFood(this);
-        if(fd!=NULL){
+        if(this->m_antenna->contactWithFood() ){
+            Food * f = this->m_antenna->foodList().first();
+
             m_hasFood = true;
             QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
 
@@ -68,6 +70,8 @@ void Worker::advance(int phase){
             m_turn_rotation = a-90.0;
             m_beeline = false;
             m_beeline_distance = line.length();
+
+            f->chocFood();
         }
     }
 

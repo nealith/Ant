@@ -84,7 +84,7 @@ void Ant::moveRandomly()
 void Ant::advance(int phase)
 {
     m_lifeCycles++;
-    m_antenna->update(this->collidingItems());
+    m_antenna->update();
     Simulation::getInstance()->deleteAnt(this);
 }
 
