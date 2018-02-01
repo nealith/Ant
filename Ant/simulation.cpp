@@ -126,9 +126,9 @@ void Simulation::addFood()
         foreach (QGraphicsItem * i, l) {
             QRectF r2 = i->sceneBoundingRect();
             qreal dr2 = qSqrt(qPow(r2.width(),2)+qPow(r2.height(),2));
-            if(QLineF(f->pos(),i->pos()).length() < dr+dr2){
+            if(QLineF(f->pos(),i->pos()).length() < (dr+dr2)/2.0){
                 toClose = true;
-                f->setPos(Simulation::rand(this->w()+400)-200,Simulation::rand(this->h()+400)-200);
+                f->setPos(Simulation::rand(this->w()+200)-100,Simulation::rand(this->h()+200)-100);
                 break;
             }
 
