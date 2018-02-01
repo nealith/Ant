@@ -1,19 +1,19 @@
 #include "food.h"
 
-Food::Food():
+Food::Food(qreal x,qreal y):
     SimulationPixmapItem()
 {
-    this->setPos(qrand()%1000,qrand()%500);
+    this->setPos(x,y);
     this->setPixmap(QPixmap(":/img/resources/food.png"));
 }
 
 qint64 Food::getFood() const
 {
-    return food;
+    return m_food;
 }
 
 void Food::setFood(const qint64 &value)
 {
-    food = value;
-    this->setScale(food*0.1);
+    m_food = value;
+    this->setScale(m_food*0.05+0.5);
 }

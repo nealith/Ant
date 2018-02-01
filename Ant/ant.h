@@ -5,6 +5,11 @@
 #include "anthill.h"
 #include <QPointF>
 #include "simulationpixmapitem.h"
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
 
 
 class Ant : public SimulationPixmapItem
@@ -13,6 +18,8 @@ public:
     explicit Ant(AntHill * antHill);
 
     void basicMove();
+    void basicRotation();
+    void moveRandomly();
 
     AntHill *antHill();
     void setAntHill(AntHill *antHill);
@@ -30,12 +37,12 @@ public slots:
 private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
+protected:
     qreal m_orientation;
     bool m_turn;
     qreal m_turn_rotation;
     bool m_beeline;
     qreal m_beeline_distance;
-    QPointF m_pos;
 
 };
 

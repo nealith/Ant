@@ -27,8 +27,18 @@ void Worker::advance(int phase){
             m_hasFood = false;
             antHill()->setFood(antHill()->food()+1);
         }else{
-            QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
-            this->setPos(line.pointAt(.01));
+            if(m_turn){
+                this->basicRotation();
+
+                if(m_turn_rotation == 0.0){
+                    m_turn = false;
+                    m_turn_rotation = 0.0;
+
+                    m_beeline = true;
+                }
+            } else if(m_beeline){
+                this->basicMove();
+            }
         }
     }else{
         // Cherche
@@ -36,11 +46,22 @@ void Worker::advance(int phase){
         step.setX(step.x()-5 + (rand() % static_cast<int>(11)));
         step.setY(step.y()-5 + (rand() % static_cast<int>(11)));
         this->setPos(step);*/
-        Ant::basicMove();
+        Ant::moveRandomly();
 
         Food * fd = Simulation::getInstance()->chocFood(this);
         if(fd!=NULL){
             m_hasFood = true;
+            QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
+
+            qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
+            qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+            QPointF p(x,y);
+            QLineF lineB(this->pos(),p);
+            qreal a(line.angle(lineB));
+            m_turn = true;
+            m_turn_rotation = a-90.0;
+            m_beeline = false;
+            m_beeline_distance = line.length();
         }
     }
 

@@ -23,7 +23,9 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
-    QList<Food*> m_food;
+    QList<Food*> m_foodList;
+    QList<AntHill*> m_antHillList;
+    QList<Ant*> m_antList;
 
 
 
@@ -37,6 +39,7 @@ private:
             );
 public:
     static Simulation * getInstance();
+    ~Simulation();
     void init();
     void advance(int phase);
     void createAnt(AntHill *antHill);
@@ -45,6 +48,9 @@ public:
     void deleteAnt(Ant * ant);
     void addFood();
     Food * chocFood(Ant * ant);
+    static qreal rand(qint64 min = 0, qint64 max = 0);
+    qreal w();
+    qreal h();
 };
 
 #endif // SIMULATION_H

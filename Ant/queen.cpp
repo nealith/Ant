@@ -9,6 +9,6 @@ Queen::Queen(AntHill * antHill):Ant(antHill)
 
 void Queen::advance(int phase){
     Ant::advance(phase);
-    Ant::basicMove();
+    Ant::moveRandomly();
     Simulation::getInstance()->createAntHill(this);
 }

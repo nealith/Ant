@@ -6,12 +6,12 @@
 class Food : public SimulationPixmapItem
 {
 public:
-    Food();
+    Food(qreal x, qreal y);
     qint64 getFood() const;
     void setFood(const qint64 &value);
 
 private:
-    qint64 food;
+    qint64 m_food;
 };
 
 #endif // FOOD_H

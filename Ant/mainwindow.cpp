@@ -26,6 +26,7 @@ void MainWindow::setupSignals(){
 
 void MainWindow::setupScene(QGraphicsScene *scene)
 {
+    scene->setSceneRect(0,0,this->width(),this->height());
     ui->graphicsView->setScene(scene);
 }
 

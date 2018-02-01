@@ -7,6 +7,7 @@ SimulationPixmapItem::SimulationPixmapItem():QGraphicsPixmapItem()
 }
 
 void SimulationPixmapItem::rotate(qreal angle){
+    this->setTransformOriginPoint(this->pos());
     QRectF r = this->sceneBoundingRect();
     qreal dw = r.width()/2.0;
     qreal dh = r.height()/2.0;
