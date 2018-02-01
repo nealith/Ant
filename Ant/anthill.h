@@ -22,6 +22,8 @@ public:
 
     qint64 size() const;
 
+    static bool isAntHill(QGraphicsItem * e);
+
 private:
     qint64 m_food;
     qint64 m_size;

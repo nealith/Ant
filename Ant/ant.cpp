@@ -3,6 +3,9 @@
 #include <QDebug>
 #include <QTransform>
 #include <QRectF>
+#include "antantenna.h"
+
+
 
 Ant::Ant(AntHill * antHill) :
     SimulationPixmapItem(),
@@ -12,23 +15,27 @@ Ant::Ant(AntHill * antHill) :
     m_turn(true),
     m_turn_rotation(Simulation::rand(-1,1) * 360.0),
     m_beeline(false),
-    m_beeline_distance(0)
+    m_beeline_distance(0),
+    m_antenna(new AntAntenna())
 {
     this->setPos(antHill->pos());
     QPixmap p(":/img/resources/ant.png");
     this->setPixmap(p);
     this->rotate(90);
+    m_antenna->setAnt(this);
 }
 
 
 
 void Ant::basicMove()
 {
-    QPointF pos = this->pos();
-    qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
-    qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
-    this->setPos(x,y);
-    m_beeline_distance -= 0.5;
+    if(!m_antenna->isBlocked()){
+        QPointF pos = this->pos();
+        qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
+        qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
+        this->setPos(x,y);
+        m_beeline_distance -= 0.5;
+    }
 }
 
 void Ant::basicRotation()
@@ -77,6 +84,7 @@ void Ant::moveRandomly()
 void Ant::advance(int phase)
 {
     m_lifeCycles++;
+    m_antenna->update(this->collidingItems());
     Simulation::getInstance()->deleteAnt(this);
 }
 
@@ -90,12 +98,28 @@ void Ant::setLifeCycles(const qint64 &lifeCycles)
     m_lifeCycles = lifeCycles;
 }
 
+bool Ant::isInFront(Ant *a)
+{
+    QLineF l1(this->pos(),a->pos());
+    qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
+    qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+    QPointF p(x,y);
+    QLineF l2(this->pos(),p);
+    return qAbs(l1.angle(l2))<45;
+}
+
+bool Ant::isAnt(QGraphicsItem *e)
+{
+    Ant* t = dynamic_cast<Ant*> (e);
+    return (t != nullptr);
+}
+
 AntHill *Ant::antHill()
 {
     return m_antHill;
 }
 
-void Ant::setAntHill(AntHill *anthill)
+/*void Ant::setAntHill(AntHill *anthill)
 {
     m_antHill = anthill;
-}
+}*/

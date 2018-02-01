@@ -17,12 +17,18 @@ Worker::Worker(AntHill * antHill):Ant(antHill),m_hasFood(false)
 
 }
 
+bool Worker::isWorker(QGraphicsItem *e)
+{
+    Worker* t = dynamic_cast<Worker*> (e);
+    return (t != nullptr);
+}
+
 void Worker::advance(int phase){
     //Ant::advance(phase);
     //3 cas
     if(m_hasFood){
         //Revient
-        qDebug() << "J'ai a manger";
+
         if(this->collidesWithItem(this->antHill())){
             m_hasFood = false;
             antHill()->setFood(antHill()->food()+1);

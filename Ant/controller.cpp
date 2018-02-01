@@ -31,7 +31,7 @@ void Controller::initialize(){
     this->setupSignals();
 
     m_window->setupScene(m_simulation);
-    m_simulation->init();
+    m_simulation->init(m_window->width(),m_window->height());
     m_timer.start(m_speed_factor*m_speed_one);
     m_window->show();
     knowFilePath = false; //par defaut on a pas de simulation déjà ouverte

@@ -33,3 +33,9 @@ qint64 AntHill::size() const
 {
     return m_size;
 }
+
+bool AntHill::isAntHill(QGraphicsItem *e)
+{
+    AntHill* t = dynamic_cast<AntHill*> (e);
+    return (t != nullptr);
+}

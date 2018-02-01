@@ -40,7 +40,7 @@ private:
 public:
     static Simulation * getInstance();
     ~Simulation();
-    void init();
+    void init(qreal width, qreal height);
     void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
@@ -51,6 +51,7 @@ public:
     static qreal rand(qint64 min = 0, qint64 max = 0);
     qreal w();
     qreal h();
+
 };
 
 #endif // SIMULATION_H

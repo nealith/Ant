@@ -8,6 +8,8 @@ class Soldier:public Ant
 public:
     Soldier(AntHill * antHill);
 
+    static bool isSoldier(QGraphicsItem *e);
+
     void advance(int phase);
 };
 

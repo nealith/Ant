@@ -11,6 +11,8 @@ private:
 public:
     Worker(AntHill * antHill);
 
+    static bool isWorker(QGraphicsItem * e);
+
     void advance(int phase);
     bool hasFood() const;
     void setHasFood(bool hasFood);

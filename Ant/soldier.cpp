@@ -5,6 +5,12 @@ Soldier::Soldier(AntHill * antHill):Ant(antHill)
 
 }
 
+bool Soldier::isSoldier(QGraphicsItem * e)
+{
+    Soldier* t = dynamic_cast<Soldier*> (e);
+    return (t != nullptr);
+}
+
 void Soldier::advance(int phase){
     Ant::advance(phase);
     //2CAS
