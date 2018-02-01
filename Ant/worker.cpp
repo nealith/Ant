@@ -25,7 +25,7 @@ bool Worker::isWorker(QGraphicsItem *e)
 }
 
 void Worker::advance(int phase){
-    //Ant::advance(phase);
+    Ant::advance(phase);
     //3 cas
     if(m_hasFood){
         //Revient
