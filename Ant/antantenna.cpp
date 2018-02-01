@@ -15,8 +15,10 @@ Ant::AntAntenna::AntAntenna():
 
 }
 
-void Ant::AntAntenna::update(QList<QGraphicsItem *> c)
+void Ant::AntAntenna::update()
 {
+    QList<QGraphicsItem*> c(m_ref->collidingItems());
+
     m_atAntHill = false;
     foreach (QGraphicsItem * e, c) {
         if(Ant::isAnt(e)){
@@ -84,6 +86,9 @@ bool Ant::AntAntenna::contactWithForeignAntHill(){
 }
 bool Ant::AntAntenna::contactWithForeignAnt(){
     return !m_foreignAnt.isEmpty();
+}
+bool Ant::AntAntenna::contactWithFood(){
+    return !m_food.isEmpty();
 }
 
 void Ant::AntAntenna::setAnt(Ant *a)

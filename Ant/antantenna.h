@@ -15,7 +15,7 @@ class Ant::AntAntenna
 {
 public:
     AntAntenna();
-    void update(QList<QGraphicsItem *> c);
+    void update();
 
     bool isAtAntHill();
     bool isBlocked();
@@ -24,6 +24,7 @@ public:
     bool contactWithForeignPheromone();
     bool contactWithForeignAntHill();
     bool contactWithForeignAnt();
+    bool contactWithFood();
 
     QList<Soldier *> foreignSoldierList();
     QList<Ant *> foreignAntList();
