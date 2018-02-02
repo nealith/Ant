@@ -27,6 +27,9 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(speedChanged()),this,SLOT(changeSpeed()));
     connect(m_simulation,SIGNAL(ifoundFood()),this,SLOT(onFoodFound()));
 
+    connect(m_simulation,SIGNAL(updateStats(QList<AntHill*>)),this,SLOT(onStatsUpdate(QList<AntHill*>)));
+    connect(this,SIGNAL(statsUpdate(QList<AntHill*>)),m_window,SLOT(onStatsUpdate(QList<AntHill*>)));
+
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
 }
@@ -110,4 +113,9 @@ void Controller::updateSimulationParams(){
 void Controller::changeSpeed(){
     this->m_speed_factor = m_window->getSpeedFactor();
     qDebug() << m_speed_factor;
+}
+
+void Controller::onStatsUpdate(QList<AntHill *> l)
+{
+
 }

@@ -2,6 +2,7 @@
 #define SIMULATION_H
 
 
+
 #include <QGraphicsScene>
 #include <ant.h>
 #include <anthill.h>
@@ -21,6 +22,7 @@
 
 class Simulation: public QGraphicsScene
 {
+    Q_OBJECT
 private:
 
     static Simulation * instance;
@@ -31,6 +33,7 @@ private:
     qint64 m_antLifeTime;
     qint64 m_antLimit;
     qint64 m_ee;
+    QList<AntHill*> m_antHillList;
 
     Simulation(
             qint64 foodQueen = 1000,
@@ -39,6 +42,9 @@ private:
             qint64 antLifeTime = 5000,
             qint64 antLimit = 1000
             );
+signals:
+    void statsUpdate(QList<AntHill*> AntHills);
+
 public:
 
     static const qint64 NORMAL = 0;

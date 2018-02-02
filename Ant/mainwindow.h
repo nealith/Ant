@@ -37,6 +37,9 @@ private slots:
     void onSaveAsClicked();
     void onSpeedChange();
 
+public slots:
+    void onStatsUpdate(QList<AntHill*> l);
+
 signals:
     void newSimuClicked();
     void parameterOpenClicked();

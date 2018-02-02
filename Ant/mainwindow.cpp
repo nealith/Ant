@@ -73,6 +73,9 @@ void MainWindow::onSaveAsClicked(){
 }
 
 
+void MainWindow::onStatsUpdate(QList<AntHill *> l)
+{}
+
 void MainWindow::onSpeedChange(){
     qDebug() << "Speed changed";
     this->speedFactor = 1-(qreal(ui->exeSpeedSlider->value())-qreal(1))/qreal(ui->exeSpeedSlider->maximum());

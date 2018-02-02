@@ -8,7 +8,6 @@ AntHill::AntHill():
     m_size(0),
     m_color()
 {
-    this->setPixmap(QPixmap(":/img/resources/anthill.png"));
 
     QString s = QString("0x%1").arg((quintptr)this, QT_POINTER_SIZE * 2, 16, QChar('0'));
 
@@ -18,6 +17,13 @@ AntHill::AntHill():
     cs.append('#');
 
     m_color.setNamedColor(cs);
+
+    QPixmap img(":/img/resources/anthill.png");
+
+    changeColor(img,QColor(255,255,255),m_color);
+    this->setPixmap(img);
+    qDebug() << "AntHill:color:" << s;
+    qDebug() << "AntHill:color:" << cs;
     qDebug() << "AntHill:color:" << m_color;
 }
 

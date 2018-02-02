@@ -78,7 +78,8 @@ Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldie
     m_foodAnt(foodAnt),
     m_ratioWorkerSoldier(ratioWorkerSoldier),
     m_antLifeTime(antLifeTime),
-    m_antLimit(antLimit)
+    m_antLimit(antLimit),
+    m_antHillList()
 {
     QGraphicsScene::setBackgroundBrush(QBrush(QPixmap(":/img/resources/background.png"))); //Qt::red
     qDebug() << "Create simulation :";
@@ -111,20 +112,23 @@ void Simulation::init()
     qreal height(10000);
     qreal width(20000);
 
-    AntHill * at = new AntHill();
-    at->setPos(width/2.0,height/2.0);
+    AntHill * antHill = new AntHill();
 
-    this->addItem(at);
+
+    this->addItem(antHill);
     for(qint64 i(0); i<100;i++ ){
         this->addFood();
 
     }
-    at->setPos(this->w()/2.0,this->h()/2.0);
+    antHill->setPos(this->w()/2.0,this->h()/2.0);
+    m_antHillList.append(antHill);
 }
 
 void Simulation::advance(int phase)
 {
     QGraphicsScene::advance();
+    emit statsUpdate(m_antHillList);
+
 }
 
 void Simulation::createAnt(AntHill * antHill)
@@ -161,6 +165,7 @@ void Simulation::createAntHill(Queen * queen)
     QGraphicsScene::removeItem(queen);
     AntHill * antHill = new AntHill();
     antHill->setPos(pos);
+    m_antHillList.append(antHill);
     qDebug() << "Simulation::createAntHill:" << antHill;
 
 }

@@ -14,6 +14,8 @@
 #include <QTimer>
 #include <QFileDialog>
 
+#include <anthill.h>
+
 class Controller : public QObject
 {
   Q_OBJECT
@@ -33,7 +35,8 @@ private:
     qint64 m_cycles;
     qreal m_speed_factor;
     const qint32 m_speed_one =40 ;
-
+signals:
+    void statsUpdate(QList<AntHill*> l);
 private slots:
     void createNewSimu();
     void openParamWindow();
@@ -44,6 +47,7 @@ private slots:
     void saveFile();
     void updateSimulationParams();
     void changeSpeed();
+    void onStatsUpdate(QList<AntHill*> l);
 };
 
 #endif // CONTROLLER_H
