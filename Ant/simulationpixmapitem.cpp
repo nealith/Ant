@@ -35,6 +35,12 @@ void SimulationPixmapItem::setPos(QPointF p){
     this->setPos(p.x(),p.y());
 }
 
+bool SimulationPixmapItem::isSimulationPixmapItem(QGraphicsItem *e)
+{
+    SimulationPixmapItem* t = dynamic_cast<SimulationPixmapItem*> (e);
+    return (t != nullptr);
+}
+
 QPointF SimulationPixmapItem::pos() const
 {
     QRectF r = this->boundingRect();
