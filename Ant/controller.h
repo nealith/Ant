@@ -3,6 +3,8 @@
 
 #include "mainwindow.h"
 #include "settings.h"
+#include "apropos.h"
+#include "manuel.h"
 
 #include <QListWidgetItem>
 #include <QMainWindow>
@@ -20,7 +22,7 @@ class Controller : public QObject
 {
   Q_OBJECT
 public:
-    Controller(MainWindow * window,Settings * s, QObject *parent  = nullptr);
+    Controller(MainWindow * window,Settings * s, aPropos * ap, Manuel * m, QObject *parent  = nullptr);
     void setupSignals();
     void initialize();
     ~Controller();
@@ -29,7 +31,9 @@ private:
     bool knowFilePath;
     QString filePath;
     MainWindow *m_window;
+    aPropos * m_infos;
     Settings *m_settings;
+    Manuel * valls;
     QTimer m_timer;
     Simulation * m_simulation;
     qint64 m_cycles;
@@ -48,6 +52,8 @@ private slots:
     void updateSimulationParams();
     void changeSpeed();
     void onStatsUpdate(QList<AntHill*> l);
+    void onAskInfo();
+    void onOpenManual();
 };
 
 #endif // CONTROLLER_H

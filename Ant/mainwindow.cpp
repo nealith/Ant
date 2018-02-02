@@ -24,6 +24,10 @@ void MainWindow::setupSignals(){
     connect(ui->sauvegardeSousFichierBtn,SIGNAL(triggered()),this,SLOT(onSaveAsClicked()));
     connect(ui->sauvegardeFichierBtn,SIGNAL(triggered()),this,SLOT(onSaveFileClicked()));
     connect(ui->exeSpeedSlider,SIGNAL(valueChanged(int)),this,SLOT(onSpeedChange()));
+    connect(ui->quitterSimuBtn,SIGNAL(triggered()),this,SLOT(onQuit()));
+    connect(ui->aProposBtn,SIGNAL(triggered()),this,SLOT(onAskInfo()));
+    connect(ui->actionManuel,SIGNAL(triggered(bool)),this,SLOT(onManuelClicked()));
+    connect(ui->nouvelleSimuBtn,SIGNAL(triggered(bool)),this,SLOT(onNewSimuClicked()));
 }
 
 void MainWindow::setupScene(QGraphicsScene *scene)
@@ -84,4 +88,17 @@ void MainWindow::onSpeedChange(){
 
 void MainWindow::advance(QList<AntHill*> l){
 
+}
+
+void MainWindow::onQuit(){
+    QCoreApplication::exit();
+}
+
+void MainWindow::onAskInfo(){
+    qDebug() << "askMoreInfo";
+    emit moreInfo();
+}
+
+void MainWindow::onManuelClicked(){
+    emit showManual();
 }

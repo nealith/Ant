@@ -36,9 +36,10 @@ private slots:
     void onSaveFileClicked();
     void onSaveAsClicked();
     void onSpeedChange();
-
-public slots:
+    void onQuit();
     void onStatsUpdate(QList<AntHill*> l);
+    void onAskInfo();
+    void onManuelClicked();
 
 signals:
     void newSimuClicked();
@@ -48,6 +49,8 @@ signals:
     void saveFileClicked();
     void saveAsClicked();
     void speedChanged();
+    void moreInfo();
+    void showManual();
 };
 
 #endif // MAINWINDOW_H

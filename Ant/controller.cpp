@@ -2,10 +2,12 @@
 #include "ui_settings.h"
 #include <QDebug>
 
-Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
+Controller::Controller(MainWindow *window,Settings * s, aPropos * ap, Manuel *m, QObject *parent):
   QObject(parent),
   m_window(window),
   m_settings(s),
+  m_infos(ap),
+  valls(m),
   m_timer(),
   m_simulation(Simulation::getInstance()),
   m_cycles(0),
@@ -32,6 +34,8 @@ void Controller::setupSignals()
 
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
+    connect(m_window,SIGNAL(moreInfo()),this,SLOT(onAskInfo()));
+    connect(m_window,SIGNAL(showManual()),this,SLOT(onOpenManual()));
 }
 
 void Controller::initialize(){
@@ -58,6 +62,7 @@ void Controller::createNewSimu(){
 void Controller::openParamWindow(){
     m_settings->show();
 }
+
 
 void Controller::openFileManager(){
     //quand le fichier est ouvert
@@ -118,4 +123,11 @@ void Controller::changeSpeed(){
 void Controller::onStatsUpdate(QList<AntHill *> l)
 {
     emit statsUpdate(l);
+}
+
+void Controller::onAskInfo(){
+    m_infos->show();
+}
+void Controller::onOpenManual(){
+    valls->show();
 }
