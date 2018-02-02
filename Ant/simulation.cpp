@@ -67,8 +67,8 @@ void Simulation::setEe(const qint64 &ee)
     QList <QGraphicsItem*> l(this->items());
     foreach (QGraphicsItem * i, l) {
         if(SimulationPixmapItem::isSimulationPixmapItem(i)){
-            SimulationPixmapItem p = (SimulationPixmapItem) e;
-            p.updateEE();
+            SimulationPixmapItem* p = (SimulationPixmapItem*) i;
+            p->updateEE();
         }
     }
 }
