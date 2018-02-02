@@ -24,31 +24,37 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    worker.cpp \
+    antantenna.cpp \
+    main.cpp \
+    mainwindow.cpp \
     soldier.cpp \
     queen.cpp \
     ant.cpp \
     anthill.cpp \
     pheromone.cpp \
     simulation.cpp \
+    simulationpixmapitem.cpp \
+    simulationview.cpp \
     settings.cpp \
     controller.cpp \
-    food.cpp
+    food.cpp \
+    worker.cpp
 
 HEADERS += \
+    antantenna.h \
         mainwindow.h \
     anthill.h \
     soldier.h \
-    worker.h \
     pheromone.h \
     simulation.h \
+    simulationpixmapitem.h \
+    simulationview.h \
     queen.h \
     ant.h \
     settings.h \
     controller.h \
-    food.h
+    food.h \
+    worker.h
 
 FORMS += \
         mainwindow.ui \
