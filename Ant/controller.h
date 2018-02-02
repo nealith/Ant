@@ -15,6 +15,7 @@
 #include <simulation.h>
 #include <QTimer>
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include <anthill.h>
 

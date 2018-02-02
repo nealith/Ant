@@ -54,6 +54,13 @@ Controller::~Controller()
 }
 
 void Controller::createNewSimu(){
+    auto rep = QMessageBox::warning(m_window, tr("Nouvelle Simulation?"),
+                                   tr("Perdre la simulation actuelle pour en faire une nouvelle?"),
+                                   QMessageBox::Yes | QMessageBox::No,
+                                   QMessageBox::No);
+    if (rep==QMessageBox::No){
+        m_simulation->restart(m_settings);
+    }
 }
 
 void Controller::openParamWindow(){
