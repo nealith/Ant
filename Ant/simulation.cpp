@@ -2,6 +2,9 @@
 #include <QDebug>
 #include <QRandomGenerator64>
 #include <QDateTime>
+#include <QPixmap>
+#include <QPainter>
+#include <QFont>
 
 Simulation * Simulation::instance;
 
@@ -73,6 +76,11 @@ void Simulation::setEe(const qint64 &ee)
     }
 }
 
+QList<AntHill *> Simulation::getAntHillList() const
+{
+    return m_antHillList;
+}
+
 Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldier, qint64 antLifeTime, qint64 antLimit):
     m_foodQueen(foodQueen),
     m_foodAnt(foodAnt),
@@ -109,26 +117,24 @@ Simulation::~Simulation()
 
 void Simulation::init()
 {
+
+    this->clear();
     qreal height(10000);
     qreal width(20000);
 
-    AntHill * antHill = new AntHill();
-
-
-    this->addItem(antHill);
     for(qint64 i(0); i<100;i++ ){
         this->addFood();
 
     }
-    antHill->setPos(this->w()/2.0,this->h()/2.0);
-    m_antHillList.append(antHill);
+
+    dropAntHill(QPointF(this->w()/2.0,this->h()/2.0));
 }
 
 void Simulation::advance(int phase)
 {
+
     QGraphicsScene::advance();
     emit statsUpdate(m_antHillList);
-
 }
 
 void Simulation::createAnt(AntHill * antHill)
@@ -161,12 +167,17 @@ void Simulation::createAnt(AntHill * antHill)
 
 void Simulation::createAntHill(Queen * queen)
 {
-    QPointF pos = queen->pos();
-    QGraphicsScene::removeItem(queen);
     AntHill * antHill = new AntHill();
-    antHill->setPos(pos);
-    m_antHillList.append(antHill);
-    qDebug() << "Simulation::createAntHill:" << antHill;
+    if(this->posValidForAntHill(queen->pos(),antHill)){
+        antHill->setPos(queen->pos());
+        QGraphicsScene::removeItem(queen);
+        m_antHillList.append(antHill);
+        this->addItem(antHill);
+        qDebug() << "Simulation::createAntHill:" << antHill;
+
+    }else {
+        delete antHill;
+    }
 
 }
 
@@ -229,6 +240,80 @@ void Simulation::noMoreFood(Food * food)
     delete food;
 }
 
+void Simulation::deadInAttack(Ant* ant)
+{
+    qDebug() << "Simulation::deadInAttack:" << ant;
+    this->removeItem(ant);
+    delete ant;
+}
+
+void Simulation::dropAntHill(QPointF pos)
+{
+    AntHill * antHill;
+    qint64 n = 200;
+    while(posValidForAntHill(pos,antHill)){
+        pos.setX(Simulation::rand(this->w()+n)-n/2);
+        pos.setY(Simulation::rand(this->h()+n)-n/2);
+        n+=100;
+    }
+
+    this->addItem(antHill);
+    m_antHillList.append(antHill);
+    antHill->setPos(pos);
+
+}
+
+void Simulation::posValidForAntHill(QPointF pos, AntHill * antHill)
+{
+    QList<QGraphicsItem *> l(this->items());
+
+    QRectF r = antHill->sceneBoundingRect();
+    qreal dr = qSqrt(qPow(r.width(),2)+qPow(r.height(),2));
+    bool toClose = false;
+
+    foreach (QGraphicsItem * i, l) {
+        if(AntHill::isAntHill(i)){
+            QRectF r2 = i->sceneBoundingRect();
+            qreal dr2 = qSqrt(qPow(r2.width(),2)+qPow(r2.height(),2));
+            if(QLineF(f->pos(),i->pos()).length() < 1000.0){
+                toClose = true;
+                break;
+            }
+        }
+
+
+    }
+
+    return !toClose;
+
+}
+
+void Simulation::drawForeground(QPainter *painter, const QRectF &rect)
+{
+
+    QFont f("monospace");
+    qreal fontSize=f.pixelSize();
+    painter->setFont(f);
+
+    qint64 i(0);
+
+    foreach (AntHill * a, m_antHillList) {
+
+
+       qreal y = fontSize + fontSize*i;
+       qreal x = fontSize;
+
+
+       painter->setPen(a->color());
+       QString s("Food:"+QString::number((int)a->food())+"  Size:"+QString::number((int)a->size()));
+
+       painter->drawText(x,y,s);
+
+       i++;
+    }
+
+}
+
 qreal Simulation::rand(qint64 min, qint64 max)
 {
     QRandomGenerator64 rg(QDateTime::currentDateTime().toMSecsSinceEpoch());
@@ -255,18 +340,5 @@ qreal Simulation::h()
 }
 
 void Simulation::restart(Settings * s){
-    this->clear();
-
-    qint64 height(1000);
-    qint64 width(2000);
-    for(qint64 i(0);i<s->getNbAnthill();i++){
-        AntHill * at = new AntHill();
-
-        at->setPos(qrand()%width,qrand()%height);
-        this->addItem(at);
-    }
-    for(qint64 i(0); i<100;i++ ){
-        this->addFood();
-
-    }
+    this->init();
 }
