@@ -42,6 +42,7 @@ private slots:
     void onAddFood();
     void openSaveWindow();
     void saveFile();
+    void updateSimulationParams();
 };
 
 #endif // CONTROLLER_H
