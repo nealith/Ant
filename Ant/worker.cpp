@@ -34,6 +34,8 @@ void Worker::advance(int phase){
             m_hasFood = false;
             antHill()->setFood(antHill()->food()+1);
         }else{
+            //QLineF l(this->pos(),antHill()->pos());
+            //this->setPos(l.pointAt(.01));
             if(m_turn){
                 this->basicRotation();
 

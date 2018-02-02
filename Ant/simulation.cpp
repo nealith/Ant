@@ -40,7 +40,7 @@ Simulation::~Simulation()
 void Simulation::init(qreal width, qreal height)
 {
     AntHill * at = new AntHill();
-    at->setPos(width/2.0,height/2.0);
+    at->setPos(width/3.0,height/3.0);
     this->addItem(at);
     for(qint64 i(0); i<20;i++ ){
         this->addFood();
