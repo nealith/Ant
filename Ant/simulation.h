@@ -53,6 +53,16 @@ public:
     qreal w();
     qreal h();
 
+    qint64 getFoodQueen() const;
+    void setFoodQueen(const qint64 &foodQueen);
+    qint64 getFoodAnt() const;
+    void setFoodAnt(const qint64 &foodAnt);
+    qreal getRatioWorkerSoldier() const;
+    void setRatioWorkerSoldier(const qreal &ratioWorkerSoldier);
+    qint64 getAntLifeTime() const;
+    void setAntLifeTime(const qint64 &antLifeTime);
+    qint64 getAntLimit() const;
+    void setAntLimit(const qint64 &antLimit);
 };
 
 #endif // SIMULATION_H

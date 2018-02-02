@@ -5,6 +5,56 @@
 
 Simulation * Simulation::instance;
 
+qint64 Simulation::getFoodQueen() const
+{
+    return m_foodQueen;
+}
+
+void Simulation::setFoodQueen(const qint64 &foodQueen)
+{
+    m_foodQueen = foodQueen;
+}
+
+qint64 Simulation::getFoodAnt() const
+{
+    return m_foodAnt;
+}
+
+void Simulation::setFoodAnt(const qint64 &foodAnt)
+{
+    m_foodAnt = foodAnt;
+}
+
+qreal Simulation::getRatioWorkerSoldier() const
+{
+    return m_ratioWorkerSoldier;
+}
+
+void Simulation::setRatioWorkerSoldier(const qreal &ratioWorkerSoldier)
+{
+    m_ratioWorkerSoldier = ratioWorkerSoldier;
+}
+
+qint64 Simulation::getAntLifeTime() const
+{
+    return m_antLifeTime;
+}
+
+void Simulation::setAntLifeTime(const qint64 &antLifeTime)
+{
+    m_antLifeTime = antLifeTime;
+}
+
+qint64 Simulation::getAntLimit() const
+{
+    return m_antLimit;
+}
+
+void Simulation::setAntLimit(const qint64 &antLimit)
+{
+    m_antLimit = antLimit;
+}
+
 Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldier, qint64 antLifeTime, qint64 antLimit):
     m_foodQueen(foodQueen),
     m_foodAnt(foodAnt),
