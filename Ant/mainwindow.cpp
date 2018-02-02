@@ -59,3 +59,5 @@ void MainWindow::onSaveAsClicked(){
     qDebug() << "Clicked on save as menu";
     emit saveAsClicked();
 }
+
+

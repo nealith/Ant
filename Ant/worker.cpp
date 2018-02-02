@@ -32,6 +32,7 @@ void Worker::advance(int phase){
             antHill()->addFood();
             m_status = Ant::Waiting;
             qDebug() << "AppendFood:" << this;
+
         } else {
             if(m_turn_rotation == 0.0){
                 Simulation::getInstance()->createPheromon(this);
