@@ -31,7 +31,7 @@ public:
     qint64 lifeCycles() const;
     void setLifeCycles(const qint64 &lifeCycles);
 
-    bool isInFront(Ant * a);
+    bool isInFront(QGraphicsItem *a, qreal angle = 45.0);
 
     static bool isAnt(QGraphicsItem * e);
 

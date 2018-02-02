@@ -15,22 +15,22 @@ bool Worker::isWorker(QGraphicsItem *e)
 }
 
 void Worker::advance(int phase){
-    bool carryFood = (m_status == CarryFood);
+    bool carryFood = (m_status == Worker::CarryFood);
 
     if(carryFood){
-        m_status = MoveToAPoint;
+        m_status = Ant::MoveToAPoint;
     }
     Ant::advance(phase);
 
     if(carryFood){
-        m_status = CarryFood;
+        m_status = Worker::CarryFood;
     }
 
 
-    if(m_status == CarryFood){
+    if(m_status == Worker::CarryFood){
         if(m_antenna->isAtAntHill()){
             antHill()->addFood();
-            m_status == Waiting;
+            m_status = Ant::Waiting;
             qDebug() << "AppendFood:" << this;
         } else {
             if(m_turn_rotation == 0.0){
@@ -42,19 +42,20 @@ void Worker::advance(int phase){
             QList<Pheromone*> l(m_antenna->pheromoneList());
             qint64 i = (qint64) Simulation::rand(l.size());
             Pheromone * p = l.at(i);
-            moveToAPoint(p->pos());
-            m_status = MoveToAPoint;
+            this->moveToAPoint(p->pos());
+            m_status = Ant::MoveToAPoint;
         } else if(m_antenna->contactWithFood() ){
             Food * f = m_antenna->foodList().first();
             if(f->chocFood()){
-                moveToAPoint(this->antHill()->pos());
-                m_status = CarryFood;
+                this->moveToAPoint(this->antHill()->pos());
+                m_status = Worker::CarryFood;
             }
+
         }
     }
 
-    if(m_status != MoveToAPoint && m_status != CarryFood){
-        m_status = MoveRandomly;
+    if((m_status != Ant::MoveToAPoint && m_status != Worker::CarryFood) || m_status == Ant::Waiting ){
+        m_status = Ant::MoveRandomly;
     }
 
 }

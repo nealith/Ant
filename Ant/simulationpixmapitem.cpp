@@ -7,8 +7,8 @@ SimulationPixmapItem::SimulationPixmapItem():QGraphicsPixmapItem()
 }
 
 void SimulationPixmapItem::rotate(qreal angle){
-    this->setTransformOriginPoint(this->pos());
-    QRectF r = this->sceneBoundingRect();
+    //this->setTransformOriginPoint(this->pos());
+    QRectF r = this->boundingRect();
     qreal dw = r.width()/2.0;
     qreal dh = r.height()/2.0;
 
@@ -24,7 +24,7 @@ void SimulationPixmapItem::rotate(qreal angle){
 }
 
 void SimulationPixmapItem::setPos(qreal x, qreal y){
-    QRectF r = this->sceneBoundingRect();
+    QRectF r = this->boundingRect();
     qreal dw = r.width()/2.0;
     qreal dh = r.height()/2.0;
     QGraphicsPixmapItem::setPos((x-dw),(y-dh));
@@ -37,7 +37,7 @@ void SimulationPixmapItem::setPos(QPointF p){
 
 QPointF SimulationPixmapItem::pos() const
 {
-    QRectF r = this->sceneBoundingRect();
+    QRectF r = this->boundingRect();
     qreal dw = r.width()/2.0;
     qreal dh = r.height()/2.0;
     QPointF p = QGraphicsPixmapItem::pos();

@@ -46,12 +46,10 @@ void Ant::basicRotation()
         rotation = -0.5;
     }
     m_turn_rotation -= rotation;
-    if(rotation <0.0 && m_turn_rotation >=0.0 || rotation>0.0 && m_turn_rotation <=0.0){
+    if((rotation <0.0 && m_turn_rotation >=0.0) || (rotation>0.0 && m_turn_rotation <=0.0)){
         rotation += m_turn_rotation;
         m_turn_rotation = 0.0;
     }
-
-
     m_orientation += rotation;
 
     this->rotate(rotation);
@@ -59,43 +57,46 @@ void Ant::basicRotation()
 
 void Ant::moveRandomly()
 {
-    if(m_turn){
-        this->basicRotation();
+    if(m_status == MoveRandomly){
+        if(m_turn){
+            this->basicRotation();
 
-        if(m_turn_rotation == 0.0){
-            m_turn = false;
-            m_turn_rotation = 0.0;
+            if(m_turn_rotation == 0.0){
+                m_turn = false;
+                m_turn_rotation = 0.0;
 
-            m_beeline = true;
-            m_beeline_distance = Simulation::rand() * 30.0 + 20.0;
-        }
-    } else if(m_beeline){
-        this->basicMove();
+                m_beeline = true;
+                m_beeline_distance = Simulation::rand() * 30.0 + 20.0;
+            }
+        } else if(m_beeline){
+            this->basicMove();
 
-        if(m_beeline_distance <= 0.0){
-            m_beeline = false;
-            m_beeline_distance = 0.0;
+            if(m_beeline_distance <= 0.0){
+                m_beeline = false;
+                m_beeline_distance = 0.0;
 
-            m_turn = true;
-            m_turn_rotation = Simulation::rand(-1,1) * 45.0;
+                m_turn = true;
+                m_turn_rotation = Simulation::rand(-1,1) * 45.0;
+            }
         }
     }
+
 }
 
 void Ant::moveToAPoint(qreal x, qreal y)
 {
     QPointF p1(x,y);
-    QLineF line(this->pos(),p1);
+    QLineF lineToPoint(this->pos(),p1);
 
-    qreal x2 = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
-    qreal y2 = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+    qreal x2 = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*20.0;
+    qreal y2 = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*20.0;
     QPointF p2(x2,y2);
-    QLineF lineB(this->pos(),p2);
-    qreal a(line.angle(lineB));
+    QLineF lineToPointFromCurrentRotation(this->pos(),p2);
+    qreal a(lineToPoint.angle(lineToPointFromCurrentRotation));
     m_turn = true;
     m_turn_rotation = a;
     m_beeline = false;
-    m_beeline_distance = line.length();
+    m_beeline_distance = lineToPoint.length();
 }
 
 void Ant::moveToAPoint(QPointF p)
@@ -128,14 +129,14 @@ void Ant::setLifeCycles(const qint64 &lifeCycles)
     m_lifeCycles = lifeCycles;
 }
 
-bool Ant::isInFront(Ant *a)
+bool Ant::isInFront(QGraphicsItem *a, qreal angle)
 {
     QLineF l1(this->pos(),a->pos());
     qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
     qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
     QPointF p(x,y);
     QLineF l2(this->pos(),p);
-    return qAbs(l1.angle(l2))<45;
+    return qAbs(l1.angle(l2))<angle;
 }
 
 bool Ant::isAnt(QGraphicsItem *e)
@@ -146,21 +147,25 @@ bool Ant::isAnt(QGraphicsItem *e)
 
 void Ant::moveToAPoint2()
 {
-    if(m_turn){
-        this->basicRotation();
+    if(m_status == MoveToAPoint){
+        if(m_turn){
+            this->basicRotation();
 
-        if(m_turn_rotation == 0.0){
-            m_turn = false;
-            m_turn_rotation = 0.0;
+            if(m_turn_rotation == 0.0){
+                m_turn = false;
+                m_turn_rotation = 0.0;
 
-            m_beeline = true;
-        }
-    } else if(m_beeline){
-        this->basicMove();
-        if(m_beeline_distance <= 0.0){
-            m_status = Waiting;
+                m_beeline = true;
+            }
+        } else if(m_beeline){
+            this->basicMove();
+            if(m_beeline_distance <= 0.0){
+                m_status = Waiting;
+            }
         }
     }
+
+
 }
 
 AntHill *Ant::antHill()
