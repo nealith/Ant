@@ -2,10 +2,12 @@
 #include "ui_settings.h"
 #include <QDebug>
 
-Controller::Controller(MainWindow *window,Settings * s, QObject *parent):
+Controller::Controller(MainWindow *window,Settings * s, aPropos * ap, Manuel *m, QObject *parent):
   QObject(parent),
   m_window(window),
   m_settings(s),
+  m_infos(ap),
+  valls(m),
   m_timer(),
   m_simulation(Simulation::getInstance()),
   m_cycles(0),
@@ -24,15 +26,13 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
+    connect(m_window, SIGNAL(speedChanged()),this,SLOT(changeSpeed()));
+    connect(m_simulation,SIGNAL(ifoundFood()),this,SLOT(onFoodFound()));
 
-    bool t;
-    bool t2;
-    t =connect(m_simulation,SIGNAL(QList<AntHill *>),this,SLOT(QList<AntHill *>));
-    t2 =connect(this,SIGNAL(QList<AntHill *>),m_window,SLOT(QList<AntHill *>));
-
-    qDebug() << "tttt:"<<t<<";;t222222:"<<t2;
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
+    connect(m_window,SIGNAL(moreInfo()),this,SLOT(onAskInfo()));
+    connect(m_window,SIGNAL(showManual()),this,SLOT(onOpenManual()));
 }
 
 void Controller::initialize(){
@@ -59,6 +59,7 @@ void Controller::createNewSimu(){
 void Controller::openParamWindow(){
     m_settings->show();
 }
+
 
 void Controller::openFileManager(){
     //quand le fichier est ouvert
@@ -97,7 +98,7 @@ void Controller::onAddFood(){
 void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
-    //m_timer.start(m_speed_factor*m_speed_one);
+    m_timer.start(m_speed_factor*m_speed_one);
 }
 
 
@@ -107,11 +108,18 @@ void Controller::updateSimulationParams(){
     m_simulation->setFoodAnt(m_settings->getFoodAnt());
     m_simulation->setAntLimit(m_settings->getAntLimit());
     m_simulation->setAntLifeTime(m_settings->getAntLifeTime());
+    m_simulation->setRatioWorkerSoldier(m_settings->getRatioWorkerSoldier());
     m_simulation->restart(m_settings);
 }
 
-void Controller::onStatsUpdate(QList<AntHill *> l)
-{
-    qDebug() << "lollll";
-    emit statsUpdate(l);
+void Controller::changeSpeed(){
+    this->m_speed_factor = m_window->getSpeedFactor();
+    qDebug() << m_speed_factor;
+}
+
+void Controller::onAskInfo(){
+    m_infos->show();
+}
+void Controller::onOpenManual(){
+    valls->show();
 }

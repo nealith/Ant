@@ -40,9 +40,6 @@ private:
             qint64 antLifeTime = 5000,
             qint64 antLimit = 1000
             );
-signals:
-    void statsUpdate(QList<AntHill*> AntHills);
-
 public:
 
     static const qint64 NORMAL = 0;
@@ -61,7 +58,7 @@ public:
     void addFood();
     void noMoreFood(Food * food);
     void deadInAttack(Ant *ant);
-    void dropAntHill();
+    void dropAntHill(QPointF pos);
     void posValidForAntHill(QPointF pos, AntHill *antHill);
 
 

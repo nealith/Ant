@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>24h du Fourmil1</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -51,10 +51,19 @@
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="minimum">
-            <number>-5</number>
+            <number>1</number>
            </property>
            <property name="maximum">
-            <number>5</number>
+            <number>100</number>
+           </property>
+           <property name="pageStep">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
+           <property name="tracking">
+            <bool>true</bool>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -64,6 +73,12 @@
            </property>
            <property name="invertedControls">
             <bool>false</bool>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::TicksBothSides</enum>
+           </property>
+           <property name="tickInterval">
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -90,7 +105,7 @@
          <widget class="SimulationView" name="graphicsView"/>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <layout class="QHBoxLayout" name="infoSimu">
           <property name="sizeConstraint">
            <enum>QLayout::SetMaximumSize</enum>
           </property>
@@ -214,7 +229,7 @@
      <x>0</x>
      <y>0</y>
      <width>1066</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -246,7 +261,7 @@
      <addaction name="action1_75"/>
      <addaction name="action2"/>
     </widget>
-    <addaction name="actionInfos_en_temps_r_el"/>
+    <addaction name="realTInfoBtn"/>
     <addaction name="menuZoom"/>
    </widget>
    <widget class="QMenu" name="menuSimulation">
@@ -277,7 +292,7 @@
      <string>A&amp;ide</string>
     </property>
     <addaction name="actionManuel"/>
-    <addaction name="action_propos"/>
+    <addaction name="aProposBtn"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuAffichage"/>
@@ -287,7 +302,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="nouvelleSimuBtn">
    <property name="text">
-    <string>&amp;Nouveau</string>
+    <string>&amp;Nouvelle Simulation</string>
    </property>
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Créer une nouvelle simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -329,7 +344,7 @@
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionInfos_en_temps_r_el">
+  <action name="realTInfoBtn">
    <property name="text">
     <string>&amp;Infos en temps réel</string>
    </property>
@@ -440,7 +455,7 @@
   </action>
   <action name="actionManuel">
    <property name="text">
-    <string>&amp;Manuel</string>
+    <string>&amp;Voir le Manuel</string>
    </property>
    <property name="toolTip">
     <string>Ouvre le manuel utilisateur</string>
@@ -449,7 +464,7 @@
     <string>Ctrl+H</string>
    </property>
   </action>
-  <action name="action_propos">
+  <action name="aProposBtn">
    <property name="text">
     <string>&amp;À propos</string>
    </property>

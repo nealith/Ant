@@ -19,9 +19,14 @@ public:
     ~MainWindow();
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
+    qreal getSpeedFactor() const;
+    void setSpeedFactor(const qreal &value);
     void setFood();
+    void advance(QList<AntHill*> l);
+
 private:
     Ui::MainWindow *ui;
+    qreal speedFactor;
 
 private slots:
     void onOpenFileClicked();
@@ -30,8 +35,11 @@ private slots:
     void onAddFoodClicked();
     void onSaveFileClicked();
     void onSaveAsClicked();
-public slots:
-    void onStatsUpdate(QList<AntHill*> l);
+    void onSpeedChange();
+    void onQuit();
+    void onAskInfo();
+    void onManuelClicked();
+
 signals:
     void newSimuClicked();
     void parameterOpenClicked();
@@ -39,6 +47,9 @@ signals:
     void addFoodClicked();
     void saveFileClicked();
     void saveAsClicked();
+    void speedChanged();
+    void moreInfo();
+    void showManual();
 };
 
 #endif // MAINWINDOW_H
