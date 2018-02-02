@@ -62,6 +62,6 @@ void MainWindow::onSaveAsClicked(){
 
 void MainWindow::onStatsUpdate(QList<AntHill *> l)
 {
-
+    qDebug() << "test" << l;
 }
 

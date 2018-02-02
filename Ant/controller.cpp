@@ -25,9 +25,12 @@ void Controller::setupSignals()
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
 
-    connect(m_simulation,SIGNAL(updateStats(QList<AntHill*>)),this,SLOT(onStatsUpdate(QList<AntHill*>)));
-    connect(this,SIGNAL(statsUpdate(QList<AntHill*>)),m_window,SLOT(onStatsUpdate(QList<AntHill*>)));
+    bool t;
+    bool t2;
+    t =connect(m_simulation,SIGNAL(QList<AntHill *>),this,SLOT(QList<AntHill *>));
+    t2 =connect(this,SIGNAL(QList<AntHill *>),m_window,SLOT(QList<AntHill *>));
 
+    qDebug() << "tttt:"<<t<<";;t222222:"<<t2;
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
 }
@@ -109,5 +112,6 @@ void Controller::updateSimulationParams(){
 
 void Controller::onStatsUpdate(QList<AntHill *> l)
 {
+    qDebug() << "lollll";
     emit statsUpdate(l);
 }
