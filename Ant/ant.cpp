@@ -21,6 +21,9 @@ Ant::Ant(AntHill * antHill) :
 {
     this->setPos(antHill->pos());
     QPixmap p(":/img/resources/ant.png");
+
+    changeColor(p,QColor(255,255,255),m_antHill->color());
+
     this->setPixmap(p);
     this->rotate(90);
     m_antenna->setAnt(this);
