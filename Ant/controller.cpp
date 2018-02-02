@@ -42,6 +42,11 @@ void Controller::initialize(){
     filePath = "";
 }
 
+void Controller::updateStatsFromSimulation(QList<AntHill *> l)
+{
+
+}
+
 Controller::~Controller()
 {
    delete m_simulation;

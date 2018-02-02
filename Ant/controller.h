@@ -14,6 +14,8 @@
 #include <QTimer>
 #include <QFileDialog>
 
+#include <anthill.h>
+
 class Controller : public QObject
 {
   Q_OBJECT
@@ -21,6 +23,7 @@ public:
     Controller(MainWindow * window,Settings * s, QObject *parent  = nullptr);
     void setupSignals();
     void initialize();
+    void updateStatsFromSimulation(QList<AntHill*> l);
     ~Controller();
 
 private:
@@ -43,6 +46,7 @@ private slots:
     void openSaveWindow();
     void saveFile();
     void updateSimulationParams();
+
 };
 
 #endif // CONTROLLER_H
