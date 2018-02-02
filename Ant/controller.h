@@ -39,6 +39,7 @@ private slots:
     void openParamWindow();
     void openFileManager();
     void onTimeout();
+    void onAddFood();
     void openSaveWindow();
     void saveFile();
 };

@@ -12,6 +12,12 @@
 #include <food.h>
 #include <QList>
 
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
+
 class Simulation: public QGraphicsScene
 {
 private:
@@ -23,10 +29,6 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
-    QList<Food*> m_food;
-
-
-
 
     Simulation(
             qint64 foodQueen = 1000,
@@ -37,12 +39,20 @@ private:
             );
 public:
     static Simulation * getInstance();
+    ~Simulation();
     void init();
     void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);
     void deleteAnt(Ant * ant);
+    void addFood();
+    /*Food * chocFood(Ant * ant);*/
+    void noMoreFood(Food * f);
+    static qreal rand(qint64 min = 0, qint64 max = 0);
+    qreal w();
+    qreal h();
+
 };
 
 #endif // SIMULATION_H

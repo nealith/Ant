@@ -1,17 +1,19 @@
 #ifndef FOOD_H
 #define FOOD_H
 
-#include <QGraphicsPixmapItem>
+#include "simulationpixmapitem.h"
 
-class Food : public QGraphicsPixmapItem
+class Food : public SimulationPixmapItem
 {
 public:
-    Food();
-    qint64 getFood() const;
-    void setFood(const qint64 &value);
+    Food(qreal x, qreal y, qint64 value);
+    static bool isFood(QGraphicsItem *e);
+    void advance(int phase);
+    bool chocFood();
 
 private:
-    qint64 food;
+    qint64 m_food;
+    qint64 m_foodAtInit;
 };
 
 #endif // FOOD_H

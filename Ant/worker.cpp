@@ -1,4 +1,7 @@
 #include "worker.h"
+#include "simulation.h"
+#include <QDebug>
+#include "antantenna.h"
 
 bool Worker::hasFood() const
 {
@@ -14,16 +17,35 @@ Worker::Worker(AntHill * antHill):Ant(antHill),m_hasFood(false)
 {
 
 }
+
+bool Worker::isWorker(QGraphicsItem *e)
+{
+    Worker* t = dynamic_cast<Worker*> (e);
+    return (t != nullptr);
+}
+
 void Worker::advance(int phase){
-    //Ant::advance(phase);
+    Ant::advance(phase);
     //3 cas
     if(m_hasFood){
         //Revient
-        QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
-        if(line.length()<3){
-            this->setPos(this->antHill()->pos());
+
+        if(this->collidesWithItem(this->antHill())){
+            m_hasFood = false;
+            antHill()->addFood();
         }else{
-            this->setPos(line.pointAt(3));
+            if(m_turn){
+                this->basicRotation();
+
+                if(m_turn_rotation == 0.0){
+                    m_turn = false;
+                    m_turn_rotation = 0.0;
+
+                    m_beeline = true;
+                }
+            } else if(m_beeline){
+                this->basicMove();
+            }
         }
     }else{
         // Cherche
@@ -31,7 +53,27 @@ void Worker::advance(int phase){
         step.setX(step.x()-5 + (rand() % static_cast<int>(11)));
         step.setY(step.y()-5 + (rand() % static_cast<int>(11)));
         this->setPos(step);*/
-        Ant::basicMove();
+        Ant::moveRandomly();
+
+        if(this->m_antenna->contactWithFood() ){
+            Food * f = this->m_antenna->foodList().first();
+            if(f->chocFood()){
+                qDebug() << "food:" << f << "; ant:" << this ;
+
+                m_hasFood = true;
+                QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
+
+                qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
+                qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+                QPointF p(x,y);
+                QLineF lineB(this->pos(),p);
+                qreal a(line.angle(lineB));
+                m_turn = true;
+                m_turn_rotation = a;
+                m_beeline = false;
+                m_beeline_distance = line.length();
+            }
+        }
     }
 
 }

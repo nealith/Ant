@@ -23,6 +23,7 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveFileClicked()),this,SLOT(saveFile()));
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
+    connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
 }
 
 void Controller::initialize(){
@@ -77,6 +78,10 @@ void Controller::openSaveWindow(){
     if(filePath!=""){
         knowFilePath = true;
     }
+}
+
+void Controller::onAddFood(){
+    m_simulation->addFood();
 }
 
 void Controller::onTimeout(){

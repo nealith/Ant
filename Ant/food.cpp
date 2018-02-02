@@ -1,18 +1,34 @@
 #include "food.h"
+#include "simulation.h"
 
-Food::Food():
-    QGraphicsPixmapItem()
+Food::Food(qreal x,qreal y,qint64 value):
+    SimulationPixmapItem(),m_food(value),m_foodAtInit(value)
 {
-    this->setPos(qrand()%1000,qrand()%500);
+    this->setPos(x,y);
     this->setPixmap(QPixmap(":/img/resources/food.png"));
+    qDebug() << "createFood:" << this << "value:" << m_food;
 }
 
-qint64 Food::getFood() const
+bool Food::isFood(QGraphicsItem *e)
 {
-    return food;
+    Food* t = dynamic_cast<Food*> (e);
+    return (t != nullptr);
 }
 
-void Food::setFood(const qint64 &value)
+void Food::advance(int phase)
 {
-    food = value;
+    this->setScale((qreal)m_food/15.0);
+    if(m_food <= 0){
+        Simulation::getInstance()->noMoreFood(this);
+    }
+}
+
+bool Food::chocFood()
+{
+    if (m_food > 0){
+        m_food--;
+        return true;
+    } else {
+        return false;
+    }
 }

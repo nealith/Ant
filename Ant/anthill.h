@@ -1,10 +1,10 @@
 #ifndef ANTHILL_H
 #define ANTHILL_H
 
-#include <QGraphicsPixmapItem>
+#include "simulationpixmapitem.h"
 #include <QHash>
 
-class AntHill : public QGraphicsPixmapItem
+class AntHill : public SimulationPixmapItem
 {
 public:
 
@@ -13,14 +13,14 @@ public:
 
     void advance(int phase);
 
-
-
-    void setSize(const qint64 &size);
-
     qint64 food() const;
-    void setFood(const qint64 &food);
+    void addFood();
+    void consume(qint64 amount);
 
     qint64 size() const;
+    void growUp();
+
+    static bool isAntHill(QGraphicsItem * e);
 
 private:
     qint64 m_food;
