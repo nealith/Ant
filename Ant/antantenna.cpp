@@ -44,7 +44,7 @@ void Ant::AntAntenna::update()
 
             if(Soldier::isSoldier(e)){
                 Soldier * s = (Soldier*)e;
-                if(s->antHill() != m_ref->antHill()){
+                if(s->antHill() != m_ref->antHill() && m_ref->isInFront(s,60.0)){
                     m_foreignSoldier.append(s);
                 }
             } else if(Worker::isWorker(e)){
