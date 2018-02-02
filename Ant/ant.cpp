@@ -16,7 +16,8 @@ Ant::Ant(AntHill * antHill) :
     m_turn_rotation(Simulation::rand(-1,1) * 360.0),
     m_beeline(false),
     m_beeline_distance(0),
-    m_antenna(new AntAntenna())
+    m_antenna(new AntAntenna()),
+    m_status(Ant::MoveRandomly)
 {
     this->setPos(antHill->pos());
     QPixmap p(":/img/resources/ant.png");
@@ -29,13 +30,13 @@ Ant::Ant(AntHill * antHill) :
 
 void Ant::basicMove()
 {
-    if(!m_antenna->isBlocked()){
+    //if(!m_antenna->isBlocked()){
         QPointF pos = this->pos();
         qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
         qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
-    }
+    //}
 }
 
 void Ant::basicRotation()
@@ -45,12 +46,10 @@ void Ant::basicRotation()
         rotation = -0.5;
     }
     m_turn_rotation -= rotation;
-    if(rotation <0.0 && m_turn_rotation >=0.0 || rotation>0.0 && m_turn_rotation <=0.0){
+    if((rotation <0.0 && m_turn_rotation >=0.0) || (rotation>0.0 && m_turn_rotation <=0.0)){
         rotation += m_turn_rotation;
         m_turn_rotation = 0.0;
     }
-
-
     m_orientation += rotation;
 
     this->rotate(rotation);
@@ -58,34 +57,66 @@ void Ant::basicRotation()
 
 void Ant::moveRandomly()
 {
-    if(m_turn){
-        this->basicRotation();
+    if(m_status == MoveRandomly){
+        if(m_turn){
+            this->basicRotation();
 
-        if(m_turn_rotation == 0.0){
-            m_turn = false;
-            m_turn_rotation = 0.0;
+            if(m_turn_rotation == 0.0){
+                m_turn = false;
+                m_turn_rotation = 0.0;
 
-            m_beeline = true;
-            m_beeline_distance = Simulation::rand() * 30.0 + 20.0;
-        }
-    } else if(m_beeline){
-        this->basicMove();
+                m_beeline = true;
+                m_beeline_distance = Simulation::rand() * 30.0 + 20.0;
+            }
+        } else if(m_beeline){
+            this->basicMove();
 
-        if(m_beeline_distance <= 0.0){
-            m_beeline = false;
-            m_beeline_distance = 0.0;
+            if(m_beeline_distance <= 0.0){
+                m_beeline = false;
+                m_beeline_distance = 0.0;
 
-            m_turn = true;
-            m_turn_rotation = Simulation::rand(-1,1) * 45.0;
+                m_turn = true;
+                m_turn_rotation = Simulation::rand(-1,1) * 45.0;
+            }
         }
     }
+
+}
+
+void Ant::moveToAPoint(qreal x, qreal y)
+{
+    QPointF p1(x,y);
+    QLineF lineToPoint(this->pos(),p1);
+
+    qreal x2 = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*20.0;
+    qreal y2 = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*20.0;
+    QPointF p2(x2,y2);
+    QLineF lineToPointFromCurrentRotation(this->pos(),p2);
+    qreal a(lineToPointFromCurrentRotation.angleTo(lineToPoint));
+    m_turn = true;
+    m_turn_rotation = -a;
+    m_beeline = false;
+    m_beeline_distance = lineToPoint.length();
+}
+
+void Ant::moveToAPoint(QPointF p)
+{
+    moveToAPoint(p.x(),p.y());
 }
 
 void Ant::advance(int phase)
 {
     m_lifeCycles++;
     m_antenna->update();
+
+    if(m_status == MoveRandomly){
+        moveRandomly();
+    } else if(m_status == MoveToAPoint){
+        moveToAPoint2();
+    }
+
     Simulation::getInstance()->deleteAnt(this);
+
 }
 
 qint64 Ant::lifeCycles() const
@@ -98,14 +129,14 @@ void Ant::setLifeCycles(const qint64 &lifeCycles)
     m_lifeCycles = lifeCycles;
 }
 
-bool Ant::isInFront(Ant *a)
+bool Ant::isInFront(QGraphicsItem *a, qreal angle)
 {
     QLineF l1(this->pos(),a->pos());
     qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
     qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
     QPointF p(x,y);
     QLineF l2(this->pos(),p);
-    return qAbs(l1.angle(l2))<45;
+    return qAbs(l2.angleTo(l1))<angle;
 }
 
 bool Ant::isAnt(QGraphicsItem *e)
@@ -114,12 +145,30 @@ bool Ant::isAnt(QGraphicsItem *e)
     return (t != nullptr);
 }
 
+void Ant::moveToAPoint2()
+{
+    if(m_status == MoveToAPoint){
+        if(m_turn){
+            this->basicRotation();
+
+            if(m_turn_rotation == 0.0){
+                m_turn = false;
+                m_turn_rotation = 0.0;
+
+                m_beeline = true;
+            }
+        } else if(m_beeline){
+            this->basicMove();
+            if(m_beeline_distance <= 0.0){
+                m_status = Waiting;
+            }
+        }
+    }
+
+
+}
+
 AntHill *Ant::antHill()
 {
     return m_antHill;
 }
-
-/*void Ant::setAntHill(AntHill *anthill)
-{
-    m_antHill = anthill;
-}*/

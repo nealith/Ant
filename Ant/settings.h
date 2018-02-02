@@ -19,27 +19,39 @@ public:
     ~Settings();
     void setupSignals();
 
+    qint64 getFoodQueen() const;
+    void setFoodQueen(const qint64 &value);
+
+    qint64 getFoodAnt() const;
+    void setFoodAnt(const qint64 &value);
+
+    qint64 getRatioWorkerSoldier() const;
+    void setRatioWorkerSoldier(const qint64 &value);
+
+    qint64 getAntLifeTime() const;
+    void setAntLifeTime(const qint64 &value);
+
+    qint64 getAntLimit() const;
+    void setAntLimit(const qint64 &value);
+
+    qint64 getNbAnthill() const;
+    void setNbAnthill(const qint64 &value);
+
 private:
     //on a une UI qui fait partie du package UI
     Ui::Settings *ui;
+    qint64 nbAnthill;
+    qint64 foodQueen;
+    qint64 foodAnt;
+    qint64 ratioWorkerSoldier;
+    qint64 antLifeTime;
+    qint64 antLimit;
 
 private slots:
-    void onNbAntHillStartChg(); //changement dans le nombre de colonies au départ
-    void onMaxAntPerAntHillChg(); //changement dans le nombre de fourmis max par colonie
-    void onAntLifeDurationChg(); //changement dans la durée de vie des fourmies
-    void onFoodPerAntChg(); //changement dans la quantité de nourriture necessaire pour créer une fourmi
-    void onFoodPerQueenChg(); // même chose pour la reine
-    void onSaltButterEEClick(); //Easter Egg 1
-    void onQueenElisabethEEClick(); //Easter Egg 2
+    void onFormValid(); //changement dans le nombre de colonies au départ
 
 signals:
-    void nbAntHillStartChg();
-    void maxAntPerAntHillChg();
-    void antLifeDurationChg();
-    void foodPerAntChg();
-    void foodPerQueenChg();
-    void saltButterEEClick();
-    void queenElisabethEEClick();
+    void paramValids();
 };
 
 #endif // SETTINGS_H

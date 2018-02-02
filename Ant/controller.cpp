@@ -24,14 +24,18 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
+
+    //signaux pour les settings
+    connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
 }
 
 void Controller::initialize(){
     m_window->setupSignals();
+    m_settings->setupSignals();
     this->setupSignals();
 
     m_window->setupScene(m_simulation);
-    m_simulation->init(m_window->width(),m_window->height());
+    m_simulation->init();
     m_timer.start(m_speed_factor*m_speed_one);
     m_window->show();
     knowFilePath = false; //par defaut on a pas de simulation déjà ouverte
@@ -88,4 +92,12 @@ void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
     //m_timer.start(m_speed_factor*m_speed_one);
+}
+
+void Controller::updateSimulationParams(){
+    m_simulation->setFoodQueen(m_settings->getFoodQueen());
+    m_simulation->setFoodAnt(m_settings->getFoodAnt());
+    m_simulation->setAntLimit(m_settings->getAntLimit());
+    m_simulation->setAntLifeTime(m_settings->getAntLifeTime());
+    m_simulation->restart(m_settings);
 }

@@ -6,7 +6,6 @@
 class Worker:public Ant
 {
 private:
-    bool m_hasFood;
 
 public:
     Worker(AntHill * antHill);
@@ -14,8 +13,10 @@ public:
     static bool isWorker(QGraphicsItem * e);
 
     void advance(int phase);
-    bool hasFood() const;
-    void setHasFood(bool hasFood);
+
+    static const qint64 CarryFood = 3;
+
+
 };
 
 #endif // WORKER_H

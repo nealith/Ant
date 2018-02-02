@@ -5,11 +5,6 @@
 #include "anthill.h"
 #include <QPointF>
 #include "simulationpixmapitem.h"
-#if QT_VERSION >= 0x50000
-    #include <qmath.h>
-#else
-    #include <QtCore/qmath.h>
-#endif
 
 
 class Ant : public SimulationPixmapItem
@@ -17,9 +12,15 @@ class Ant : public SimulationPixmapItem
 public:
     explicit Ant(AntHill * antHill);
 
+    static const qint64 Waiting = 0;
+    static const qint64 MoveRandomly = 1;
+    static const qint64 MoveToAPoint = 2;
+
     void basicMove();
     void basicRotation();
     void moveRandomly();
+    void moveToAPoint(qreal x, qreal y);
+    void moveToAPoint(QPointF p);
 
     AntHill *antHill();
     //void setAntHill(AntHill *antHill);
@@ -30,7 +31,7 @@ public:
     qint64 lifeCycles() const;
     void setLifeCycles(const qint64 &lifeCycles);
 
-    bool isInFront(Ant * a);
+    bool isInFront(QGraphicsItem *a, qreal angle = 45.0);
 
     static bool isAnt(QGraphicsItem * e);
 
@@ -43,6 +44,8 @@ public slots:
 private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
+
+    void moveToAPoint2();
 protected:
     class AntAntenna;
 
@@ -54,6 +57,8 @@ protected:
     qreal m_beeline_distance;
 
     AntAntenna * m_antenna;
+
+    qint64 m_status;
 
 };
 

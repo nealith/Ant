@@ -11,6 +11,13 @@
 #include <queen.h>
 #include <food.h>
 #include <QList>
+#include <settings.h>
+
+#if QT_VERSION >= 0x50000
+    #include <qmath.h>
+#else
+    #include <QtCore/qmath.h>
+#endif
 
 class Simulation: public QGraphicsScene
 {
@@ -23,6 +30,7 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
+    qint64 m_ee;
 
     Simulation(
             qint64 foodQueen = 1000,
@@ -32,21 +40,40 @@ private:
             qint64 antLimit = 1000
             );
 public:
+
+    static const qint64 NORMAL = 0;
+    static const qint64 BIGOUDENE = 1;
+    static const qint64 BRITISH = 2;
+
     static Simulation * getInstance();
     ~Simulation();
-    void init(qreal width, qreal height);
+    void init();
     void advance(int phase);
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);
+    void pheromoneOutOfDate(Pheromone * pheromone);
     void deleteAnt(Ant * ant);
     void addFood();
-    /*Food * chocFood(Ant * ant);*/
-    void noMoreFood(Food * f);
+    void noMoreFood(Food * food);
     static qreal rand(qint64 min = 0, qint64 max = 0);
     qreal w();
     qreal h();
 
+    qint64 getFoodQueen() const;
+    void setFoodQueen(const qint64 &foodQueen);
+    qint64 getFoodAnt() const;
+    void setFoodAnt(const qint64 &foodAnt);
+    qreal getRatioWorkerSoldier() const;
+    void setRatioWorkerSoldier(const qreal &ratioWorkerSoldier);
+    qint64 getAntLifeTime() const;
+    void setAntLifeTime(const qint64 &antLifeTime);
+    qint64 getAntLimit() const;
+    void setAntLimit(const qint64 &antLimit);
+    qint64 getEe() const;
+    void setEe(const qint64 &ee);
+
+    void restart(Settings * s);
 };
 
 #endif // SIMULATION_H

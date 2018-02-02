@@ -1,12 +1,14 @@
 #include "pheromone.h"
+#include "simulation.h"
 
 Pheromone::Pheromone(AntHill *antHill):
     SimulationPixmapItem(),
     m_value(10),
+    m_cycle(0),
     m_antHill(antHill)
 {
-    QPixmap p(1.0,1.0);
-    p.fill(Qt::red);
+    QPixmap p(3.0,3.0);
+    p.fill(antHill->color());
 
     this->setPixmap(p);
 }
@@ -22,20 +24,25 @@ AntHill * Pheromone::antHill() const
     return m_antHill;
 }
 
-void Pheromone::onAntstepped(){
-    if(m_value<255){
-        m_value = m_value+10<=255 ? m_value+10 : 255;
-        this->setOpacity(m_value/255);
+void Pheromone::advance(int phase){
+    m_cycle++;
+    if(m_cycle==100*25){
+        m_value--;
+        m_cycle=0;
+        this->setOpacity(m_value);
+        if(m_value==0){
+            Simulation::getInstance()->pheromoneOutOfDate(this);
+        }
+
     }
 }
 
-void Pheromone::advance(int phase){
-    if(m_cycle==100){
-        m_value--;
-        m_cycle=0;
-        if(m_value==0){
-            // Fonction destroy
+void Pheromone::stepOn(Ant *ant)
+{
+    if(ant->antHill() == m_antHill){
+        m_value += 10;
+        if (m_value > 255){
+            m_value = 255;
         }
-        this->setOpacity(m_value/255);
     }
 }

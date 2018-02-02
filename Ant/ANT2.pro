@@ -24,66 +24,43 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    ant.cpp \
     antantenna.cpp \
-    anthill.cpp \
-    controller.cpp \
-    food.cpp \
     main.cpp \
     mainwindow.cpp \
-    pheromone.cpp \
+    soldier.cpp \
     queen.cpp \
-    settings.cpp \
+    ant.cpp \
+    anthill.cpp \
+    pheromone.cpp \
     simulation.cpp \
-    simulationitem.cpp \
     simulationpixmapitem.cpp \
     simulationview.cpp \
-    soldier.cpp \
+    settings.cpp \
+    controller.cpp \
+    food.cpp \
     worker.cpp
 
-
-
 HEADERS += \
-    ant.h \
     antantenna.h \
+        mainwindow.h \
     anthill.h \
-    controller.h \
-    food.h \
-    food_copy.h \
-    mainwindow.h \
+    soldier.h \
     pheromone.h \
-    queen.h \
-    settings.h \
     simulation.h \
-    simulationitem.h \
     simulationpixmapitem.h \
     simulationview.h \
-    soldier.h \
+    queen.h \
+    ant.h \
+    settings.h \
+    controller.h \
+    food.h \
     worker.h
 
 FORMS += \
-    mainwindow.ui \
+        mainwindow.ui \
     settings.ui
-
-
 SUBDIRS += \
     ANT2.pro
 
 RESOURCES += \
-    res.qrc
-
-DISTFILES += \
-    ANT2.pro.user \
-    ANT2.pro.user.8a0cda3 \
-    resources/ant.png \
-    resources/anthill.png \
-    resources/background.png \
-    resources/food.png \
-    resources/back_up/ant.png \
-    resources/back_up/anthill.png \
-    resources/back_up/food.png \
-    resources/back_up/ant.svg \
-    resources/back_up/anthill.svg \
-    resources/back_up/bouff.svg
-
-
+res.qrc

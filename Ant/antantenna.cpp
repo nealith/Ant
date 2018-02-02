@@ -17,6 +17,16 @@ Ant::AntAntenna::AntAntenna():
 
 void Ant::AntAntenna::update()
 {
+
+    m_antFront.clear();
+    m_foreignAnt.clear();
+    m_otherAnt.clear();
+    m_foreignSoldier.clear();
+    m_food.clear();
+    m_pheromone.clear();
+    m_foreignPheromone.clear();
+    m_foreignAntHill.clear();
+
     QList<QGraphicsItem*> c(m_ref->collidingItems());
 
     m_atAntHill = false;
@@ -46,7 +56,7 @@ void Ant::AntAntenna::update()
 
         } else if(Pheromone::isPheromone(e)){
             Pheromone * f = (Pheromone*)e;
-            if (f->antHill() == m_ref->antHill()){
+            if (f->antHill() == m_ref->antHill() && m_ref->isInFront(f,90.0)){
                 m_pheromone.append(f);
             } else {
                 m_foreignPheromone.append(f);
