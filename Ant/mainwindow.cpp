@@ -60,4 +60,7 @@ void MainWindow::onSaveAsClicked(){
     emit saveAsClicked();
 }
 
+void MainWindow::advance(Qlist<AntHill*> l){
+
+}
 

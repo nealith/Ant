@@ -100,7 +100,7 @@
              <number>1</number>
             </property>
             <item>
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="ChoseAnthill">
               <item>
                <property name="text">
                 <string>Anthill 1</string>
