@@ -16,7 +16,8 @@ public:
     void rotate(qreal rotation);
     void setPos(qreal x, qreal y);
     void setPos(QPointF p);
-    bool isSimulationPixmapItem(QGraphicsItem * e);
+    virtual void updateEE();
+    static bool isSimulationPixmapItem(QGraphicsItem * e);
     QPointF pos() const;
 };
 

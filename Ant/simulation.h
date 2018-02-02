@@ -29,6 +29,7 @@ private:
     qreal m_ratioWorkerSoldier;
     qint64 m_antLifeTime;
     qint64 m_antLimit;
+    qint64 m_ee;
 
     Simulation(
             qint64 foodQueen = 1000,
@@ -38,6 +39,11 @@ private:
             qint64 antLimit = 1000
             );
 public:
+
+    static const qint64 NORMAL = 0;
+    static const qint64 BIGOUDENE = 1;
+    static const qint64 BRITISH = 2;
+
     static Simulation * getInstance();
     ~Simulation();
     void init();
@@ -63,6 +69,8 @@ public:
     void setAntLifeTime(const qint64 &antLifeTime);
     qint64 getAntLimit() const;
     void setAntLimit(const qint64 &antLimit);
+    qint64 getEe() const;
+    void setEe(const qint64 &ee);
 };
 
 #endif // SIMULATION_H

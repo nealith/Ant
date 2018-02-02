@@ -35,6 +35,11 @@ void SimulationPixmapItem::setPos(QPointF p){
     this->setPos(p.x(),p.y());
 }
 
+void SimulationPixmapItem::updateEE()
+{
+
+}
+
 bool SimulationPixmapItem::isSimulationPixmapItem(QGraphicsItem *e)
 {
     SimulationPixmapItem* t = dynamic_cast<SimulationPixmapItem*> (e);

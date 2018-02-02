@@ -55,6 +55,24 @@ void Simulation::setAntLimit(const qint64 &antLimit)
     m_antLimit = antLimit;
 }
 
+qint64 Simulation::getEe() const
+{
+    return m_ee;
+}
+
+void Simulation::setEe(const qint64 &ee)
+{
+    if(ee >= 0 && ee <=2)
+    m_ee = ee;
+    QList <QGraphicsItem*> l(this->items());
+    foreach (QGraphicsItem * i, l) {
+        if(SimulationPixmapItem::isSimulationPixmapItem(i)){
+            SimulationPixmapItem p = (SimulationPixmapItem) e;
+            p.updateEE();
+        }
+    }
+}
+
 Simulation::Simulation(qint64 foodQueen, qint64 foodAnt, qreal ratioWorkerSoldier, qint64 antLifeTime, qint64 antLimit):
     m_foodQueen(foodQueen),
     m_foodAnt(foodAnt),
@@ -164,7 +182,7 @@ void Simulation::pheromoneOutOfDate(Pheromone * pheromone)
 
 void Simulation::deleteAnt(Ant * ant)
 {
-    if(ant->lifeCycles() >= m_antLifeTime){
+    if(ant->lifeCycles() >= m_antLifeTime*25){
         qDebug() << "Simulation::removeAnt:" << ant;
         QGraphicsScene::removeItem(ant);
         delete ant;
