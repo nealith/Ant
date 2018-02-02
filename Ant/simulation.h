@@ -59,7 +59,7 @@ public:
     void noMoreFood(Food * food);
     void deadInAttack(Ant *ant);
     void dropAntHill(QPointF pos);
-    void posValidForAntHill(QPointF pos, AntHill *antHill);
+    bool posValidForAntHill(QPointF pos);
 
 
     void drawForeground(QPainter *painter, const QRectF &rect);

@@ -134,7 +134,6 @@ void Simulation::advance(int phase)
 {
 
     QGraphicsScene::advance();
-    emit statsUpdate(m_antHillList);
 }
 
 void Simulation::createAnt(AntHill * antHill)
@@ -167,16 +166,15 @@ void Simulation::createAnt(AntHill * antHill)
 
 void Simulation::createAntHill(Queen * queen)
 {
-    AntHill * antHill = new AntHill();
-    if(this->posValidForAntHill(queen->pos(),antHill)){
+
+    if(this->posValidForAntHill(queen->pos())){
+        AntHill * antHill = new AntHill();
         antHill->setPos(queen->pos());
         QGraphicsScene::removeItem(queen);
         m_antHillList.append(antHill);
         this->addItem(antHill);
         qDebug() << "Simulation::createAntHill:" << antHill;
 
-    }else {
-        delete antHill;
     }
 
 }
@@ -249,13 +247,14 @@ void Simulation::deadInAttack(Ant* ant)
 
 void Simulation::dropAntHill(QPointF pos)
 {
-    AntHill * antHill;
+    AntHill * antHill = new AntHill();
     qint64 n = 200;
-    while(posValidForAntHill(pos,antHill)){
+    while(!posValidForAntHill(pos)){
         pos.setX(Simulation::rand(this->w()+n)-n/2);
         pos.setY(Simulation::rand(this->h()+n)-n/2);
         n+=100;
     }
+
 
     this->addItem(antHill);
     m_antHillList.append(antHill);
@@ -263,19 +262,15 @@ void Simulation::dropAntHill(QPointF pos)
 
 }
 
-void Simulation::posValidForAntHill(QPointF pos, AntHill * antHill)
+bool Simulation::posValidForAntHill(QPointF pos)
 {
     QList<QGraphicsItem *> l(this->items());
 
-    QRectF r = antHill->sceneBoundingRect();
-    qreal dr = qSqrt(qPow(r.width(),2)+qPow(r.height(),2));
     bool toClose = false;
 
     foreach (QGraphicsItem * i, l) {
         if(AntHill::isAntHill(i)){
-            QRectF r2 = i->sceneBoundingRect();
-            qreal dr2 = qSqrt(qPow(r2.width(),2)+qPow(r2.height(),2));
-            if(QLineF(f->pos(),i->pos()).length() < 1000.0){
+            if(QLineF(pos,i->pos()).length() < 1000.0){
                 toClose = true;
                 break;
             }
