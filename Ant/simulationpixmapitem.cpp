@@ -1,5 +1,9 @@
 #include "simulationpixmapitem.h"
 #include <QDebug>
+#include <QImage>
+#include <QPainter>
+#include <QRgb>
+#include <QBitmap>
 
 SimulationPixmapItem::SimulationPixmapItem():QGraphicsPixmapItem()
 {
@@ -55,4 +59,14 @@ QPointF SimulationPixmapItem::pos() const
     p.setX(p.x()+dw);
     p.setY(p.y()+dh);
     return p;
+}
+
+void SimulationPixmapItem::changeColor(QPixmap &img, QColor colorToReplace, QColor newColor)
+{
+    QBitmap mask(img.createMaskFromColor(colorToReplace, Qt::MaskOutColor));
+    QPainter p(&img);
+    p.setPen(newColor);
+    p.drawPixmap(img.rect(),mask,mask.rect());
+    p.end();
+
 }

@@ -19,6 +19,7 @@ public:
     virtual void updateEE();
     static bool isSimulationPixmapItem(QGraphicsItem * e);
     QPointF pos() const;
+    void changeColor(QPixmap &img, QColor colorToReplace, QColor newColor);
 };
 
 #endif // SIMULATIONPIXMAPITEM_H
