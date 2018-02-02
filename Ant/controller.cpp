@@ -24,6 +24,7 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
+    connect(m_simulation,SIGNAL(ifoundFood()),this,SLOT(onFoodFound()));
 
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
@@ -93,6 +94,8 @@ void Controller::onTimeout(){
     m_simulation->advance(1);
     //m_timer.start(m_speed_factor*m_speed_one);
 }
+
+
 
 void Controller::updateSimulationParams(){
     m_simulation->setFoodQueen(m_settings->getFoodQueen());

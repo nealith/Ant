@@ -17,7 +17,7 @@ public:
     ~MainWindow();
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
-
+    void setFood();
 private:
     Ui::MainWindow *ui;
 
@@ -26,7 +26,6 @@ private slots:
     void onParameterOpenClicked();
     void onNewSimuClicked();
     void onAddFoodClicked();
-
     void onSaveFileClicked();
     void onSaveAsClicked();
 signals:

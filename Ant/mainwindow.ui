@@ -100,40 +100,18 @@
              <number>1</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <widget class="QComboBox" name="comboBox">
               <item>
-               <widget class="QLabel" name="label_5">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Nombre de Fourmillière :</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                </property>
-               </widget>
+               <property name="text">
+                <string>Anthill 1</string>
+               </property>
               </item>
               <item>
-               <widget class="QLabel" name="nbAnthillLB">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>0</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
+               <property name="text">
+                <string>Total</string>
+               </property>
               </item>
-             </layout>
+             </widget>
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_5">

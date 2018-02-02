@@ -74,6 +74,7 @@ public:
     void setEe(const qint64 &ee);
 
     void restart(Settings * s);
+
 };
 
 #endif // SIMULATION_H
