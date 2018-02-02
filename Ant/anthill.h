@@ -24,6 +24,7 @@ public:
 
     QColor color() const;
 
+
 private:
     qint64 m_food;
     qint64 m_size;
