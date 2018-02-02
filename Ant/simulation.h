@@ -43,7 +43,7 @@ private:
             qint64 antLimit = 1000
             );
 signals:
-    void updateStats(QList<AntHill*> AntHills);
+    void statsUpdate(QList<AntHill*> AntHills);
 
 public:
 

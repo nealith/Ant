@@ -127,7 +127,7 @@ void Simulation::init()
 void Simulation::advance(int phase)
 {
     QGraphicsScene::advance();
-    emit updateStats(m_antHillList);
+    emit statsUpdate(m_antHillList);
 
 }
 

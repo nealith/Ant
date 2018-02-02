@@ -24,7 +24,9 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
-    connect(m_simulation,SIGNAL(ifoundFood()),this,SLOT(onFoodFound()));
+
+    connect(m_simulation,SIGNAL(updateStats(QList<AntHill*>)),this,SLOT(onStatsUpdate(QList<AntHill*>)));
+    connect(this,SIGNAL(statsUpdate(QList<AntHill*>)),m_window,SLOT(onStatsUpdate(QList<AntHill*>)));
 
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
@@ -41,11 +43,6 @@ void Controller::initialize(){
     m_window->show();
     knowFilePath = false; //par defaut on a pas de simulation déjà ouverte
     filePath = "";
-}
-
-void Controller::updateStatsFromSimulation(QList<AntHill *> l)
-{
-
 }
 
 Controller::~Controller()
@@ -108,4 +105,9 @@ void Controller::updateSimulationParams(){
     m_simulation->setAntLimit(m_settings->getAntLimit());
     m_simulation->setAntLifeTime(m_settings->getAntLifeTime());
     m_simulation->restart(m_settings);
+}
+
+void Controller::onStatsUpdate(QList<AntHill *> l)
+{
+
 }

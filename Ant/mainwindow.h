@@ -20,7 +20,6 @@ public:
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
     void setFood();
-    void advance(Qlist<AntHill*> l);
 private:
     Ui::MainWindow *ui;
 
@@ -31,6 +30,8 @@ private slots:
     void onAddFoodClicked();
     void onSaveFileClicked();
     void onSaveAsClicked();
+public slots:
+    void onStatsUpdate(QList<AntHill*> l);
 signals:
     void newSimuClicked();
     void parameterOpenClicked();

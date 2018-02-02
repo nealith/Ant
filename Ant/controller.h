@@ -23,7 +23,6 @@ public:
     Controller(MainWindow * window,Settings * s, QObject *parent  = nullptr);
     void setupSignals();
     void initialize();
-    void updateStatsFromSimulation(QList<AntHill*> l);
     ~Controller();
 
 private:
@@ -36,7 +35,8 @@ private:
     qint64 m_cycles;
     qreal m_speed_factor;
     const qint32 m_speed_one =40 ;
-
+signals:
+    void statsUpdate(QList<AntHill*> l);
 private slots:
     void createNewSimu();
     void openParamWindow();
@@ -46,6 +46,7 @@ private slots:
     void openSaveWindow();
     void saveFile();
     void updateSimulationParams();
+    void onStatsUpdate(QList<AntHill*> l);
 
 };
 

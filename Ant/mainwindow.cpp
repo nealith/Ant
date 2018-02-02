@@ -60,7 +60,8 @@ void MainWindow::onSaveAsClicked(){
     emit saveAsClicked();
 }
 
-void MainWindow::advance(Qlist<AntHill*> l){
+void MainWindow::onStatsUpdate(QList<AntHill *> l)
+{
 
 }
 
