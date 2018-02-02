@@ -307,6 +307,12 @@
    <property name="toolTip">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Créer une nouvelle simulation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
+   <property name="statusTip">
+    <string>Démarrer une nouvelle simulation</string>
+   </property>
+   <property name="whatsThis">
+    <string>Démarrer une nouvelle simulation</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
