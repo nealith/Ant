@@ -109,5 +109,5 @@ void Controller::updateSimulationParams(){
 
 void Controller::onStatsUpdate(QList<AntHill *> l)
 {
-
+    emit statsUpdate(l);
 }
