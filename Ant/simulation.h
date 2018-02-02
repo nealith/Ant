@@ -11,6 +11,7 @@
 #include <queen.h>
 #include <food.h>
 #include <QList>
+#include <settings.h>
 
 #if QT_VERSION >= 0x50000
     #include <qmath.h>
@@ -71,6 +72,9 @@ public:
     void setAntLimit(const qint64 &antLimit);
     qint64 getEe() const;
     void setEe(const qint64 &ee);
+
+    void restart(Settings * s);
+
 };
 
 #endif // SIMULATION_H

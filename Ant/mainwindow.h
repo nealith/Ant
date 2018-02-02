@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QList>
+#include <anthill.h>
 
 namespace Ui {
 class MainWindow;
@@ -17,9 +19,10 @@ public:
     ~MainWindow();
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
-
     qreal getSpeedFactor() const;
     void setSpeedFactor(const qreal &value);
+    void setFood();
+    void advance(QList<AntHill*> l);
 
 private:
     Ui::MainWindow *ui;
@@ -30,7 +33,6 @@ private slots:
     void onParameterOpenClicked();
     void onNewSimuClicked();
     void onAddFoodClicked();
-
     void onSaveFileClicked();
     void onSaveAsClicked();
     void onSpeedChange();

@@ -112,6 +112,7 @@ void Simulation::init()
     qreal width(20000);
 
     AntHill * at = new AntHill();
+    at->setPos(width/2.0,height/2.0);
 
     this->addItem(at);
     for(qint64 i(0); i<100;i++ ){
@@ -246,4 +247,21 @@ qreal Simulation::w()
 qreal Simulation::h()
 {
     return this->sceneRect().height();
+}
+
+void Simulation::restart(Settings * s){
+    this->clear();
+
+    qint64 height(1000);
+    qint64 width(2000);
+    for(qint64 i(0);i<s->getNbAnthill();i++){
+        AntHill * at = new AntHill();
+
+        at->setPos(qrand()%width,qrand()%height);
+        this->addItem(at);
+    }
+    for(qint64 i(0); i<100;i++ ){
+        this->addFood();
+
+    }
 }

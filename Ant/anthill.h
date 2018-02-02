@@ -28,6 +28,8 @@ private:
     qint64 m_food;
     qint64 m_size;
     QColor m_color;
+
+
 };
 
 #endif // ANTHILL_H
