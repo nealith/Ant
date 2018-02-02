@@ -1,12 +1,24 @@
 #include "anthill.h"
 #include "simulation.h"
+#include <QDataStream>
 
 AntHill::AntHill():
     SimulationPixmapItem(),
     m_food(4),
-    m_size(0)
+    m_size(0),
+    m_color()
 {
     this->setPixmap(QPixmap(":/img/resources/anthill.png"));
+
+    QString s = QString("0x%1").arg((quintptr)this, QT_POINTER_SIZE * 2, 16, QChar('0'));
+
+    s.remove(0,2);
+
+    QString cs(s.right(6));
+    cs.append('#');
+
+    m_color.setNamedColor(cs);
+    qDebug() << "AntHill:color:" << m_color;
 }
 
 void AntHill::advance(int phase)
@@ -43,4 +55,9 @@ bool AntHill::isAntHill(QGraphicsItem *e)
 {
     AntHill* t = dynamic_cast<AntHill*> (e);
     return (t != nullptr);
+}
+
+QColor AntHill::color() const
+{
+    return m_color;
 }

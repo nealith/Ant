@@ -22,9 +22,12 @@ public:
 
     static bool isAntHill(QGraphicsItem * e);
 
+    QColor color() const;
+
 private:
     qint64 m_food;
     qint64 m_size;
+    QColor m_color;
 };
 
 #endif // ANTHILL_H

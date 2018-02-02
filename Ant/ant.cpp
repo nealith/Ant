@@ -16,7 +16,8 @@ Ant::Ant(AntHill * antHill) :
     m_turn_rotation(Simulation::rand(-1,1) * 360.0),
     m_beeline(false),
     m_beeline_distance(0),
-    m_antenna(new AntAntenna())
+    m_antenna(new AntAntenna()),
+    m_status(Ant::MoveRandomly)
 {
     this->setPos(antHill->pos());
     QPixmap p(":/img/resources/ant.png");
@@ -81,11 +82,40 @@ void Ant::moveRandomly()
     }
 }
 
+void Ant::moveToAPoint(qreal x, qreal y)
+{
+    QPointF p1(x,y);
+    QLineF line(this->pos(),p1);
+
+    qreal x2 = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
+    qreal y2 = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
+    QPointF p2(x2,y2);
+    QLineF lineB(this->pos(),p2);
+    qreal a(line.angle(lineB));
+    m_turn = true;
+    m_turn_rotation = a;
+    m_beeline = false;
+    m_beeline_distance = line.length();
+}
+
+void Ant::moveToAPoint(QPointF p)
+{
+    moveToAPoint(p.x(),p.y());
+}
+
 void Ant::advance(int phase)
 {
     m_lifeCycles++;
     m_antenna->update();
+
+    if(m_status == MoveRandomly){
+        moveRandomly();
+    } else if(m_status == MoveToAPoint){
+        moveToAPoint2();
+    }
+
     Simulation::getInstance()->deleteAnt(this);
+
 }
 
 qint64 Ant::lifeCycles() const
@@ -114,12 +144,26 @@ bool Ant::isAnt(QGraphicsItem *e)
     return (t != nullptr);
 }
 
+void Ant::moveToAPoint2()
+{
+    if(m_turn){
+        this->basicRotation();
+
+        if(m_turn_rotation == 0.0){
+            m_turn = false;
+            m_turn_rotation = 0.0;
+
+            m_beeline = true;
+        }
+    } else if(m_beeline){
+        this->basicMove();
+        if(m_beeline_distance <= 0.0){
+            m_status = Waiting;
+        }
+    }
+}
+
 AntHill *Ant::antHill()
 {
     return m_antHill;
 }
-
-/*void Ant::setAntHill(AntHill *anthill)
-{
-    m_antHill = anthill;
-}*/

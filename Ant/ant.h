@@ -12,9 +12,15 @@ class Ant : public SimulationPixmapItem
 public:
     explicit Ant(AntHill * antHill);
 
+    static const qint64 Waiting = 0;
+    static const qint64 MoveRandomly = 1;
+    static const qint64 MoveToAPoint = 2;
+
     void basicMove();
     void basicRotation();
     void moveRandomly();
+    void moveToAPoint(qreal x, qreal y);
+    void moveToAPoint(QPointF p);
 
     AntHill *antHill();
     //void setAntHill(AntHill *antHill);
@@ -38,6 +44,8 @@ public slots:
 private:
     AntHill *m_antHill;
     qint64 m_lifeCycles;
+
+    void moveToAPoint2();
 protected:
     class AntAntenna;
 
@@ -49,6 +57,8 @@ protected:
     qreal m_beeline_distance;
 
     AntAntenna * m_antenna;
+
+    qint64 m_status;
 
 };
 

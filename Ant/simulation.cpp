@@ -31,15 +31,10 @@ Simulation * Simulation::getInstance()
 
 Simulation::~Simulation()
 {
-    /*foreach(Food * fd , m_foodList){
-        delete fd;
+    QList<QGraphicsItem*> l(this->items());
+    foreach (QGraphicsItem * i, l) {
+        delete i;
     }
-    foreach(Ant * ant , m_antList){
-        delete ant;
-    }
-    foreach(AntHill * antHill , m_antHillList){
-        delete antHill;
-    }*/
 
 }
 
@@ -63,7 +58,7 @@ void Simulation::advance(int phase)
     QGraphicsScene::advance();
 }
 
-void Simulation::createAnt(AntHill *antHill)
+void Simulation::createAnt(AntHill * antHill)
 {
 
     qint64 food = antHill->food();
@@ -85,31 +80,44 @@ void Simulation::createAnt(AntHill *antHill)
     if (nullptr != ant){
         QGraphicsScene::addItem(ant);
         antHill->growUp();
+        qDebug() << "Simulation::createAnt:" << ant;
     }
-    //qDebug() << "createAnt::sizeIsNow:" << antHill->size();
-    qDebug() << "food:" << food;
+
 
 }
 
-void Simulation::createAntHill(Queen *queen)
+void Simulation::createAntHill(Queen * queen)
 {
     QPointF pos = queen->pos();
     QGraphicsScene::removeItem(queen);
     AntHill * antHill = new AntHill();
     antHill->setPos(pos);
+    qDebug() << "Simulation::createAntHill:" << antHill;
 
 }
 
-void Simulation::createPheromon(Worker *worker)
+void Simulation::createPheromon(Worker * worker)
 {
+    Pheromone * pheromone = new Pheromone(worker->antHill());
+    this->addItem(pheromone);
+    pheromone->setPos(worker->pos());
+    qDebug() << "Simulation::createPheromone:" << pheromone;
+}
 
+void Simulation::pheromoneOutOfDate(Pheromone * pheromone)
+{
+    qDebug() << "Simulation::removePheromone:" << pheromone;
+    this->removeItem(pheromone);
+    delete pheromone;
 }
 
 
-void Simulation::deleteAnt(Ant *ant)
+void Simulation::deleteAnt(Ant * ant)
 {
     if(ant->lifeCycles() >= m_antLifeTime){
+        qDebug() << "Simulation::removeAnt:" << ant;
         QGraphicsScene::removeItem(ant);
+        delete ant;
     }
 }
 
@@ -140,28 +148,12 @@ void Simulation::addFood()
     this->addItem(f);
 }
 
-void Simulation::noMoreFood(Food *f)
+void Simulation::noMoreFood(Food * food)
 {
-    qDebug() << "removeFood:" << f;
-    this->removeItem(f);
+    qDebug() << "Simulation::removeFood:" << food;
+    this->removeItem(food);
+    delete food;
 }
-
-/*Food * Simulation::chocFood(Ant * ant){
-    //Parcours food
-    foreach(Food * fd , m_foodList){
-        if(ant->collidesWithItem(fd)){
-            fd->setFood(fd->getFood()-1);
-            if (fd->getFood() == 0){
-                m_foodList.removeOne(fd);
-                this->removeItem(fd);
-            } else {
-               return fd;
-            }
-        }
-
-    }
-    return NULL;
-}*/
 
 qreal Simulation::rand(qint64 min, qint64 max)
 {
@@ -180,10 +172,10 @@ qreal Simulation::rand(qint64 min, qint64 max)
 
 qreal Simulation::w()
 {
-    this->sceneRect().width();
+    return this->sceneRect().width();
 }
 
 qreal Simulation::h()
 {
-    this->sceneRect().height();
+    return this->sceneRect().height();
 }

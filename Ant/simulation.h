@@ -45,10 +45,10 @@ public:
     void createAnt(AntHill *antHill);
     void createAntHill(Queen * queen);
     void createPheromon(Worker * worker);
+    void pheromoneOutOfDate(Pheromone * pheromone);
     void deleteAnt(Ant * ant);
     void addFood();
-    /*Food * chocFood(Ant * ant);*/
-    void noMoreFood(Food * f);
+    void noMoreFood(Food * food);
     static qreal rand(qint64 min = 0, qint64 max = 0);
     qreal w();
     qreal h();

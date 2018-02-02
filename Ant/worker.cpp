@@ -3,17 +3,7 @@
 #include <QDebug>
 #include "antantenna.h"
 
-bool Worker::hasFood() const
-{
-    return m_hasFood;
-}
-
-void Worker::setHasFood(bool hasFood)
-{
-    m_hasFood = hasFood;
-}
-
-Worker::Worker(AntHill * antHill):Ant(antHill),m_hasFood(false)
+Worker::Worker(AntHill * antHill):Ant(antHill)
 {
 
 }
@@ -25,55 +15,46 @@ bool Worker::isWorker(QGraphicsItem *e)
 }
 
 void Worker::advance(int phase){
+    bool carryFood = (m_status == CarryFood);
+
+    if(carryFood){
+        m_status = MoveToAPoint;
+    }
     Ant::advance(phase);
-    //3 cas
-    if(m_hasFood){
-        //Revient
 
-        if(this->collidesWithItem(this->antHill())){
-            m_hasFood = false;
+    if(carryFood){
+        m_status = CarryFood;
+    }
+
+
+    if(m_status == CarryFood){
+        if(m_antenna->isAtAntHill()){
             antHill()->addFood();
-        }else{
-            if(m_turn){
-                this->basicRotation();
-
-                if(m_turn_rotation == 0.0){
-                    m_turn = false;
-                    m_turn_rotation = 0.0;
-
-                    m_beeline = true;
-                }
-            } else if(m_beeline){
-                this->basicMove();
+            m_status == Waiting;
+            qDebug() << "AppendFood:" << this;
+        } else {
+            if(m_turn_rotation == 0.0){
+                Simulation::getInstance()->createPheromon(this);
             }
         }
-    }else{
-        // Cherche
-        /*QPointF step(this->pos());
-        step.setX(step.x()-5 + (rand() % static_cast<int>(11)));
-        step.setY(step.y()-5 + (rand() % static_cast<int>(11)));
-        this->setPos(step);*/
-        Ant::moveRandomly();
-
-        if(this->m_antenna->contactWithFood() ){
-            Food * f = this->m_antenna->foodList().first();
+    } else {
+        if(m_antenna->contactWithPheromone()){
+            QList<Pheromone*> l(m_antenna->pheromoneList());
+            qint64 i = (qint64) Simulation::rand(l.size());
+            Pheromone * p = l.at(i);
+            moveToAPoint(p->pos());
+            m_status = MoveToAPoint;
+        } else if(m_antenna->contactWithFood() ){
+            Food * f = m_antenna->foodList().first();
             if(f->chocFood()){
-                qDebug() << "food:" << f << "; ant:" << this ;
-
-                m_hasFood = true;
-                QLineF line(this->pos(),this->antHill()->pos()); // Line from Ant to AntHill
-
-                qreal x = this->pos().x() + qCos(m_orientation*(M_PI/180.0))*5.0;
-                qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
-                QPointF p(x,y);
-                QLineF lineB(this->pos(),p);
-                qreal a(line.angle(lineB));
-                m_turn = true;
-                m_turn_rotation = a;
-                m_beeline = false;
-                m_beeline_distance = line.length();
+                moveToAPoint(this->antHill()->pos());
+                m_status = CarryFood;
             }
         }
+    }
+
+    if(m_status != MoveToAPoint && m_status != CarryFood){
+        m_status = MoveRandomly;
     }
 
 }
