@@ -92,9 +92,9 @@ void Ant::moveToAPoint(qreal x, qreal y)
     qreal y2 = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*20.0;
     QPointF p2(x2,y2);
     QLineF lineToPointFromCurrentRotation(this->pos(),p2);
-    qreal a(lineToPoint.angle(lineToPointFromCurrentRotation));
+    qreal a(lineToPointFromCurrentRotation.angleTo(lineToPoint));
     m_turn = true;
-    m_turn_rotation = a;
+    m_turn_rotation = -a;
     m_beeline = false;
     m_beeline_distance = lineToPoint.length();
 }
@@ -136,7 +136,7 @@ bool Ant::isInFront(QGraphicsItem *a, qreal angle)
     qreal y = this->pos().y() + qSin(m_orientation*(M_PI/180.0))*5.0;
     QPointF p(x,y);
     QLineF l2(this->pos(),p);
-    return qAbs(l1.angle(l2))<angle;
+    return qAbs(l2.angleTo(l1))<angle;
 }
 
 bool Ant::isAnt(QGraphicsItem *e)
