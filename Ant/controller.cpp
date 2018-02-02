@@ -117,5 +117,5 @@ void Controller::changeSpeed(){
 
 void Controller::onStatsUpdate(QList<AntHill *> l)
 {
-
+    emit statsUpdate(l);
 }

@@ -14,14 +14,14 @@ AntHill::AntHill():
     s.remove(0,2);
 
     QString cs(s.right(6));
-    cs.append('#');
+    cs.push_front('#');
 
     m_color.setNamedColor(cs);
 
-    QPixmap img(":/img/resources/anthill.png");
+    QPixmap p(":/img/resources/anthill.png");
 
-    changeColor(img,QColor(255,255,255),m_color);
-    this->setPixmap(img);
+    changeColor(p,QColor(255,255,255),m_color);
+    this->setPixmap(p);
     qDebug() << "AntHill:color:" << s;
     qDebug() << "AntHill:color:" << cs;
     qDebug() << "AntHill:color:" << m_color;
