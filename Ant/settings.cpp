@@ -77,5 +77,6 @@ void Settings::onFormValid(){
     foodAnt = ui->foodForAntSpinBox->value();
     antLifeTime = ui->lifeDurationSpinBox->value();
     antLimit = ui->maxAntSpinBox->value();
+    ratioWorkerSoldier = ui->ratioWorkerSoldierDbSpinBox->value();
     emit paramValids();
 }

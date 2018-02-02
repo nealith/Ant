@@ -24,6 +24,7 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(saveAsClicked()),this,SLOT(openSaveWindow()));
     connect(&m_timer, SIGNAL(timeout()), this, SLOT(onTimeout()));
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
+    connect(m_window, SIGNAL(speedChanged()),this,SLOT(changeSpeed()));
 
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
@@ -91,7 +92,7 @@ void Controller::onAddFood(){
 void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
-    //m_timer.start(m_speed_factor*m_speed_one);
+    m_timer.start(m_speed_factor*m_speed_one);
 }
 
 void Controller::updateSimulationParams(){
@@ -99,4 +100,10 @@ void Controller::updateSimulationParams(){
     m_simulation->setFoodAnt(m_settings->getFoodAnt());
     m_simulation->setAntLimit(m_settings->getAntLimit());
     m_simulation->setAntLifeTime(m_settings->getAntLifeTime());
+    m_simulation->setRatioWorkerSoldier(m_settings->getRatioWorkerSoldier());
+}
+
+void Controller::changeSpeed(){
+    this->m_speed_factor = m_window->getSpeedFactor();
+    qDebug() << m_speed_factor;
 }

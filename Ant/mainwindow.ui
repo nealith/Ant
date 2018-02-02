@@ -51,10 +51,19 @@
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
            <property name="minimum">
-            <number>-5</number>
+            <number>1</number>
            </property>
            <property name="maximum">
-            <number>5</number>
+            <number>100</number>
+           </property>
+           <property name="pageStep">
+            <number>1</number>
+           </property>
+           <property name="value">
+            <number>1</number>
+           </property>
+           <property name="tracking">
+            <bool>true</bool>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -64,6 +73,12 @@
            </property>
            <property name="invertedControls">
             <bool>false</bool>
+           </property>
+           <property name="tickPosition">
+            <enum>QSlider::TicksBothSides</enum>
+           </property>
+           <property name="tickInterval">
+            <number>1</number>
            </property>
           </widget>
          </item>
@@ -97,7 +112,7 @@
      <x>0</x>
      <y>0</y>
      <width>1066</width>
-     <height>24</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">

@@ -18,8 +18,12 @@ public:
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
 
+    qreal getSpeedFactor() const;
+    void setSpeedFactor(const qreal &value);
+
 private:
     Ui::MainWindow *ui;
+    qreal speedFactor;
 
 private slots:
     void onOpenFileClicked();
@@ -29,6 +33,8 @@ private slots:
 
     void onSaveFileClicked();
     void onSaveAsClicked();
+    void onSpeedChange();
+
 signals:
     void newSimuClicked();
     void parameterOpenClicked();
@@ -36,6 +42,7 @@ signals:
     void addFoodClicked();
     void saveFileClicked();
     void saveAsClicked();
+    void speedChanged();
 };
 
 #endif // MAINWINDOW_H

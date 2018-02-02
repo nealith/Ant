@@ -43,6 +43,7 @@ private slots:
     void openSaveWindow();
     void saveFile();
     void updateSimulationParams();
+    void changeSpeed();
 };
 
 #endif // CONTROLLER_H
