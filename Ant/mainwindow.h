@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QList>
+#include <anthill.h>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +20,7 @@ public:
     void setupSignals();
     void setupScene(QGraphicsScene * scene);
     void setFood();
+    void advance(Qlist<AntHill*> l);
 private:
     Ui::MainWindow *ui;
 
