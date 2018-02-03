@@ -145,13 +145,19 @@ void Simulation::createAnt(AntHill * antHill)
         ant = new Queen(antHill);
         antHill->consume(m_foodQueen);
     } else if(antHill->size() < m_antLimit && food >= m_foodAnt) {
-        //qreal r = rand();
-        /*if (r < m_ratioWorkerSoldier){
-            ant = new Worker(antHill);
+
+        if(antHill->size() > 10){
+            qreal r = Simulation::rand();
+            if (r < m_ratioWorkerSoldier){
+                ant = new Worker(antHill);
+            } else {
+                ant = new Soldier(antHill);
+            }
         } else {
-            ant = new Soldier(antHill);
-        }*/
-        ant = new Worker(antHill);
+            ant = new Worker(antHill);
+        }
+
+
         antHill->consume(m_foodAnt);
     }
 
@@ -286,7 +292,8 @@ bool Simulation::posValidForAntHill(QPointF pos)
 void Simulation::drawForeground(QPainter *painter, const QRectF &rect)
 {
 
-    QFont f("monospace");
+    QFont f("monospace",12);
+    f.setPixelSize(30);
     qreal fontSize=f.pixelSize();
     painter->setFont(f);
 
