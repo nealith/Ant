@@ -33,7 +33,7 @@ void Ant::AntAntenna::update()
     foreach (QGraphicsItem * e, c) {
         if(Ant::isAnt(e)){
             Ant * a = (Ant*)e;
-            if(m_ref->isInFront(a)){
+            if(m_ref->isInFront(a,20.0)){
                 m_antFront.append(a);
             }
             if(a->antHill() == m_ref->antHill()){
@@ -56,9 +56,9 @@ void Ant::AntAntenna::update()
 
         } else if(Pheromone::isPheromone(e)){
             Pheromone * f = (Pheromone*)e;
-            if (f->antHill() == m_ref->antHill() && m_ref->isInFront(f,90.0)){
+            if (f->antHill() == m_ref->antHill()){
                 m_pheromone.append(f);
-            } else {
+            } else if(m_ref->isInFront(f,90.0)) {
                 m_foreignPheromone.append(f);
             }
         } else if(Food::isFood(e)){

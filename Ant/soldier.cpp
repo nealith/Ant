@@ -14,7 +14,16 @@ bool Soldier::isSoldier(QGraphicsItem * e)
 }
 
 void Soldier::advance(int phase){
+    qint64 oldStatus = m_status;
+    if(m_status == FollowPheromone){
+        m_status = Ant::MoveToAPoint;
+    }
     Ant::advance(phase);
+
+    if(oldStatus == FollowPheromone){
+        m_status = oldStatus;
+    }
+
     bool fail = false;
     if(m_antenna->contactWithForeignSoldier()){
         QList<Soldier*> l(m_antenna->foreignSoldierList());
@@ -46,12 +55,12 @@ void Soldier::advance(int phase){
             }
 
         }
-    } else if(m_antenna->contactWithForeignPheromone()){
+    } else if(m_antenna->contactWithForeignPheromone() && m_status != FollowPheromone){
         QList<Pheromone*> l(m_antenna->foreignPheromoneList());
         qint64 i = (qint64) Simulation::rand(l.size());
         Pheromone * p = l.at(i);
         this->moveToAPoint(p->pos());
-        m_status = Ant::MoveToAPoint;
+        m_status = FollowPheromone;
     }
     if((m_status != Ant::MoveToAPoint) || m_status == Ant::Waiting ){
         m_status = Ant::MoveRandomly;

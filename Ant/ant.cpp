@@ -33,13 +33,13 @@ Ant::Ant(AntHill * antHill) :
 
 void Ant::basicMove()
 {
-    //if(!m_antenna->isBlocked()){
+    if(!m_antenna->isBlocked()){
         QPointF pos = this->pos();
         qreal x = pos.x() + qCos(m_orientation*(M_PI/180.0))*0.5;
         qreal y = pos.y() + qSin(m_orientation*(M_PI/180.0))*0.5;
         this->setPos(x,y);
         m_beeline_distance -= 0.5;
-    //}
+    }
 }
 
 void Ant::basicRotation()
@@ -100,6 +100,7 @@ void Ant::moveToAPoint(qreal x, qreal y)
     m_turn_rotation = -a;
     m_beeline = false;
     m_beeline_distance = lineToPoint.length();
+
 }
 
 void Ant::moveToAPoint(QPointF p)
@@ -112,10 +113,25 @@ void Ant::advance(int phase)
     m_lifeCycles++;
     m_antenna->update();
 
+    qDebug() << "turn:" << m_turn << ":" << m_turn_rotation << "beeline:"<< m_beeline << ":" << m_beeline_distance << ";;cycle:" << m_lifeCycles << ";status:" << this << "::" << m_status;
+
     if(m_status == MoveRandomly){
         moveRandomly();
-    } else if(m_status == MoveToAPoint){
-        moveToAPoint2();
+    }
+
+    if(m_status == MoveToAPoint){
+        if(m_beeline_distance <= 0.0){
+            m_beeline = false;
+            m_beeline_distance = 0.0;
+
+            m_turn = true;
+            m_turn_rotation = Simulation::rand(-1,1) * 45.0;
+            m_status = MoveRandomly;
+            moveRandomly();
+        } else {
+           moveToAPoint2();
+        }
+
     }
 
     Simulation::getInstance()->deleteAnt(this);
@@ -162,9 +178,11 @@ void Ant::moveToAPoint2()
             }
         } else if(m_beeline){
             this->basicMove();
-            if(m_beeline_distance <= 0.0){
-                m_status = Waiting;
-            }
+
+        }
+        if(m_beeline_distance <= 0.0){
+            m_status = MoveRandomly;
+            moveRandomly();
         }
     }
 

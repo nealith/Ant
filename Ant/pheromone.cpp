@@ -26,10 +26,11 @@ AntHill * Pheromone::antHill() const
 
 void Pheromone::advance(int phase){
     m_cycle++;
+    this->setOpacity((qreal)m_value/255.0);
     if(m_cycle==100*25){
         m_value--;
         m_cycle=0;
-        this->setOpacity(m_value);
+
         if(m_value==0){
             Simulation::getInstance()->pheromoneOutOfDate(this);
         }

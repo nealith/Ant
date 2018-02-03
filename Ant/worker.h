@@ -15,6 +15,7 @@ public:
     void advance(int phase);
 
     static const qint64 CarryFood = 3;
+    static const qint64 FollowPheromone = 4;
 
 
 };

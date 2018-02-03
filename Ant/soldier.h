@@ -10,6 +10,8 @@ public:
 
     static bool isSoldier(QGraphicsItem *e);
 
+    static const qint64 FollowPheromone = 3;
+
     void advance(int phase);
 };
 
