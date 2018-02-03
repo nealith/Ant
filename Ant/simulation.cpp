@@ -117,7 +117,7 @@ Simulation::~Simulation()
 
 void Simulation::init()
 {
-
+    m_antHillList.clear();
     this->clear();
     qreal height(10000);
     qreal width(20000);

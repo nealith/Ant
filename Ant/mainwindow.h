@@ -40,6 +40,7 @@ private slots:
     void onAskInfo();
     void onManuelClicked();
     void onAddAntHillClicked();
+    void onPlayPauseClicked();
 
 signals:
     void newSimuClicked();
@@ -52,6 +53,7 @@ signals:
     void moreInfo();
     void showManual();
     void antHillClicked();
+    void playPauseClicked();
 };
 
 #endif // MAINWINDOW_H

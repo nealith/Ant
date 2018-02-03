@@ -39,6 +39,7 @@ private:
     Simulation * m_simulation;
     qint64 m_cycles;
     qreal m_speed_factor;
+    bool m_play;
     const qint32 m_speed_one =40 ;
 private slots:
     void createNewSimu();
@@ -53,6 +54,7 @@ private slots:
     void onAskInfo();
     void onOpenManual();
     void addNewAntHill();
+    void onPlayPause();
 };
 
 #endif // CONTROLLER_H

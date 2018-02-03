@@ -31,6 +31,7 @@ void MainWindow::setupSignals(){
     connect(ui->addAntHillBtn,SIGNAL(clicked(bool)),this,SLOT(onAddAntHillClicked()));
     connect(ui->addAntHillMenuBtn,SIGNAL(triggered(bool)),this,SLOT(onAddAntHillClicked()));
     connect(ui->addFoodMenuBtn,SIGNAL(triggered(bool)),this,SLOT(onAddFoodClicked()));
+    connect(ui->playStop,SIGNAL(clicked()),this,SLOT(onPlayPauseClicked()));
 }
 
 void MainWindow::setupScene(QGraphicsScene *scene)
@@ -104,4 +105,15 @@ void MainWindow::onManuelClicked(){
 
 void MainWindow::onAddAntHillClicked(){
     emit antHillClicked();
+}
+
+void MainWindow::onPlayPauseClicked()
+{
+    emit playPauseClicked();
+    if(ui->playStop->text() == "Pause"){
+        ui->playStop->setText("Jouer");
+    } else {
+        ui->playStop->setText("Pause");
+    }
+
 }

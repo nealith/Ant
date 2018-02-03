@@ -11,7 +11,8 @@ Controller::Controller(MainWindow *window,Settings * s, aPropos * ap, Manuel *m,
   m_timer(),
   m_simulation(Simulation::getInstance()),
   m_cycles(0),
-  m_speed_factor(1)
+  m_speed_factor(1),
+  m_play(true)
 {
     Q_ASSERT(nullptr != window);
 }
@@ -28,6 +29,8 @@ void Controller::setupSignals()
     connect(m_window, SIGNAL(addFoodClicked()), this, SLOT(onAddFood()));
     connect(m_window, SIGNAL(speedChanged()),this,SLOT(changeSpeed()));
     connect(m_simulation,SIGNAL(ifoundFood()),this,SLOT(onFoodFound()));
+
+    connect(m_window,SIGNAL(playPauseClicked()),this,SLOT(onPlayPause()));
 
     //signaux pour les settings
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
@@ -106,7 +109,10 @@ void Controller::onAddFood(){
 void Controller::onTimeout(){
     m_cycles++;
     m_simulation->advance(1);
-    m_timer.start(m_speed_factor*m_speed_one);
+    if(!m_play){
+        m_timer.stop();
+    }
+
 }
 
 
@@ -118,6 +124,7 @@ void Controller::updateSimulationParams(){
     m_simulation->setAntLifeTime(m_settings->getAntLifeTime());
     m_simulation->setRatioWorkerSoldier(m_settings->getRatioWorkerSoldier());
     m_simulation->restart(m_settings);
+    m_timer.start(m_speed_factor*m_speed_one);
 }
 
 void Controller::changeSpeed(){
@@ -134,4 +141,14 @@ void Controller::onOpenManual(){
 
 void Controller::addNewAntHill(){
     m_simulation->dropAntHill(QPointF(m_simulation->w()/2.0,m_simulation->h()/2.0));
+}
+
+void Controller::onPlayPause()
+{
+    if(m_play){
+        m_play = false;
+    } else {
+        m_play = true;
+        m_timer.start(m_speed_factor*m_speed_one);
+    }
 }
