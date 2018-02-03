@@ -39,6 +39,7 @@ private slots:
     void onQuit();
     void onAskInfo();
     void onManuelClicked();
+    void onAddAntHillClicked();
 
 signals:
     void newSimuClicked();
@@ -50,6 +51,7 @@ signals:
     void speedChanged();
     void moreInfo();
     void showManual();
+    void antHillClicked();
 };
 
 #endif // MAINWINDOW_H

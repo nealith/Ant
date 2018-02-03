@@ -52,6 +52,7 @@ private slots:
     void changeSpeed();
     void onAskInfo();
     void onOpenManual();
+    void addNewAntHill();
 };
 
 #endif // CONTROLLER_H

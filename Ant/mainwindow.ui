@@ -104,119 +104,6 @@
         <item>
          <widget class="SimulationView" name="graphicsView"/>
         </item>
-        <item>
-         <layout class="QHBoxLayout" name="infoSimu">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMaximumSize</enum>
-          </property>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,10">
-            <property name="spacing">
-             <number>1</number>
-            </property>
-            <item>
-             <widget class="QComboBox" name="ChoseAnthill">
-              <item>
-               <property name="text">
-                <string>Anthill 1</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Total</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <property name="spacing">
-               <number>1</number>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_4">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Nombre de Fourmis : </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="nbAntLB">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>0</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <property name="spacing">
-               <number>1</number>
-              </property>
-              <property name="sizeConstraint">
-               <enum>QLayout::SetDefaultConstraint</enum>
-              </property>
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Nourritures trouvées : </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="nbFoodLB">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>25</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>0</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <property name="spacing">
-               <number>60</number>
-              </property>
-              <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
-              </property>
-             </layout>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </item>
        </layout>
       </item>
      </layout>
@@ -244,46 +131,12 @@
     <addaction name="separator"/>
     <addaction name="quitterSimuBtn"/>
    </widget>
-   <widget class="QMenu" name="menuAffichage">
-    <property name="title">
-     <string>Afficha&amp;ge</string>
-    </property>
-    <widget class="QMenu" name="menuZoom">
-     <property name="title">
-      <string>&amp;Zoom</string>
-     </property>
-     <addaction name="action0_25"/>
-     <addaction name="action0_5"/>
-     <addaction name="action0_75"/>
-     <addaction name="action1"/>
-     <addaction name="action1_25"/>
-     <addaction name="action1_5"/>
-     <addaction name="action1_75"/>
-     <addaction name="action2"/>
-    </widget>
-    <addaction name="realTInfoBtn"/>
-    <addaction name="menuZoom"/>
-   </widget>
    <widget class="QMenu" name="menuSimulation">
     <property name="title">
      <string>Si&amp;mulation</string>
     </property>
-    <widget class="QMenu" name="menuVitesse">
-     <property name="title">
-      <string>&amp;Vitesse</string>
-     </property>
-     <addaction name="action0_26"/>
-     <addaction name="action0_6"/>
-     <addaction name="action0_76"/>
-     <addaction name="action1_2"/>
-     <addaction name="action1_26"/>
-     <addaction name="action1_6"/>
-     <addaction name="action1_76"/>
-     <addaction name="action2_2"/>
-    </widget>
-    <addaction name="actionNouvelle_colonie"/>
-    <addaction name="actionD_poser_nourriture"/>
-    <addaction name="menuVitesse"/>
+    <addaction name="addAntHillMenuBtn"/>
+    <addaction name="addFoodMenuBtn"/>
     <addaction name="separator"/>
     <addaction name="ouvrirParamBtn"/>
    </widget>
@@ -295,7 +148,6 @@
     <addaction name="aProposBtn"/>
    </widget>
    <addaction name="menuFichier"/>
-   <addaction name="menuAffichage"/>
    <addaction name="menuSimulation"/>
    <addaction name="menuAide"/>
   </widget>
@@ -401,12 +253,12 @@
     <string>&amp;2</string>
    </property>
   </action>
-  <action name="actionNouvelle_colonie">
+  <action name="addAntHillMenuBtn">
    <property name="text">
     <string>&amp;Nouvelle colonie</string>
    </property>
   </action>
-  <action name="actionD_poser_nourriture">
+  <action name="addFoodMenuBtn">
    <property name="text">
     <string>&amp;Déposer nourriture</string>
    </property>
