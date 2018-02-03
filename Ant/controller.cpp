@@ -33,6 +33,7 @@ void Controller::setupSignals()
     connect(m_settings, SIGNAL(paramValids()),this, SLOT(updateSimulationParams()));
     connect(m_window,SIGNAL(moreInfo()),this,SLOT(onAskInfo()));
     connect(m_window,SIGNAL(showManual()),this,SLOT(onOpenManual()));
+    connect(m_window,SIGNAL(antHillClicked()),this,SLOT(addNewAntHill()));
 }
 
 void Controller::initialize(){
@@ -58,7 +59,7 @@ void Controller::createNewSimu(){
                                    tr("Perdre la simulation actuelle pour en faire une nouvelle?"),
                                    QMessageBox::Yes | QMessageBox::No,
                                    QMessageBox::No);
-    if (rep==QMessageBox::No){
+    if (rep==QMessageBox::Yes){
         m_simulation->restart(m_settings);
     }
 }
@@ -129,4 +130,8 @@ void Controller::onAskInfo(){
 }
 void Controller::onOpenManual(){
     valls->show();
+}
+
+void Controller::addNewAntHill(){
+    m_simulation->dropAntHill(QPointF(m_simulation->w()/2.0,m_simulation->h()/2.0));
 }

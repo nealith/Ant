@@ -28,6 +28,9 @@ void MainWindow::setupSignals(){
     connect(ui->aProposBtn,SIGNAL(triggered()),this,SLOT(onAskInfo()));
     connect(ui->actionManuel,SIGNAL(triggered(bool)),this,SLOT(onManuelClicked()));
     connect(ui->nouvelleSimuBtn,SIGNAL(triggered(bool)),this,SLOT(onNewSimuClicked()));
+    connect(ui->addAntHillBtn,SIGNAL(clicked(bool)),this,SLOT(onAddAntHillClicked()));
+    connect(ui->addAntHillMenuBtn,SIGNAL(triggered(bool)),this,SLOT(onAddAntHillClicked()));
+    connect(ui->addFoodMenuBtn,SIGNAL(triggered(bool)),this,SLOT(onAddFoodClicked()));
 }
 
 void MainWindow::setupScene(QGraphicsScene *scene)
@@ -97,4 +100,8 @@ void MainWindow::onAskInfo(){
 
 void MainWindow::onManuelClicked(){
     emit showManual();
+}
+
+void MainWindow::onAddAntHillClicked(){
+    emit antHillClicked();
 }

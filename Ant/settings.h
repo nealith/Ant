@@ -34,13 +34,9 @@ public:
     qint64 getAntLimit() const;
     void setAntLimit(const qint64 &value);
 
-    qint64 getNbAnthill() const;
-    void setNbAnthill(const qint64 &value);
-
 private:
     //on a une UI qui fait partie du package UI
     Ui::Settings *ui;
-    qint64 nbAnthill;
     qint64 foodQueen;
     qint64 foodAnt;
     qint64 ratioWorkerSoldier;

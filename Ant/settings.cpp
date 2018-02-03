@@ -71,19 +71,8 @@ void Settings::setAntLimit(const qint64 &value)
     antLimit = value;
 }
 
-qint64 Settings::getNbAnthill() const
-{
-    return nbAnthill;
-}
-
-void Settings::setNbAnthill(const qint64 &value)
-{
-    nbAnthill = value;
-}
-
 void Settings::onFormValid(){
     qDebug() << "Valid param";
-    nbAnthill = ui->antHillSpinBox->value();
     foodQueen = ui->foodPerQueenSpinBox->value();
     foodAnt = ui->foodForAntSpinBox->value();
     antLifeTime = ui->lifeDurationSpinBox->value();
